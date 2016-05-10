@@ -59,7 +59,7 @@ clear: both;
 					*  Get Session  *
 	*******************************************************/
 	@SuppressWarnings("unchecked")
-	List<ProductBean> productList = (List<ProductBean>) session.getAttribute("productList");   
+	List<Product> productList = (List<Product>) session.getAttribute("productList");   
 	//System.out.println(productList);
 %>
 
@@ -93,9 +93,8 @@ clear: both;
 
 <section data-ng-controller="ViewController">
 
-<%  for (int i = 0; i < MAX; i++) {			
-	
-		String editPage = SellerServlet.getEditPageName(productList.get(i).getSubCategory());		
+<%  
+	for (int i = 0; i < MAX; i++) {					
 		
 %>
 
@@ -115,7 +114,7 @@ clear: both;
 						<span style="font-size: 20px; color: #EF413C;">Price: <%=productList.get(i).getPrice().getSalePriceToAdmin() %></span>
 						<span style="font-size: 20px; color: blue;margin-left: 34px;">Markup: <%=productList.get(i).getPrice().getMarkup() %>%</span>
 					</div>					
-					<div class="col-md-6" style="margin-top:40px;">
+					<%-- <div class="col-md-6" style="margin-top:40px;">
 						<span style="font-size: 18px;color: #4FAA4F;">Key Features</span> <hr>
 						<ul class="key_feature">
 							<li><%=productList.get(i).getKeyFeatures().getKf1() %></li>
@@ -123,12 +122,12 @@ clear: both;
 							<li><%=productList.get(i).getKeyFeatures().getKf3() %></li>
 							<li><%=productList.get(i).getKeyFeatures().getKf4() %></li>
 						</ul>
-					</div>					
+					</div>	 --%>				
 				</div>
 				<!-- ---------------------------------------------------------- -->	
 				<div class="col-md-2" style="margin-top:100px;">
 					<span style="float: left;margin-top: 9px;">
-						<a href="<%=editPage%>?productId=<%=productList.get(i).getProductId()%>" 
+						<a href="EditProduct?productId=<%=productList.get(i).getProductId()%>" 
 							style="width: 50% !important;  padding: 7px 14px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
 							border: 1px solid #0098fe;color:#ffffff;">Edit</a>
 					</span>					
@@ -175,7 +174,7 @@ clear: both;
 						<span style="font-size: 20px; color: #EF413C;">Price: {{item.salePrice}}</span>
 						<span style="font-size: 20px; color: blue;margin-left: 34px;">Markup: {{item.markup}}%</span>
 					</div>					
-					<div class="col-md-6" style="margin-top:40px;">
+					<!-- <div class="col-md-6" style="margin-top:40px;">
 						<span style="font-size: 18px;color: #4FAA4F;">Key Features</span> <hr>
 						<ul class="key_feature">
 							<li>{{item.kf1}}</li>
@@ -183,12 +182,12 @@ clear: both;
 							<li>{{item.kf3}}</li>
 							<li>{{item.kf4}}</li>
 						</ul>
-					</div>					
+					</div>	 -->				
 				</div>
 				<!-- -------------------------------------------------------------- -->
 				<div class="col-md-2" style="margin-top:100px;">
 					<span style="float: left;margin-top: 9px;">
-						<a href="{{item.editPage}}?productId={{item.productId}}" 
+						<a href="EditProduct?productId={{item.productId}}" 
 							style="width: 50% !important;  padding: 7px 14px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
 							border: 1px solid #0098fe;color:#ffffff;">Edit</a>
 					</span>					

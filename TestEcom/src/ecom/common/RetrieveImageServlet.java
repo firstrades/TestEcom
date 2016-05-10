@@ -54,7 +54,7 @@ public class RetrieveImageServlet extends HttpServlet {
 				
 				connection = ConnectionFactory.getNewConnection();
 				connection.setAutoCommit(false);
-				query = "SELECT icon_image FROM product WHERE product_id= ?";				
+				query = "SELECT icon_image FROM product WHERE id= ?";				
 				preparedStatement = connection.prepareStatement(query);					
 				preparedStatement.setObject(1, productId);			
 				
@@ -137,7 +137,7 @@ public class RetrieveImageServlet extends HttpServlet {
 				
 				connection = ConnectionFactory.getNewConnection();
 				connection.setAutoCommit(false);
-				query = "SELECT image1 FROM product WHERE product_id= ?";				
+				query = "SELECT image1 FROM product WHERE id= ?";				
 				preparedStatement = connection.prepareStatement(query);					
 				preparedStatement.setObject(1, productId);			
 				
@@ -220,7 +220,7 @@ public class RetrieveImageServlet extends HttpServlet {
 				
 				connection = ConnectionFactory.getNewConnection();
 				connection.setAutoCommit(false);
-				query = "SELECT image2 FROM product WHERE product_id= ?";				
+				query = "SELECT image2 FROM product WHERE id= ?";				
 				preparedStatement = connection.prepareStatement(query);					
 				preparedStatement.setObject(1, productId);			
 				

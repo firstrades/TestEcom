@@ -1,45 +1,6 @@
 $(function() {   
 	
-	/**************** IF Section 3 Exists ************************/
-	
-	if ($('#3').length) {     // If <section id="3"> exists		
-		$('#radio3').css('display', 'block');
-	} 
-	
-	/************************* Change Over ************************/
-	
-	$('#basic').click(function() {
 		
-		$('#visible').css('display', 'block');
-		$('#invisible').css('display', 'none');
-		$('#invisible2').css('display', 'none');
-	});
-	
-	$('#advance').click(function() {
-			
-		$('#visible').css('display', 'none');
-		$('#invisible').css('display', 'block');
-		$('#invisible2').css('display', 'none');
-	});
-	
-	$('#size').click(function() {
-		
-		$('#visible').css('display', 'none');
-		$('#invisible').css('display', 'none');
-		$('#invisible2').css('display', 'block');
-	});
-	
-	/*$('.change').change(function() { 
-		
-		$f = $('#visible').children().first().detach();   
-		$m = $('#invisible').children().first().detach();
-		
-		$('#visible').append($m);
-		$('#invisible').append($f);		
-		
-		$('#msg1').empty();
-	});	*/
-	
 	/*************************** Images ****************************/
 	
 	$("form#iconImage").submit(function(event) {  	
@@ -124,10 +85,6 @@ $(function() {
 	});
 	
 	/*****************************************************************/
-	
-	
-	
-	
 	
 });
 

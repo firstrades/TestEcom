@@ -5,20 +5,7 @@
     <welcome-file>BuyerMainPanel-</welcome-file>
     <welcome-file>SellerMainPanel-</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>  
-  <!-- JAX -->
-  <!-- <listener>
-    <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
-  </listener>
-  <servlet>
-    <servlet-name>jaxws</servlet-name>
-    <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>jaxws</servlet-name>
-    <url-pattern>/jaxrs/*</url-pattern>
-  </servlet-mapping> -->
-  <!-- End JAX -->
+  </welcome-file-list>   
   <servlet>
     <servlet-name>Controller</servlet-name>
     <servlet-class>ecom.Controller.Controller</servlet-class>
@@ -55,6 +42,7 @@
     <url-pattern>/GetTrackingDetails</url-pattern>
     <url-pattern>/SetItemCancelled</url-pattern>
     <url-pattern>/GeneratePDF</url-pattern>
+    <url-pattern>/EditProduct</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>RetrieveImageServlet</servlet-name>
@@ -76,42 +64,7 @@
     <url-pattern>/EditIconImage</url-pattern>
     <url-pattern>/EditImage1</url-pattern>
     <url-pattern>/EditImage2</url-pattern>       
-    <url-pattern>/LeggingsEdit</url-pattern>
-    <url-pattern>/EditLeggingsAdvanceFeatures</url-pattern>
-    <url-pattern>/EditSizeFeatures</url-pattern>
-    <url-pattern>/EditSizeKidsYearsFeatures</url-pattern>     
-    <url-pattern>/TopEdit</url-pattern>
-    <url-pattern>/EditTopAdvanceFeatures</url-pattern>
-    <url-pattern>/MenTshirtEdit</url-pattern>
-    <url-pattern>/EditMenTshirtAdvanceFeatures</url-pattern>
-    <url-pattern>/MenJeansEdit</url-pattern>
-    <url-pattern>/EditMenJeansAdvanceFeatures</url-pattern>
-    <url-pattern>/Boys_ShirtEdit</url-pattern>
-    <url-pattern>/EditBoys_ShirtAdvanceFeatures</url-pattern>  
-    <url-pattern>/MobileEdit</url-pattern>
-    <url-pattern>/EditMobileAdvanceFeatures</url-pattern>
-    <url-pattern>/LaptopEdit</url-pattern>
-    <url-pattern>/EditLaptopAdvanceFeatures</url-pattern>
-    <url-pattern>/TabletEdit</url-pattern>
-    <url-pattern>/EditTabletAdvanceFeatures</url-pattern>
-    <url-pattern>/CameraEdit</url-pattern>
-    <url-pattern>/EditCameraAdvanceFeatures</url-pattern>
-    <url-pattern>/TelevisionEdit</url-pattern>
-    <url-pattern>/EditTelevisionAdvanceFeatures</url-pattern>
-    <url-pattern>/AirConditionEdit</url-pattern>
-    <url-pattern>/EditAirConditionAdvanceFeatures</url-pattern>
-    <url-pattern>/RefrigeratorEdit</url-pattern>
-    <url-pattern>/EditRefrigeratorAdvanceFeatures</url-pattern>
-    <url-pattern>/WashingMachineEdit</url-pattern> 
-    <url-pattern>/EditWashingMachineAdvanceFeatures</url-pattern>
-    <url-pattern>/MicrowaveOvenEdit</url-pattern>
-    <url-pattern>/EditMicrowaveAdvanceFeatures</url-pattern>
-    <url-pattern>/VacuumCleanerEdit</url-pattern>
-    <url-pattern>/EditVacuumCleanerAdvanceFeatures</url-pattern>
-    <url-pattern>/SpeakerEdit</url-pattern>
-    <url-pattern>/EditSpeakerAdvanceFeatures</url-pattern>
-    <url-pattern>/GeyserEdit</url-pattern>   
-    <url-pattern>/EditGeyserAdvanceFeatures</url-pattern>
+    <url-pattern>/LeggingsEdit</url-pattern>   
   </servlet-mapping>
   <servlet>
     <servlet-name>BuyerServlet</servlet-name>

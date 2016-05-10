@@ -12,7 +12,7 @@ public class TransientData {
 	public synchronized static int getStock(long productId) {		
 				
 				
-				String sql = "SELECT stock FROM product WHERE product_id = ?";
+				String sql = "SELECT stock FROM product WHERE id = ?";
 				ResultSet resultSet = null;
 				int stock = 9999999;
 				
@@ -52,7 +52,7 @@ public class TransientData {
 	public static int getMAX(long userId, String category, String subCategory) {	
 		
 				
-				String sql = "SELECT COUNT(product_id) FROM product WHERE seller_id = ? AND status = 'approved' AND category = ? AND sub_category = ? ";
+				String sql = "SELECT COUNT(id) FROM product WHERE seller_id = ? AND status = 'approved' AND category = ? AND sub_category = ? ";
 				ResultSet resultSet = null;
 				int MAX = 0;
 				

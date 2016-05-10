@@ -322,18 +322,11 @@ public class SellerServlet extends HttpServlet {
 			
 			System.out.println("Entered ViewProductList");
 			
-			/*******************************************************
-							*  Get Request  *
-			*******************************************************/			
+			/************************  Get Request  **************************/			
 			String category    = request.getParameter("category");           
 			String subCategory = request.getParameter("subCategory");     
 			
-			/*******************************************************
-								*  Get Session  *
-			*******************************************************/	
-			
-			//Long sellerId = (Long) session.getAttribute("sellerId");
-			
+			/**********************  Get Session  ******************************/			
 			User user     = (User) session.getAttribute("user");
 			
 			/*******************************************************
@@ -419,13 +412,6 @@ public class SellerServlet extends HttpServlet {
 							jsonObject.put("discount",    productList.get(i).getPrice().getDiscount());
 							jsonObject.put("salePrice",   productList.get(i).getPrice().getSalePriceToAdmin());
 							jsonObject.put("markup",      productList.get(i).getPrice().getMarkup());
-							//jsonObject.put("kf1",         productList.get(i).getKeyFeatures().getKf1());
-							//jsonObject.put("kf2",         productList.get(i).getKeyFeatures().getKf2());
-							//jsonObject.put("kf3",         productList.get(i).getKeyFeatures().getKf3());
-							//jsonObject.put("kf4",         productList.get(i).getKeyFeatures().getKf4());							
-								String editPage = getEditPageName(productList.get(i).getSubCategory());
-							jsonObject.put("editPage",    editPage);
-							
 							
 							jsonArray.put(jsonObject);
 							
@@ -721,10 +707,14 @@ public class SellerServlet extends HttpServlet {
 			response.getWriter().write(jsonObject.toString());
 			
 		} //  /SetItemCancelled
+		
+		
+		else if (servletPath.equals("EditProduct")) {
+			
+			System.out.println("Entered EditProduct");
+			
+		}//EditProduct
 	}
-	
-	
-	
 	
 	
 	
@@ -750,35 +740,6 @@ public class SellerServlet extends HttpServlet {
 		return pickup;
 	}
 	
-	public static String getEditPageName(String subCategory) {
-		
-		String editPage = null;  
-		
-		switch (subCategory) {
-		//Electronics
-		case "Mobile"            : editPage = "MobileEdit";                      break;
-		case "Laptop"            : editPage = "LaptopEdit";                      break;
-		case "Tablet"            : editPage = "TabletEdit";                      break;
-		case "Camera"            : editPage = "CameraEdit";                      break;
-		case "Television"        : editPage = "TelevisionEdit";                  break;
-		case "AirCondition"      : editPage = "AirConditionEdit";                break;
-		case "Refrigerator"      : editPage = "RefrigeratorEdit";                break;
-		case "WashingMachine"    : editPage = "WashingMachineEdit";              break;
-		case "MicrowaveOven"     : editPage = "MicrowaveOvenEdit";               break;
-		case "VacuumCleaner"     : editPage = "VacuumCleanerEdit";               break;
-		case "Speaker"           : editPage = "SpeakerEdit";                     break;
-		case "Geyser"            : editPage = "GeyserEdit";                      break;
-		//Women
-		case "Leggings"          : editPage = "LeggingsEdit";                    break;
-		case "Top"               : editPage = "TopEdit";                         break;
-		//Men
-		case "MenTshirt"         : editPage = "MenTshirtEdit";                   break;
-		case "Jeans"             : editPage = "MenJeansEdit";                    break;
-		//Kids
-		case "Boys_Shirt"        : editPage = "Boys_ShirtEdit";                  break;
-		}		
-		
-		return editPage;
-	}
+	
 	
 }

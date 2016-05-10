@@ -307,11 +307,10 @@ public class ProductDAO {
 			
 			while (resultSet.next()) { 
 				
-				Product productBean = new Product();
-				//productBean.setKeyFeatures(new KeyFeature());
+				Product productBean = new Product();				
 				productBean.setPrice(new Price());
 				
-				productBean.setProductId                 (resultSet.getInt   ("product_id"  ));
+				productBean.setProductId                 (resultSet.getInt   ("id"          ));
 				productBean.setSellerId                  (resultSet.getLong  ("seller_id"   ));
 				
 				productBean.setCategory                  (resultSet.getString("category"    ));
@@ -321,13 +320,8 @@ public class ProductDAO {
 				
 				productBean.getPrice().setListPrice      (resultSet.getDouble("list_price"  ));
 				productBean.getPrice().setDiscount       (resultSet.getDouble("discount"    ));
-				productBean.getPrice().setSalePriceToAdmin(resultSet.getDouble("sale_price"  ));
-				productBean.getPrice().setMarkup         (resultSet.getDouble("markup"      ));
-				
-				//productBean.getKeyFeatures().setKf1      (resultSet.getString("kf_1"));
-				//productBean.getKeyFeatures().setKf2      (resultSet.getString("kf_2"));
-				//productBean.getKeyFeatures().setKf3      (resultSet.getString("kf_3"));
-				//productBean.getKeyFeatures().setKf4      (resultSet.getString("kf_4"));
+				productBean.getPrice().setSalePriceToAdmin(resultSet.getDouble("sale_price" ));
+				productBean.getPrice().setMarkup         (resultSet.getDouble("markup"      ));			
 				
 				productBean.setStatus                    (Conversions.getEnumStatus(resultSet.getString("status")));
 				
