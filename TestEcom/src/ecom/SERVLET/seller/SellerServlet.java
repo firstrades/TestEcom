@@ -46,6 +46,7 @@ public class SellerServlet extends HttpServlet {
 	
 	private SellerDAO sellerDAO;
 	private ProductDAO productDAO;
+	@SuppressWarnings("unused")
 	private String nextPage;
 	
 	@Override

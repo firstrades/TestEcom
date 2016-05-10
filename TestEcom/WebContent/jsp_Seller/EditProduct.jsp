@@ -42,82 +42,82 @@ hr {
 <%
 
 	Product product              = (Product) request.getAttribute("product");
-	List<KeyFeature> keyFeatures = product.getKeyFeatures();         System.out.println(keyFeatures.size());
+	List<KeyFeature> keyFeatures = product.getKeyFeatures();                         System.out.println(keyFeatures.size());
 	List<Size> sizes             = product.getSizes();   
 	
-	String key1 = "", key2 = "", key3 = "", key4 = "", key5 = "", key6 = "", key7 = "", key8 = "";
+	String key1 = "",   key2 = "",   key3 = "",   key4 = "",   key5 = "",   key6 = "",   key7 = "",   key8 = "";
 	String value1 = "", value2 = "", value3 = "", value4 = "", value5 = "", value6 = "", value7 = "", value8 = "";
 	
-	try {
+	try { // This try catch is necessary for working of this page.
 	
-		key1   = keyFeatures.get(0).getKey();            System.out.println(key1);
-		value1 = keyFeatures.get(0).getValue();          System.out.println(value1);
+		key1   = keyFeatures.get(0).getKey();          //  System.out.println(key1);
+		value1 = keyFeatures.get(0).getValue();         // System.out.println(value1);
 		
-		key2   = keyFeatures.get(1).getKey();            System.out.println(key2);
-		value2 = keyFeatures.get(1).getValue();          System.out.println(value2);
+		key2   = keyFeatures.get(1).getKey();           // System.out.println(key2);
+		value2 = keyFeatures.get(1).getValue();         // System.out.println(value2);
 		
-		key3   = keyFeatures.get(2).getKey();            System.out.println(key3);
-		value3 = keyFeatures.get(2).getValue();          System.out.println(value3);
+		key3   = keyFeatures.get(2).getKey();            //System.out.println(key3);
+		value3 = keyFeatures.get(2).getValue();         // System.out.println(value3);
 		
-		key4   = keyFeatures.get(3).getKey();            System.out.println(key4);
-		value4 = keyFeatures.get(3).getValue();          System.out.println(value4);
+		key4   = keyFeatures.get(3).getKey();           // System.out.println(key4);
+		value4 = keyFeatures.get(3).getValue();         // System.out.println(value4);
 		
-		key5   = keyFeatures.get(4).getKey();            System.out.println(key5);
-		value5 = keyFeatures.get(4).getValue();          System.out.println(value5);
+		key5   = keyFeatures.get(4).getKey();           // System.out.println(key5);
+		value5 = keyFeatures.get(4).getValue();         // System.out.println(value5);
 		
-		key6   = keyFeatures.get(5).getKey();            System.out.println(key6);
-		value6 = keyFeatures.get(5).getValue();          System.out.println(value6);
+		key6   = keyFeatures.get(5).getKey();           // System.out.println(key6);
+		value6 = keyFeatures.get(5).getValue();         // System.out.println(value6);
 		
-		key7   = keyFeatures.get(6).getKey();            System.out.println(key7);
-		value7 = keyFeatures.get(6).getValue();          System.out.println(value7);
+		key7   = keyFeatures.get(6).getKey();           // System.out.println(key7);
+		value7 = keyFeatures.get(6).getValue();         // System.out.println(value7);
 		
-		key8   = keyFeatures.get(7).getKey();            System.out.println(key8);
-		value8 = keyFeatures.get(7).getValue();          System.out.println(value8);
+		key8   = keyFeatures.get(7).getKey();           // System.out.println(key8);
+		value8 = keyFeatures.get(7).getValue();         // System.out.println(value8);
 	
 	} catch (IndexOutOfBoundsException e) {}
 	
 	
 	
-	String size1 = "", size2 = "", size3 = "", size4 = "", size5 = "", size6 = "", size7 = "", size8 = "", size9 = "", size10 = "", size11 = "", size12 = "";
+	String size1 = "",  size2 = "",  size3 = "",  size4 = "",  size5 = "",  size6 = "",  size7 = "",  size8 = "",  size9 = "",  size10 = "",  size11 = "",  size12 = "";
 	String count1 = "", count2 = "", count3 = "", count4 = "", count5 = "", count6 = "", count7 = "", count8 = "", count9 = "", count10 = "", count11 = "", count12 = "";
 	
-	try {
+	try { // This try catch is necessary for working of this page.
 	
-		size1   = sizes.get(0).getSize();                        System.out.println(size1);
-		count1  = String.valueOf(sizes.get(0).getCount());       System.out.println(count1);
+		size1   = sizes.get(0).getSize();                       // System.out.println(size1);
+		count1  = String.valueOf(sizes.get(0).getCount());     //  System.out.println(count1);
 		
-		size2   = sizes.get(1).getSize();                        System.out.println(size2);
-		count2  = String.valueOf(sizes.get(1).getCount());       System.out.println(count2);
+		size2   = sizes.get(1).getSize();                      //  System.out.println(size2);
+		count2  = String.valueOf(sizes.get(1).getCount());     //  System.out.println(count2);
 		
-		size3   = sizes.get(2).getSize();                        System.out.println(size3);
-		count3  = String.valueOf(sizes.get(2).getCount());       System.out.println(count3);
+		size3   = sizes.get(2).getSize();                       // System.out.println(size3);
+		count3  = String.valueOf(sizes.get(2).getCount());      // System.out.println(count3);
 		
-		size4   = sizes.get(3).getSize();                        System.out.println(size4);
-		count4  = String.valueOf(sizes.get(3).getCount());       System.out.println(count4);
+		size4   = sizes.get(3).getSize();                      //  System.out.println(size4);
+		count4  = String.valueOf(sizes.get(3).getCount());     //  System.out.println(count4);
 		
-		size5   = sizes.get(4).getSize();                        System.out.println(size5);
-		count5  = String.valueOf(sizes.get(4).getCount());       System.out.println(count5);
+		size5   = sizes.get(4).getSize();                      //  System.out.println(size5);
+		count5  = String.valueOf(sizes.get(4).getCount());      // System.out.println(count5);
 		
-		size6   = sizes.get(5).getSize();                        System.out.println(size6);
-		count6  = String.valueOf(sizes.get(5).getCount());       System.out.println(count6);
+		size6   = sizes.get(5).getSize();                      //  System.out.println(size6);
+		count6  = String.valueOf(sizes.get(5).getCount());     //  System.out.println(count6);
 		
-		size7   = sizes.get(6).getSize();                        System.out.println(size7);
-		count7  = String.valueOf(sizes.get(6).getCount());       System.out.println(count7);
+		size7   = sizes.get(6).getSize();                       // System.out.println(size7);
+		count7  = String.valueOf(sizes.get(6).getCount());     //  System.out.println(count7);
 		
-		size8   = sizes.get(7).getSize();                        System.out.println(size8);
-		count8  = String.valueOf(sizes.get(7).getCount());       System.out.println(count8);
+		size8   = sizes.get(7).getSize();                       // System.out.println(size8);
+		count8  = String.valueOf(sizes.get(7).getCount());      // System.out.println(count8);
 		
-		size9   = sizes.get(8).getSize();                        System.out.println(size9);
-		count9  = String.valueOf(sizes.get(8).getCount());       System.out.println(count9);
+		size9   = sizes.get(8).getSize();                      //  System.out.println(size9);
+		count9  = String.valueOf(sizes.get(8).getCount());     //  System.out.println(count9);
 		
-		size10   = sizes.get(9).getSize();                       System.out.println(size10);
-		count10  = String.valueOf(sizes.get(9).getCount());      System.out.println(count10);
+		size10   = sizes.get(9).getSize();                      // System.out.println(size10);
+		count10  = String.valueOf(sizes.get(9).getCount());     // System.out.println(count10);
 		
-		size11   = sizes.get(10).getSize();                      System.out.println(size11);
-		count11  = String.valueOf(sizes.get(10).getCount());     System.out.println(count11);
+		size11   = sizes.get(10).getSize();                    //  System.out.println(size11);
+		count11  = String.valueOf(sizes.get(10).getCount());    // System.out.println(count11);
 		
-		size12   = sizes.get(11).getSize();                      System.out.println(size12);
-		count12  = String.valueOf(sizes.get(11).getCount());     System.out.println(count12);
+		size12   = sizes.get(11).getSize();                     // System.out.println(size12);
+		count12  = String.valueOf(sizes.get(11).getCount());    // System.out.println(count12);
 	
 	} catch (IndexOutOfBoundsException e) {}
 %>
