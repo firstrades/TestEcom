@@ -67,12 +67,7 @@ public class EditProductServlet extends HttpServlet {
 			productBean.setCategory                  (request.getParameter("category"           ));
 			productBean.setSubCategory               (request.getParameter("subCategory"        ));
 			productBean.setCompanyName               (request.getParameter("companyOfTheProduct").trim());
-			productBean.setProductName               (request.getParameter("productName"        ).trim());
-			
-			/*productBean.getKeyFeatures().setKf1      (request.getParameter("kf1").trim());
-			productBean.getKeyFeatures().setKf2      (request.getParameter("kf2").trim());
-			productBean.getKeyFeatures().setKf3      (request.getParameter("kf3").trim());
-			productBean.getKeyFeatures().setKf4      (request.getParameter("kf4").trim());	*/
+			productBean.setProductName               (request.getParameter("productName"        ).trim());			
 			
 			productBean.getPrice().setManufacturingCost     (Double.parseDouble(request.getParameter("manufacturingCost").trim())     );
 			productBean.getPrice().setProfitMarginPercentage(Double.parseDouble(request.getParameter("profitMarginPercentage").trim()));
@@ -104,11 +99,7 @@ public class EditProductServlet extends HttpServlet {
 				jsonArray.put(productBean.getCategory());
 				jsonArray.put(productBean.getSubCategory());
 				jsonArray.put(productBean.getCompanyName());
-				jsonArray.put(productBean.getProductName());
-				/*jsonArray.put(productBean.getKeyFeatures().getKf1());
-				jsonArray.put(productBean.getKeyFeatures().getKf2());
-				jsonArray.put(productBean.getKeyFeatures().getKf3());
-				jsonArray.put(productBean.getKeyFeatures().getKf4());	*/		
+				jsonArray.put(productBean.getProductName());						
 				jsonArray.put(productBean.getPrice().getListPrice());
 				jsonArray.put(productBean.getPrice().getDiscount());
 				jsonArray.put(productBean.getPrice().getSalePriceCustomer());
@@ -124,9 +115,8 @@ public class EditProductServlet extends HttpServlet {
 			*********************************************/
 			
 			response.setContentType("application/json");
-			response.getWriter().write(jsonArray.toString());
+			response.getWriter().write(jsonArray.toString());	
 			
-			//response.sendRedirect("MobileEdit");
 		}
 		else if (servletPath.equals("/EditIconImage")) {
 			

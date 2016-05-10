@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class KeyFeature implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private long   id;
+	private long   productId;
 	private String key;
 	private String value;
 	
@@ -20,6 +22,18 @@ public class KeyFeature implements Serializable {
 	}
 	public void setValue(String value) {
 		this.value = value.trim();
+	}
+	public long getId() {
+		return id;
+	}
+	public long getProductId() {
+		return productId;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
 	
 	

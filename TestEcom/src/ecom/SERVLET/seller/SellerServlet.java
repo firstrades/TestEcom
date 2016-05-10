@@ -46,11 +46,13 @@ public class SellerServlet extends HttpServlet {
 	
 	private SellerDAO sellerDAO;
 	private ProductDAO productDAO;
+	private String nextPage;
 	
 	@Override
 	public void init() {
 		sellerDAO = SellerDAO.getNewInstance();
 		productDAO = new ProductDAO();
+		nextPage = null;
 	}
 	
 	@Override
@@ -363,16 +365,12 @@ public class SellerServlet extends HttpServlet {
 			
 			request.setAttribute("MAX", MAX);
 			
-			/*******************************************************
-							*  Set Session  *
-			*******************************************************/
+			/*******************  Set Session  ***************************/
 
 			session.setAttribute("productList", productList);				
 			
-			/*******************************************************
-						*  Send Response  *
-			*******************************************************/
-			
+			/*******************  Send Response  **************************/
+			nextPage = "jsp_Seller/ViewProductList.jsp";
 			request.getRequestDispatcher("jsp_Seller/ViewProductList.jsp").forward(request, response);
 		}
 		
@@ -389,7 +387,7 @@ public class SellerServlet extends HttpServlet {
 			/******************* Get Size **********************/
 			
 			final int shownMAX         = (int) session.getAttribute("MAX");			
-			final int productListSIZE  = productList.size();
+			final int productListSIZE  = productList.size();   System.out.println(productListSIZE);
 			
 			/*************** Create JSON Data ********************/
 			
@@ -709,11 +707,47 @@ public class SellerServlet extends HttpServlet {
 		} //  /SetItemCancelled
 		
 		
-		else if (servletPath.equals("EditProduct")) {
+		else if (servletPath.equals("/EditProduct")) {
 			
 			System.out.println("Entered EditProduct");
 			
+			/************** Get Request ***********/
+			long productId = Integer.parseInt(request.getParameter("productId"));
+			
+			/*********** Database ****************/
+			Product product              = productDAO.getProduct    (productId);
+			List<KeyFeature> keyFeatures = productDAO.getKeyFeatures(productId);
+			List<Size> sizes             = productDAO.getSizes      (productId);
+			
+			product.setKeyFeatures(keyFeatures);
+			product.setSizes(sizes);
+			
+			/********* Set Request ***********/
+			request.setAttribute("product", product);
+			
+			/********* Clean Up *********/
+			product = null; keyFeatures = null; sizes = null;
+			
+			/********* Next Page ************/			
+			nextPage = "jsp_Seller/EditProduct.jsp";
+			request.getRequestDispatcher("jsp_Seller/EditProduct.jsp").forward(request, response);
+			
 		}//EditProduct
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+				
+		
 	}
 	
 	

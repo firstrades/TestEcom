@@ -13,7 +13,6 @@ import java.util.List;
 import com.mysql.jdbc.PacketTooBigException;
 
 import ecom.model.KeyFeature;
-import ecom.model.Price;
 import ecom.model.Product;
 import ecom.model.Size;
 import ecom.model.User;
@@ -267,8 +266,7 @@ public class ProductDAO {
 			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }
 			e.printStackTrace();			
 			
-		} finally {
-			
+		} finally {			
 			try { statement.close();  } catch (SQLException e)  { e.printStackTrace();  }
 			try { connection.close(); } catch (SQLException e)  { e.printStackTrace();  }
 			System.gc();
@@ -308,7 +306,6 @@ public class ProductDAO {
 			while (resultSet.next()) { 
 				
 				Product productBean = new Product();				
-				productBean.setPrice(new Price());
 				
 				productBean.setProductId                 (resultSet.getInt   ("id"          ));
 				productBean.setSellerId                  (resultSet.getLong  ("seller_id"   ));
@@ -337,27 +334,16 @@ public class ProductDAO {
 			
 			
 		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException | SQLException e) {
+				| ClassNotFoundException | SQLException e1) {
 			try {
-				connection.rollback();
-			} catch (SQLException e1) {				
-				e1.printStackTrace();
-			}
-			e.printStackTrace();
+				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
+			e1.printStackTrace();
 		} finally {
 			list = null;
-			try {
-				preparedStatement.close();
-			} catch (SQLException e) {			
-				e.printStackTrace();
-			}
-			try {
-				connection.close();
-			} catch (SQLException e) {			
-				e.printStackTrace();
-			}
+			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
 			System.gc();
-		}		
+		}			
 		
 		
 		return null;
@@ -399,8 +385,7 @@ public class ProductDAO {
 			
 			//connection.commit();
 			
-			return true;
-			
+			return true;			
 			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException e) {
@@ -410,23 +395,186 @@ public class ProductDAO {
 				e1.printStackTrace();
 			}*/
 			e.printStackTrace();
-		} finally {
-			try {
-				preparedStatement.close();
-			} catch (SQLException e) {			
-				e.printStackTrace();
-			}
-			try {
-				connection.close();
-			} catch (SQLException e) {			
-				e.printStackTrace();
-			}
+		} finally {			
+			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
 			System.gc();
-		}
-		
-		
+		}		
 		
 		return false;
-	}
+	} //deleteProduct
+	
+	
+	public Product getProduct(long productId) {
+		
+		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
+		String sql = null; 		
+		Product product = new Product();		
+		
+		try {
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			sql = "SELECT * FROM product WHERE id = ?";
+				
+			preparedStatement = connection.prepareStatement(sql);			
+			preparedStatement.setLong   (1, productId);			
+		
+			resultSet = preparedStatement.executeQuery();	
+			
+			if (resultSet.next()) { 				
+				
+				product.setProductId                 (resultSet.getInt   ("id"          ));
+				product.setSellerId                  (resultSet.getLong  ("seller_id"   ));
+				
+				product.setCategory                  (resultSet.getString("category"    ));
+				product.setSubCategory               (resultSet.getString("sub_category"));
+				product.setProductName               (resultSet.getString("product_name"));
+				product.setCompanyName               (resultSet.getString("company_name"));
+				
+				product.getPrice().setManufacturingCost     (resultSet.getDouble("manufacturingCost"     ));
+				product.getPrice().setProfitMarginPercentage(resultSet.getDouble("profitMarginPercentage"));
+				product.getPrice().setSalePriceToAdmin      (resultSet.getDouble("sale_price"            ));
+				product.getPrice().setDiscount              (resultSet.getDouble("discount"              ));	
+				product.getPrice().setListPrice             (resultSet.getDouble("list_price"            ));
+				
+				product.setStock                     (resultSet.getInt   ("stock"       ));		
+				product.setWeight                    (resultSet.getDouble("weight"      ));
+				product.setWarranty                  (resultSet.getString("warranty"    ));
+				product.setCancellationAfterBooked   (resultSet.getInt   ("calcellation_after_booked"    ));
+				
+			}
+			
+			connection.commit();
+			
+			System.out.println("SQL getProduct Executed");
+			
+			return product;			
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try {
+				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
+			e1.printStackTrace();
+		} finally {
+			product = null;
+			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
+		}			
+		
+		return null;
+	}//getProduct
+	
+	
+	
+	public List<KeyFeature> getKeyFeatures(long productId) {
+		
+		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
+		String sql = null; 		
+		List<KeyFeature> keyFeatures = new ArrayList<>();		
+		
+		try {
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			sql = "SELECT * FROM key_features WHERE product_id = ?";
+				
+			preparedStatement = connection.prepareStatement(sql);			
+			preparedStatement.setLong   (1, productId);			
+		
+			resultSet = preparedStatement.executeQuery();	
+			
+			while (resultSet.next()) { 				
+				
+				KeyFeature keyFeature = new KeyFeature();
+				
+				keyFeature.setId       (resultSet.getLong("id"        ));
+				keyFeature.setProductId(resultSet.getLong("product_id"));
+				
+				keyFeature.setKey      (resultSet.getString("header"  ));
+				keyFeature.setValue    (resultSet.getString("value"   ));
+				
+				keyFeatures.add(keyFeature);
+				
+				keyFeature = null;
+			}
+			
+			connection.commit();
+			
+			System.out.println("SQL getKeyFeatures Executed");
+			
+			return keyFeatures;			
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try {
+				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
+			e1.printStackTrace();
+		} finally {
+			keyFeatures = null;
+			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
+		}			
+		
+		return null;
+	}//getKeyFeatures
+	
+	
+	
+	public List<Size> getSizes(long productId) {
+		
+		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
+		String sql = null; 		
+		List<Size> sizes = new ArrayList<>();		
+		
+		try {
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			sql = "SELECT * FROM size WHERE product_id = ?";
+				
+			preparedStatement = connection.prepareStatement(sql);			
+			preparedStatement.setLong   (1, productId);			
+		
+			resultSet = preparedStatement.executeQuery();	
+			
+			while (resultSet.next()) { 				
+				
+				Size size = new Size();
+				
+				size.setId       (resultSet.getLong  ("id"        ));
+				size.setProductId(resultSet.getLong  ("product_id"));
+				
+				size.setSize     (resultSet.getString("size"      ));
+				size.setCount    (resultSet.getInt   ("count"     ));
+				
+				sizes.add(size);
+				
+				size = null;
+			}
+			
+			connection.commit();
+			
+			System.out.println("SQL getSizes Executed");
+			
+			return sizes;			
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try {
+				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
+			e1.printStackTrace();
+		} finally {
+			sizes = null;
+			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
+		}			
+		
+		return null;
+	}//getSizes
+	
 	
 }
