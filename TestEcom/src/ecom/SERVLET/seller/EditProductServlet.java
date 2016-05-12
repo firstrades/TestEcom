@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import ecom.DAO.Seller.EditProductDAO;
 import ecom.model.KeyFeature;
@@ -599,40 +599,43 @@ public class EditProductServlet extends HttpServlet {
 				}
 			}
 			
-			
-			
-			
 			/*******************************************************
 			 	*  Database - Edit Product Table  *
-			*******************************************************/		
-			productBean = editProductDAO.editProduct(productBean);
-			editProductDAO.editKeyFeaturesAndSizes(updateKeyFeatures, updateSize, productBean);
-			editProductDAO.newKeyFeaturesAndSizes(newKeyFeatures, newSize, productBean);
+			*******************************************************/	
+			boolean status1 = false; boolean status2 = false;
 			
-			/****************** JSON Response *************************/
+			productBean     = editProductDAO.editProduct(productBean);
 			
-			JSONArray jsonArray = new JSONArray();
+			status1 = editProductDAO.editKeyFeaturesAndSizes(updateKeyFeatures, updateSize, productBean);
+			status2 = editProductDAO.newKeyFeaturesAndSizes (newKeyFeatures, newSize, productBean);
 			
-			/*try {
-				
-				jsonArray.put(productBean.getCategory());
-				jsonArray.put(productBean.getSubCategory());
-				jsonArray.put(productBean.getCompanyName());
-				jsonArray.put(productBean.getProductName());						
-				jsonArray.put(productBean.getPrice().getListPrice());
-				jsonArray.put(productBean.getPrice().getDiscount());
-				jsonArray.put(productBean.getPrice().getSalePriceCustomer());
-				jsonArray.put(productBean.getStock());
-				jsonArray.put(productBean.getWarranty());
-				
-			} catch (JSONException e) {				
-				e.printStackTrace();
-			}*/
 			
 			/***************** Next Page **********************/
 			
-			response.setContentType("application/json");
-			response.getWriter().write(jsonArray.toString());	
+			JSONObject jsonObject = new JSONObject();
+			
+			if (status1 == true && status2 == true) {
+				
+				try {
+					jsonObject.put("success", "Basic Features Updated");
+					//System.out.println(jsonObject.get("success"));
+				} catch (JSONException e) {					
+					e.printStackTrace();
+				}
+				
+				response.getWriter().write(jsonObject.toString());	
+			}
+			else {
+				
+				try {
+					jsonObject.put("falied", "Basic Features Not Updated");
+					//System.out.println(jsonObject.get("falied"));
+				} catch (JSONException e) {					
+					e.printStackTrace();
+				}
+				
+				response.getWriter().write(jsonObject.toString());	
+			}
 			
 		}
 		else if (servletPath.equals("/EditIconImage")) {

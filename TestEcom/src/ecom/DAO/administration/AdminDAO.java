@@ -37,7 +37,7 @@ public class AdminDAO {
 					
 					Product productBean = new Product(); 					
 					
-					productBean.setProductId           (resultSet.getLong  ("product_id"    ));
+					productBean.setProductId           (resultSet.getLong  ("id"    ));
 					productBean.setSellerId            (resultSet.getLong  ("seller_id"     ));
 					productBean.setSellerCompany       (resultSet.getString("seller_company"));
 					

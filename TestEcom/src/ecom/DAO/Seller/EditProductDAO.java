@@ -54,7 +54,7 @@ public class EditProductDAO {
 			
 			while (resultSet.next()) {
 				
-				productBean.setProductId                 (resultSet.getInt   ("product_id")  );				
+				productBean.setProductId                 (resultSet.getInt   ("id")  );				
 				
 				productBean.setCategory                  (resultSet.getString("category"    ));
 				productBean.setSubCategory               (resultSet.getString("sub_category"));
@@ -205,7 +205,7 @@ public class EditProductDAO {
 	}
 	
 	
-	public int editKeyFeaturesAndSizes(List<KeyFeature> updateKeyFeatures, List<Size> updateSize, Product productBean) {
+	public boolean editKeyFeaturesAndSizes(List<KeyFeature> updateKeyFeatures, List<Size> updateSize, Product productBean) {
 		
 		Connection connection = null; Statement statement = null;		
 		String sqlKeyFeature = null; String sqlSizes = null;		
@@ -240,7 +240,7 @@ public class EditProductDAO {
 			connection.commit();					
 			System.out.println("SQL - editKeyFeaturesAndSizes executed");
 			
-			return count.length;		
+			return true;		
 			
 		
 		} catch (InstantiationException | IllegalAccessException
@@ -249,20 +249,19 @@ public class EditProductDAO {
 			e.printStackTrace();
 			
 			
-		} finally {
-			
+		} finally {			
 			try { statement.close();  } catch (SQLException e)  { e.printStackTrace();  }
 			try { connection.close(); } catch (SQLException e)  { e.printStackTrace();  }
 			System.gc();
 		}  
 		
 		
-		return 0;
+		return false;
 		
 	} //editKeyFeaturesAndSizes
 	
 	
-	public int newKeyFeaturesAndSizes(List<KeyFeature> newKeyFeatures, List<Size> newSize, Product productBean) {
+	public boolean newKeyFeaturesAndSizes(List<KeyFeature> newKeyFeatures, List<Size> newSize, Product productBean) {
 		
 		Connection connection = null; Statement statement = null;		
 		String sqlKeyFeature = null;  String sqlSizes = null;		
@@ -299,7 +298,8 @@ public class EditProductDAO {
 			connection.commit();					
 			System.out.println("SQL - newKeyFeaturesAndSizes executed");
 			
-			return count.length;		
+			
+			return true;		
 			
 		
 		} catch (InstantiationException | IllegalAccessException
@@ -315,7 +315,7 @@ public class EditProductDAO {
 		}  
 		
 		
-		return 0;
+		return false;
 		
 	} //newKeyFeaturesAndSizes
 	
