@@ -57,31 +57,31 @@ hr {
 		
 		key2   = keyFeatures.get(1).getKey();           // System.out.println(key2);
 		value2 = keyFeatures.get(1).getValue();         // System.out.println(value2);
-		keyH2  = String.valueOf(keyFeatures.get(0).getId());
+		keyH2  = String.valueOf(keyFeatures.get(1).getId());
 		
 		key3   = keyFeatures.get(2).getKey();            //System.out.println(key3);
 		value3 = keyFeatures.get(2).getValue();         // System.out.println(value3);
-		keyH3  = String.valueOf(keyFeatures.get(0).getId());
+		keyH3  = String.valueOf(keyFeatures.get(2).getId());
 		
 		key4   = keyFeatures.get(3).getKey();           // System.out.println(key4);
 		value4 = keyFeatures.get(3).getValue();         // System.out.println(value4);
-		keyH4  = String.valueOf(keyFeatures.get(0).getId());
+		keyH4  = String.valueOf(keyFeatures.get(3).getId());
 		
 		key5   = keyFeatures.get(4).getKey();           // System.out.println(key5);
 		value5 = keyFeatures.get(4).getValue();         // System.out.println(value5);
-		keyH5  = String.valueOf(keyFeatures.get(0).getId());
+		keyH5  = String.valueOf(keyFeatures.get(4).getId());
 		
 		key6   = keyFeatures.get(5).getKey();           // System.out.println(key6);
 		value6 = keyFeatures.get(5).getValue();         // System.out.println(value6);
-		keyH6  = String.valueOf(keyFeatures.get(0).getId());
+		keyH6  = String.valueOf(keyFeatures.get(5).getId());
 		
 		key7   = keyFeatures.get(6).getKey();           // System.out.println(key7);
 		value7 = keyFeatures.get(6).getValue();         // System.out.println(value7);
-		keyH7  = String.valueOf(keyFeatures.get(0).getId());
+		keyH7  = String.valueOf(keyFeatures.get(6).getId());
 		
 		key8   = keyFeatures.get(7).getKey();           // System.out.println(key8);
 		value8 = keyFeatures.get(7).getValue();         // System.out.println(value8);
-		keyH8  = String.valueOf(keyFeatures.get(0).getId());
+		keyH8  = String.valueOf(keyFeatures.get(7).getId());
 	
 	} catch (IndexOutOfBoundsException e) {}
 	
@@ -99,47 +99,47 @@ hr {
 		
 		size2   = sizes.get(1).getSize();                      //  System.out.println(size2);
 		count2  = String.valueOf(sizes.get(1).getCount());     //  System.out.println(count2);
-		sizeH2  = String.valueOf(sizes.get(0).getId());
+		sizeH2  = String.valueOf(sizes.get(1).getId());
 		
 		size3   = sizes.get(2).getSize();                       // System.out.println(size3);
 		count3  = String.valueOf(sizes.get(2).getCount());      // System.out.println(count3);
-		sizeH3  = String.valueOf(sizes.get(0).getId());
+		sizeH3  = String.valueOf(sizes.get(2).getId());
 		
 		size4   = sizes.get(3).getSize();                      //  System.out.println(size4);
 		count4  = String.valueOf(sizes.get(3).getCount());     //  System.out.println(count4);
-		sizeH4  = String.valueOf(sizes.get(0).getId());
+		sizeH4  = String.valueOf(sizes.get(3).getId());
 		
 		size5   = sizes.get(4).getSize();                      //  System.out.println(size5);
 		count5  = String.valueOf(sizes.get(4).getCount());      // System.out.println(count5);
-		sizeH5  = String.valueOf(sizes.get(0).getId());
+		sizeH5  = String.valueOf(sizes.get(4).getId());
 		
 		size6   = sizes.get(5).getSize();                      //  System.out.println(size6);
 		count6  = String.valueOf(sizes.get(5).getCount());     //  System.out.println(count6);
-		sizeH6  = String.valueOf(sizes.get(0).getId());
+		sizeH6  = String.valueOf(sizes.get(5).getId());
 		
 		size7   = sizes.get(6).getSize();                       // System.out.println(size7);
 		count7  = String.valueOf(sizes.get(6).getCount());     //  System.out.println(count7);
-		sizeH7  = String.valueOf(sizes.get(0).getId());
+		sizeH7  = String.valueOf(sizes.get(6).getId());
 		
 		size8   = sizes.get(7).getSize();                       // System.out.println(size8);
 		count8  = String.valueOf(sizes.get(7).getCount());      // System.out.println(count8);
-		sizeH8  = String.valueOf(sizes.get(0).getId());
+		sizeH8  = String.valueOf(sizes.get(7).getId());
 		
 		size9   = sizes.get(8).getSize();                      //  System.out.println(size9);
 		count9  = String.valueOf(sizes.get(8).getCount());     //  System.out.println(count9);
-		sizeH9  = String.valueOf(sizes.get(0).getId());
+		sizeH9  = String.valueOf(sizes.get(8).getId());
 		
 		size10   = sizes.get(9).getSize();                      // System.out.println(size10);
 		count10  = String.valueOf(sizes.get(9).getCount());     // System.out.println(count10);
-		sizeH10  = String.valueOf(sizes.get(0).getId());
+		sizeH10  = String.valueOf(sizes.get(9).getId());
 		
 		size11   = sizes.get(10).getSize();                    //  System.out.println(size11);
 		count11  = String.valueOf(sizes.get(10).getCount());    // System.out.println(count11);
-		sizeH11  = String.valueOf(sizes.get(0).getId());
+		sizeH11  = String.valueOf(sizes.get(10).getId());
 		
 		size12   = sizes.get(11).getSize();                     // System.out.println(size12);
 		count12  = String.valueOf(sizes.get(11).getCount());    // System.out.println(count12);
-		sizeH12  = String.valueOf(sizes.get(0).getId());
+		sizeH12  = String.valueOf(sizes.get(11).getId());
 	
 	} catch (IndexOutOfBoundsException e) {}
 %>
@@ -149,6 +149,8 @@ hr {
     <div class="container">
 		
 		<form method="post" id="form1"> 
+		
+			<input type="hidden" name="productId" value="<%=product.getProductId() %>" />
 		
 			<h3 style="font-size: 25px; color:#337AB7;">Edit Product</h3>  
 			<div id="msg" style="color:red;"></div>
@@ -174,13 +176,13 @@ hr {
 					<label><span style="color:red;">*</span> Company Name </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="company" class="form-control" required placeholder="Samsung" value="Pantaloons" />
+					<input type="text" name="companyOfTheProduct" class="form-control" required placeholder="Samsung" value="Pantaloons" />
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<label>	<span style="color:red;">*</span> Product Name </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="product" class="form-control" required placeholder="Galaxy S4" value="Naughty Ninos Printed Boy's Polo Neck T-Shirt" />
+					<input type="text" name="productName" class="form-control" required placeholder="Galaxy S4" value="Naughty Ninos Printed Boy's Polo Neck T-Shirt" />
 				</div>
 			</div>	
 			
@@ -567,7 +569,11 @@ hr {
 						
 			<hr>	<!-- ----------------------------------------------------------------------------------- -->
 					
-					
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<input type="submit" value="Submit" 
+						style="width: 50% !important;  padding: 7px 1px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;
+						margin-left: 385%; margin-bottom: 11%;" />
+				</div>
 			
 		</form>
 		

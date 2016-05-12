@@ -6,9 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 import ecom.common.ConnectionFactory;
 import ecom.model.Clothings;
+import ecom.model.KeyFeature;
 import ecom.model.Product;
 import ecom.model.Size;
 
@@ -203,8 +206,118 @@ public class EditProductDAO {
 	}
 	
 	
+	public int editKeyFeaturesAndSizes(List<KeyFeature> updateKeyFeatures, List<Size> updateSize, Product productBean) {
 		
+		Connection connection = null; Statement statement = null;		
+		String sqlKeyFeature = null; String sqlSizes = null;		
+	
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			statement = connection.createStatement();
+			
+			for (KeyFeature keyFeature : updateKeyFeatures) {
+				
+				sqlKeyFeature = "update key_features set header = '"+keyFeature.getKey()+"', value = '"+keyFeature.getValue()
+						+"' where id = "+keyFeature.getId();
+				System.out.println(sqlKeyFeature);
+				statement.addBatch(sqlKeyFeature);
+			}
+			
+			for (Size size : updateSize) {
+				
+				sqlSizes = "update size set size = '"+size.getSize()+"', count = "+size.getCount()
+						+" where id = "+size.getId();
+				System.out.println(sqlSizes);
+				statement.addBatch(sqlSizes);
+			}
+			
+			
+			
+			int[] count = statement.executeBatch();  System.out.println("Length: " + count.length);
+			
+			connection.commit();					
+			System.out.println("SQL - editKeyFeaturesAndSizes executed");
+			
+			return count.length;		
+			
+		
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {
+			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }
+			e.printStackTrace();
+			
+			
+		} finally {
+			
+			try { statement.close();  } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close(); } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}  
+		
+		
+		return 0;
+		
+	} //editKeyFeaturesAndSizes
 	
 	
+	public int newKeyFeaturesAndSizes(List<KeyFeature> newKeyFeatures, List<Size> newSize, Product productBean) {
+		
+		Connection connection = null; Statement statement = null;		
+		String sqlKeyFeature = null; String sqlSizes = null;		
+	
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			statement = connection.createStatement();
+			
+			for (KeyFeature keyFeature : newKeyFeatures) {
+				
+				sqlKeyFeature = "insert into key_features (product_id, header, value)"
+						+ " values("+keyFeature.getProductId()+", '"+keyFeature.getKey()+"', '"+keyFeature.getValue()+"')";
+				
+				System.out.println(sqlKeyFeature);
+				statement.addBatch(sqlKeyFeature);
+			}
+			
+			for (Size size : newSize) {
+				
+				sqlSizes = "insert into size (product_id, size, count)"
+						+ " values("+size.getProductId()+", '"+size.getSize()+"', '"+size.getCount()+"')";
+				
+				System.out.println(sqlSizes);				
+				statement.addBatch(sqlSizes);
+			}
+			
+			
+			
+			int[] count = statement.executeBatch();  System.out.println("Length: " + count.length);
+			
+			connection.commit();					
+			System.out.println("SQL - newKeyFeaturesAndSizes executed");
+			
+			return count.length;		
+			
+		
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {
+			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }
+			e.printStackTrace();			
+			
+		} finally {
+			
+			try { statement.close();  } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close(); } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}  
+		
+		
+		return 0;
+		
+	} //newKeyFeaturesAndSizes
 	
 }

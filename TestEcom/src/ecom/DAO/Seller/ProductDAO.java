@@ -437,6 +437,7 @@ public class ProductDAO {
 				product.getPrice().setSalePriceToAdmin      (resultSet.getDouble("sale_price"            ));
 				product.getPrice().setDiscount              (resultSet.getDouble("discount"              ));	
 				product.getPrice().setListPrice             (resultSet.getDouble("list_price"            ));
+				product.getPrice().setMarkup                (resultSet.getDouble("markup"                ));
 				
 				product.setStock                     (resultSet.getInt   ("stock"       ));		
 				product.setWeight                    (resultSet.getDouble("weight"      ));
