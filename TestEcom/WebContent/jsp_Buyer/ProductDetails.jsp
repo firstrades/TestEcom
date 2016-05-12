@@ -112,15 +112,11 @@ float: left;
 
 	/************************* /CompleteProductDetails ********************************/
 
-	Product productBean       = (Product)        request.getAttribute("productBean"  ); 
-	//@SuppressWarnings("all")
-	//Map<String,String> featureMap = (Map<String,String>) request.getAttribute("featureMap"   );
-	String sellerCompany          = (String)             request.getAttribute("sellerCompany");
-	int stock                     = (Integer)            request.getAttribute("stock"        );	
-	
+	Product productBean    = (Product)      request.getAttribute("productBean"  ); 	
+	int stock              = (Integer)      request.getAttribute("stock"        );	
 	// API
-	BigDecimal rate               = (BigDecimal)         request.getAttribute("rate"         );
-	String delivery               = (String)             request.getAttribute("delivery"     );	
+	BigDecimal rate        = (BigDecimal)   request.getAttribute("rate"         );
+	String delivery        = (String)       request.getAttribute("delivery"     );	
 	
 	
 
@@ -249,8 +245,7 @@ float: left;
 	      			
 	      			
 	      			
-	      			<!-- -----------------------------  Features Section  ------------------------ -->
-	      			   			  			
+	      			<!-- -----------------------------  Features Section  ------------------------ -->	      			   			  			
 	          	                    
 	                <div class="single-bottom1">
 						<h6> Key features</h6>
@@ -260,7 +255,13 @@ float: left;
 						<% } %>	
 						</ul>						
 						<!-- <p class="prod-desc"> Reading Level : 7      </p> -->	                    
-					</div>				
+					</div>		
+					
+					<!-- -----------------------------  Features Section  ------------------------ -->
+					
+					
+					
+							
 		    	</div>		
 				<div class="clearfix"></div>		
 			</div>
@@ -269,7 +270,7 @@ float: left;
 	</div>
 	
 	
-	<!-- -----------------------------  Features Section  ------------------------ -->
+				
 
 	<!-- jQuery data -->
 	<div style="display:none;" id="stock"><%=stock %></div>

@@ -15,7 +15,6 @@ import ecom.common.ConnectionFactory;
 import ecom.model.CartWishlist;
 import ecom.model.CustomerOrderHistroy;
 import ecom.model.DeliveryAddress;
-import ecom.model.KeyFeature;
 import ecom.model.Order;
 import ecom.model.Price;
 import ecom.model.Product;

@@ -2,8 +2,6 @@ package ecom.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +12,6 @@ import ecom.DAO.Buyer.BuyerSearchDAO;
 import ecom.DAO.User.CreateUserDAO;
 import ecom.DAO.User.UserDAO;
 import ecom.common.UserType;
-import ecom.model.Product;
 import ecom.model.User;
 
 public class Controller extends HttpServlet {
@@ -83,20 +80,15 @@ public class Controller extends HttpServlet {
 				
 				
 		}
-		else if (servletPath.equals("/BuyerMainPanel")) {            //  Customer View    //  I think no use, but not sure
+		else if (servletPath.equals("/BuyerMainPanel")) {            //  Customer View   
 			
-				System.out.println("Entered BuyerMainPanel");	
+				System.out.println("Entered BuyerMainPanel");					
 				
-				/*********** Database **************/				
-				//Map<String,Product> map = buyerSearchDAO.getFirstPageProducts();
-				
-				//request.setAttribute("map", map);
-				
-				/*****************************************
-				 			* Next Page *
-				 *****************************************/
+				/************ Next Page ******************/
 				request.getRequestDispatcher("jsp_Buyer/BuyerMainPanel.jsp").forward(request, response);
+				
 		}
+		
 		else if (servletPath.equals("/CustomerLogin")) {                  //  Buyer Entry
 			
 				System.out.println("Entered CustomerLogin");
