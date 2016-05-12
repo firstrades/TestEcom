@@ -153,7 +153,7 @@ hr {
 			<input type="hidden" name="productId" value="<%=product.getProductId() %>" />
 		
 			<h3 style="font-size: 25px; color:#337AB7;">Edit Product</h3>  
-			<div id="msg" style="color:red;"></div>
+			<div id="msg1" style="color:red;"></div>
 			<hr>
 			<!-- -------------------------------------------------- -->
 			<div class="row">					

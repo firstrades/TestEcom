@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.List;
 
 import ecom.common.ConnectionFactory;
-import ecom.model.Clothings;
 import ecom.model.KeyFeature;
 import ecom.model.Product;
 import ecom.model.Size;
@@ -20,7 +19,7 @@ public class EditProductDAO {
 	public Product editProduct(Product productBean) {			
 		
 		Connection connection = null; CallableStatement callableStatement = null; ResultSet resultSet = null;		
-		String sql = "{call editProduct(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";			
+		String sql = "{call editProduct(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";			
 	
 		try {
 			
@@ -38,18 +37,18 @@ public class EditProductDAO {
 			
 			
 			
-			callableStatement.setDouble(10,  productBean.getPrice().getManufacturingCost()     );
-			callableStatement.setDouble(11,  productBean.getPrice().getProfitMarginPercentage());
-			callableStatement.setDouble(12,  productBean.getPrice().getSalePriceToAdmin()      );
-			callableStatement.setDouble(13,  productBean.getPrice().getSalePriceCustomer()     );
-			callableStatement.setDouble(14,  productBean.getPrice().getMarkup()                );
-			callableStatement.setDouble(15,  productBean.getPrice().getListPrice()             );
-			callableStatement.setDouble(16,  productBean.getPrice().getDiscount()              );			
+			callableStatement.setDouble(6,  productBean.getPrice().getManufacturingCost()     );
+			callableStatement.setDouble(7,  productBean.getPrice().getProfitMarginPercentage());
+			callableStatement.setDouble(8,  productBean.getPrice().getSalePriceToAdmin()      );
+			callableStatement.setDouble(9,  productBean.getPrice().getSalePriceCustomer()     );
+			callableStatement.setDouble(10,  productBean.getPrice().getMarkup()                );
+			callableStatement.setDouble(11,  productBean.getPrice().getListPrice()             );
+			callableStatement.setDouble(12,  productBean.getPrice().getDiscount()              );			
 			
-			callableStatement.setInt   (17,  productBean.getStock()                  );
-			callableStatement.setDouble(18,  productBean.getWeight()                 );
-			callableStatement.setString(19,  productBean.getWarranty()               );
-			callableStatement.setInt   (20,  productBean.getCancellationAfterBooked());			
+			callableStatement.setInt   (13,  productBean.getStock()                  );
+			callableStatement.setDouble(14,  productBean.getWeight()                 );
+			callableStatement.setString(15,  productBean.getWarranty()               );
+			callableStatement.setInt   (16,  productBean.getCancellationAfterBooked());			
 			
 			resultSet = callableStatement.executeQuery();
 			
@@ -266,7 +265,7 @@ public class EditProductDAO {
 	public int newKeyFeaturesAndSizes(List<KeyFeature> newKeyFeatures, List<Size> newSize, Product productBean) {
 		
 		Connection connection = null; Statement statement = null;		
-		String sqlKeyFeature = null; String sqlSizes = null;		
+		String sqlKeyFeature = null;  String sqlSizes = null;		
 	
 		try {
 			

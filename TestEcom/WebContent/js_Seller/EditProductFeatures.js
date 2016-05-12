@@ -25,7 +25,9 @@ $(function() {
 				    dataType: 'json',
 				    success: function (array) {
 				    	
-				    	$("input[name=category]")   .val(array[0]);
+				    	//window.location.reload(true);
+				    	
+				    	/*$("input[name=category]")   .val(array[0]);
 				    	$("input[name=subCategory]").val(array[1]);
 				    	$("input[name=company]")    .val(array[2]);
 				    	$("input[name=product]")    .val(array[3]);
@@ -46,7 +48,7 @@ $(function() {
 				    	$("input[name=stock]")             .val(array[15]);
 				    	$("input[name=weight]")            .val(array[16]);
 				    	$("input[name=warranty]")          .val(array[17]);
-				    	$("input[name=cancellationPeriod]").val(array[18]);
+				    	$("input[name=cancellationPeriod]").val(array[18]);*/
 				    	
 				    	$('#msg1').empty();
 				    	$('#msg1').append('Basic Features Updated');

@@ -605,17 +605,15 @@ public class EditProductServlet extends HttpServlet {
 			/*******************************************************
 			 	*  Database - Edit Product Table  *
 			*******************************************************/		
-			//productBean = editProductDAO.editProduct(productBean);
+			productBean = editProductDAO.editProduct(productBean);
 			editProductDAO.editKeyFeaturesAndSizes(updateKeyFeatures, updateSize, productBean);
 			editProductDAO.newKeyFeaturesAndSizes(newKeyFeatures, newSize, productBean);
 			
-			/*********************************************
-						* JSON Response *
-			*********************************************/
+			/****************** JSON Response *************************/
 			
-			/*JSONArray jsonArray = new JSONArray();
+			JSONArray jsonArray = new JSONArray();
 			
-			try {
+			/*try {
 				
 				jsonArray.put(productBean.getCategory());
 				jsonArray.put(productBean.getSubCategory());
@@ -631,12 +629,10 @@ public class EditProductServlet extends HttpServlet {
 				e.printStackTrace();
 			}*/
 			
-			/*********************************************
-							* Next Page *
-			*********************************************/
+			/***************** Next Page **********************/
 			
-			/*response.setContentType("application/json");
-			response.getWriter().write(jsonArray.toString());*/	
+			response.setContentType("application/json");
+			response.getWriter().write(jsonArray.toString());	
 			
 		}
 		else if (servletPath.equals("/EditIconImage")) {
