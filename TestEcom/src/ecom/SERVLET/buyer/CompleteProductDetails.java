@@ -65,8 +65,7 @@ public class CompleteProductDetails extends HttpServlet {
 			String subCategory = request.getParameter("subCategory");		
 			String productId1  = request.getParameter("productId");	
 			
-			/************* Get Session ***************/
-			
+			/************* Get Session ***************/			
 			User user = (User) session.getAttribute("user");
 		
 			/**************** Process ******************/
