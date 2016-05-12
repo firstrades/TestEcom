@@ -25,8 +25,6 @@ import ecom.Implementation.Courier.SOAP.EstimatedRateAndDeliveryBean;
 import ecom.Interface.Courier.EstimatedRateAndDelivery;
 import ecom.beans.TransientData;
 import ecom.model.Product;
-import ecom.model.SizeGarment;
-import ecom.model.SizeInYears;
 import ecom.model.TwoObjects;
 import ecom.model.User;
 
@@ -92,15 +90,19 @@ public class CompleteProductDetails extends HttpServlet {
 			/**
 			 * @Advance Features
 			 */
-			Map<String,String> featureMap = mapFeatures(subCategory, productId);			
+			Map<String,String> featureMap = mapFeatures(subCategory, productId);	
+			
+			
 			/**
 			 * @Size
-			 */			
+			 *//*			
 			SizeGarment sizeGarment = new SizeGarment();
 			sizeGarment = buyerSearchDAO.getSizeGarmentModel(productId, sizeGarment);	
 			
 			SizeInYears sizeInYears = new SizeInYears();
-			sizeInYears = buyerSearchDAO.getSizeInYears(productId, sizeInYears);
+			sizeInYears = buyerSearchDAO.getSizeInYears(productId, sizeInYears);*/
+			
+			
 			
 			/**
 			 * @API - @Rate @Delivery
@@ -128,8 +130,8 @@ public class CompleteProductDetails extends HttpServlet {
 				request.setAttribute("productBean",   productBean);
 				request.setAttribute("featureMap",    featureMap);			
 				request.setAttribute("stock",         stock);
-				request.setAttribute("sizeGarment",   sizeGarment);
-				request.setAttribute("sizeInYears",   sizeInYears);
+				//request.setAttribute("sizeGarment",   sizeGarment);
+				//request.setAttribute("sizeInYears",   sizeInYears);
 				// API Data
 				request.setAttribute("rate",          rate);
 				request.setAttribute("delivery",      delivery);
@@ -155,7 +157,7 @@ public class CompleteProductDetails extends HttpServlet {
 			
 			
 		/******** Clear Up **********/
-			sizeGarment = null;  estimatedRateAndDelivery = null; sizeInYears = null;
+			estimatedRateAndDelivery = null;
 			
 		
 		/******************************************

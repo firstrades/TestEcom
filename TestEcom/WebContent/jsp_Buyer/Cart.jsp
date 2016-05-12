@@ -3,7 +3,7 @@
 <%@page import="ecom.beans.TransientData"%>
 <%@page import="ecom.model.TwoObjects"%>
 <%@page import="ecom.DAO.User.UserDAO"%>
-<%@page import="ecom.model.ProductBean"%>
+<%@page import="ecom.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="ecom.common.FrequentUse"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -83,7 +83,7 @@ float: left;
 
 <%
 	@SuppressWarnings("all")
-	List<TwoObjects<ProductBean, CartWishlist>> productBeanAndCW = (List<TwoObjects<ProductBean, CartWishlist>>) request.getAttribute("productBeanAndCW");
+	List<TwoObjects<Product, CartWishlist>> productBeanAndCW = (List<TwoObjects<Product, CartWishlist>>) request.getAttribute("productBeanAndCW");
 	@SuppressWarnings("all")
 	List<TwoObjects<BigDecimal, String>> apiDataList             = (List<TwoObjects<BigDecimal, String>>) request.getAttribute("apiDataList");
 %>
@@ -110,7 +110,7 @@ float: left;
 				<% 
 					int i = 0;
 				
-					for (TwoObjects<ProductBean, CartWishlist> productBeanAndQty : productBeanAndCW) { 
+					for (TwoObjects<Product, CartWishlist> productBeanAndQty : productBeanAndCW) { 
 				
 						UserDAO userDAO = new UserDAO();
 						String sellerCompany = userDAO.getSellerCompany(productBeanAndQty.getObj1().getSellerId());

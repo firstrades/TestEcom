@@ -1,7 +1,7 @@
 <%@page import="ecom.beans.BuyerServletHelper"%>
 <%@page import="java.util.Map"%>
 <%@page import="ecom.model.CustomerOrderHistroy"%>
-<%@page import="ecom.model.ProductBean"%>
+<%@page import="ecom.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="ecom.common.FrequentUse"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

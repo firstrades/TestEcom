@@ -3,7 +3,7 @@
 <%@page import="ecom.model.TwoObjects"%>
 <%@page import="java.util.List"%>
 <%@page import="ecom.DAO.User.UserDAO"%>
-<%@page import="ecom.model.ProductBean"%>
+<%@page import="ecom.model.Product"%>
 <%@page import="ecom.common.FrequentUse"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -79,7 +79,7 @@
 
 <%
 	@SuppressWarnings("all")
-	List<TwoObjects<ProductBean, CartWishlist>> productBeanAndCW = (List<TwoObjects<ProductBean, CartWishlist>>) request.getAttribute("productBeanAndCW");
+	List<TwoObjects<Product, CartWishlist>> productBeanAndCW = (List<TwoObjects<Product, CartWishlist>>) request.getAttribute("productBeanAndCW");
 
 %>
 
@@ -102,7 +102,7 @@
 					</tr>
 				</thead>
 				<tbody class="cart-body">
-				<% for (TwoObjects<ProductBean, CartWishlist> productBeanAndQty : productBeanAndCW) { 
+				<% for (TwoObjects<Product, CartWishlist> productBeanAndQty : productBeanAndCW) { 
 				
 						UserDAO userDAO = new UserDAO();
 						String sellerCompany = userDAO.getSellerCompany(productBeanAndQty.getObj1().getSellerId());

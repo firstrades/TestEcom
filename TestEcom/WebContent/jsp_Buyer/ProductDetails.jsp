@@ -1,7 +1,6 @@
-<%@page import="ecom.model.SizeGarment"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="java.util.Map"%>
-<%@page import="ecom.model.ProductBean"%>
+<%@page import="ecom.model.Product"%>
 <%@page import="ecom.common.FrequentUse"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -112,7 +111,7 @@ float: left;
 
 	/************************* /CompleteProductDetails ********************************/
 
-	ProductBean productBean       = (ProductBean)        request.getAttribute("productBean"  ); 
+	Product productBean       = (Product)        request.getAttribute("productBean"  ); 
 	@SuppressWarnings("all")
 	Map<String,String> featureMap = (Map<String,String>) request.getAttribute("featureMap"   );
 	String sellerCompany          = (String)             request.getAttribute("sellerCompany");
@@ -287,7 +286,7 @@ float: left;
 						</table>
 	                    
 					</div>	                
-	                <div class="single-bottom1">
+	                <%-- <div class="single-bottom1">
 						<h6> Key features</h6>
 						<ul>
 							<li><%=productBean.getKeyFeatures().getKf1() %></li>
@@ -296,7 +295,7 @@ float: left;
 							<li><%=productBean.getKeyFeatures().getKf4() %></li>
 						</ul>						
 						<!-- <p class="prod-desc"> Reading Level : 7      </p> -->	                    
-					</div>				
+					</div> --%>				
 		    	</div>		
 				<div class="clearfix"></div>		
 			</div>
