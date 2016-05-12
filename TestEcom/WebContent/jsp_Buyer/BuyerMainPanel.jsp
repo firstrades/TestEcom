@@ -35,8 +35,8 @@
 
 <%
 	User user = (User) session.getAttribute("user");
-	@SuppressWarnings("all")
-	Map<String,Product> map = (Map<String,Product>) request.getAttribute("map");
+	/* @SuppressWarnings("all")
+	Map<String,Product> map = (Map<String,Product>) request.getAttribute("map"); */
 	
 	Product productBean = null;
 %>

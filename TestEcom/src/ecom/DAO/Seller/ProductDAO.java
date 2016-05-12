@@ -432,12 +432,15 @@ public class ProductDAO {
 				product.setProductName               (resultSet.getString("product_name"));
 				product.setCompanyName               (resultSet.getString("company_name"));
 				
+				product.setSellerCompany             (resultSet.getString("seller_company"));
+				
 				product.getPrice().setManufacturingCost     (resultSet.getDouble("manufacturingCost"     ));
 				product.getPrice().setProfitMarginPercentage(resultSet.getDouble("profitMarginPercentage"));
 				product.getPrice().setSalePriceToAdmin      (resultSet.getDouble("sale_price"            ));
 				product.getPrice().setDiscount              (resultSet.getDouble("discount"              ));	
 				product.getPrice().setListPrice             (resultSet.getDouble("list_price"            ));
 				product.getPrice().setMarkup                (resultSet.getDouble("markup"                ));
+				product.getPrice().setSalePriceCustomer     (resultSet.getDouble("salePriceCustomer"     ));
 				
 				product.setStock                     (resultSet.getInt   ("stock"       ));		
 				product.setWeight                    (resultSet.getDouble("weight"      ));

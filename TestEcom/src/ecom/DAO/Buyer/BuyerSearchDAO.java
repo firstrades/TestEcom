@@ -1326,6 +1326,9 @@ public class BuyerSearchDAO {
 		return null;
 	}//getDeliveryAddressCustomer
 	
+	
+	/**** Delete It *******/
+	
 	public Map<String,Product> getFirstPageProducts() {
 		
 		Connection connection = null; CallableStatement callableStatement = null; ResultSet resultSet = null;  
@@ -1346,7 +1349,7 @@ public class BuyerSearchDAO {
 					
 					Product productBean = new Product();					
 					
-					productBean.setProductId                 (resultSet.getInt   ("product_id"));
+					productBean.setProductId                 (resultSet.getInt   ("id"       ));
 					productBean.setSellerId                  (resultSet.getLong  ("seller_id"));
 					
 					productBean.setCategory                  (resultSet.getString("category"));
@@ -1357,12 +1360,7 @@ public class BuyerSearchDAO {
 					productBean.getPrice().setListPrice      (resultSet.getDouble("list_price"));
 					productBean.getPrice().setDiscount       (resultSet.getDouble("discount"));
 					productBean.getPrice().setSalePriceCustomer(resultSet.getDouble("salePriceCustomer"));				
-					productBean.getPrice().setMarkup         (resultSet.getDouble("markup"));
-					
-					/*productBean.getKeyFeatures().setKf1      (resultSet.getString("kf_1"));
-					productBean.getKeyFeatures().setKf2      (resultSet.getString("kf_2"));
-					productBean.getKeyFeatures().setKf3      (resultSet.getString("kf_3"));
-					productBean.getKeyFeatures().setKf4      (resultSet.getString("kf_4"));*/
+					productBean.getPrice().setMarkup         (resultSet.getDouble("markup"));		
 					
 					
 					map.put(productBean.getSubCategory(), productBean);

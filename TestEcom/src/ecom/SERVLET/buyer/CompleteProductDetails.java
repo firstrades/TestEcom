@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,27 +17,26 @@ import javax.xml.soap.SOAPException;
 
 import org.xml.sax.SAXException;
 
-import ecom.DAO.Buyer.BuyerSearchDAO;
-import ecom.DAO.Buyer.ProductDetailsDAO;
-import ecom.DAO.Seller.EditProductDAO;
+import ecom.DAO.Seller.ProductDAO;
 import ecom.Implementation.Courier.SOAP.EstimatedRateAndDeliveryBean;
 import ecom.Interface.Courier.EstimatedRateAndDelivery;
 import ecom.beans.TransientData;
+import ecom.model.KeyFeature;
 import ecom.model.Product;
+import ecom.model.Size;
 import ecom.model.TwoObjects;
 import ecom.model.User;
 
 @WebServlet("/CompleteProductDetails")
 public class CompleteProductDetails extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
 	
-	private EditProductDAO basicFeatures;
-	private BuyerSearchDAO buyerSearchDAO;
+	private ProductDAO     productDAO;    
 	
 	@Override
 	public void init() {
-		basicFeatures = new EditProductDAO();
-		buyerSearchDAO = new BuyerSearchDAO();
+		
+		productDAO     = new ProductDAO();
 	}
 	
 	@Override
@@ -63,45 +61,27 @@ public class CompleteProductDetails extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		/******************************************
-		 			*  Get Request  *
-		 ******************************************/			
+			/***************  Get Request  *****************/			
 			String subCategory = request.getParameter("subCategory");		
 			String productId1  = request.getParameter("productId");	
 			
-		/************* Get Session ***************/
+			/************* Get Session ***************/
 			
 			User user = (User) session.getAttribute("user");
 		
-		/******************************************
-		 				* Process *
-		 ******************************************/
+			/**************** Process ******************/
 			long productId = Long.parseLong(productId1);	        
 			int  stock     = TransientData.getStock(productId);
 		
-		/*************************************************************************
-		 	* Database Search for 'product' table and different product tables *
-		 *************************************************************************/			
-			/**
-			 * @Basic Product
-			 */			
-			Product productBean = basicFeatures.getBasicFeatures(productId);		
+			/*************************************************************************
+		 		* Database Search for 'product' table and different product tables *
+		 	*************************************************************************/			
+			Product product              = productDAO.getProduct    (productId);
+			List<KeyFeature> keyFeatures = productDAO.getKeyFeatures(productId);
+			List<Size> sizes             = productDAO.getSizes      (productId);
 			
-			/**
-			 * @Advance Features
-			 */
-			Map<String,String> featureMap = mapFeatures(subCategory, productId);	
-			
-			
-			/**
-			 * @Size
-			 *//*			
-			SizeGarment sizeGarment = new SizeGarment();
-			sizeGarment = buyerSearchDAO.getSizeGarmentModel(productId, sizeGarment);	
-			
-			SizeInYears sizeInYears = new SizeInYears();
-			sizeInYears = buyerSearchDAO.getSizeInYears(productId, sizeInYears);*/
-			
+			product.setKeyFeatures(keyFeatures);
+			product.setSizes(sizes);
 			
 			
 			/**
@@ -124,14 +104,10 @@ public class CompleteProductDetails extends HttpServlet {
 			/************** Set Session ***************/
 				session.setAttribute("apiDataList", apiDataList);			
 			
-			/******************************************
-			 			* Set Request *
-			 ******************************************/
-				request.setAttribute("productBean",   productBean);
-				request.setAttribute("featureMap",    featureMap);			
+			/*************** Set Request ****************/				
+				request.setAttribute("productBean",   product);	
 				request.setAttribute("stock",         stock);
-				//request.setAttribute("sizeGarment",   sizeGarment);
-				//request.setAttribute("sizeInYears",   sizeInYears);
+				
 				// API Data
 				request.setAttribute("rate",          rate);
 				request.setAttribute("delivery",      delivery);
@@ -156,13 +132,11 @@ public class CompleteProductDetails extends HttpServlet {
 			}
 			
 			
-		/******** Clear Up **********/
+			/******** Clear Up **********/
 			estimatedRateAndDelivery = null;
 			
 		
-		/******************************************
-		 			* Next Page *
-		 ******************************************/
+			/************** Next Page ******************/
 			if (error) {
 				String errorMsg = "Error! Please try again.";				
 				response.sendRedirect("SearchBySubCategory?subCategory="+subCategory+"&errorMsg="+errorMsg);
@@ -172,37 +146,5 @@ public class CompleteProductDetails extends HttpServlet {
 		
 	}
 	
-	private Map<String,String> mapFeatures(String subCategory, long productId) {  
-		
-		ProductDetailsDAO dao = new ProductDetailsDAO();
 	
-		Map<String,String> map = null;
-		
-		switch (subCategory) {
-		//Electronics
-		case "Mobile"             : map = dao.getMobileFeatures             (productId);    break;
-		case "Laptop"             : map = dao.getLaptopFeatures             (productId);    break;
-		case "Tablet"             : map = dao.getTabletFeatures             (productId);    break;
-		case "Camera"             : map = dao.getCameraFeatures             (productId);    break;
-		case "Television"         : map = dao.getTelevisionFeatures         (productId);    break;
-		case "AirCondition"       : map = dao.getAirConditionFeatures       (productId);    break;
-		case "Refrigerator"       : map = dao.getRefrigeratorFeatures       (productId);    break;
-		case "WashingMachine"     : map = dao.getWashingMachineFeatures     (productId);    break;
-		case "MicrowaveOven"      : map = dao.getMicrowaveOvenFeatures      (productId);    break;
-		case "VacuumCleaner"      : map = dao.getVacuumCleanerFeatures      (productId);    break;
-		case "Speaker"            : map = dao.getSpeakerFeatures            (productId);    break;
-		case "Geyser"             : map = dao.getGeyserFeatures             (productId);    break;
-		//Women
-		case "Leggings"           : map = dao.getLeggingsFeatures   (productId);    break;
-		case "Top"                : map = dao.getTopFeatures        (productId);    break;
-		//Men
-		case "MenTshirt"          : map = dao.getMenTshirtFeatures  (productId);    break;
-		case "Jeans"              : map = dao.getMenJeansFeatures   (productId);    break;
-		//Kids
-		case "Boys_Shirt"         : map = dao.getBoysShirtsFeatures (productId);    break;
-		}		
-		
-		
-		return map;
-	}
 }

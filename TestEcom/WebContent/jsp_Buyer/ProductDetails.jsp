@@ -1,3 +1,4 @@
+<%@page import="ecom.model.KeyFeature"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="java.util.Map"%>
 <%@page import="ecom.model.Product"%>
@@ -112,8 +113,8 @@ float: left;
 	/************************* /CompleteProductDetails ********************************/
 
 	Product productBean       = (Product)        request.getAttribute("productBean"  ); 
-	@SuppressWarnings("all")
-	Map<String,String> featureMap = (Map<String,String>) request.getAttribute("featureMap"   );
+	//@SuppressWarnings("all")
+	//Map<String,String> featureMap = (Map<String,String>) request.getAttribute("featureMap"   );
 	String sellerCompany          = (String)             request.getAttribute("sellerCompany");
 	int stock                     = (Integer)            request.getAttribute("stock"        );	
 	
@@ -189,15 +190,9 @@ float: left;
 		
 	<!----------------------------------- Size Selection -------------------------------------->							
 								
-	<%@ include file="SizeGarment.jsp" %>
-								
-	<!----------------------------------- End Size Selection -------------------------------------->			
+	
 	      
-	<!-- -------------------------------- Kids Garment Size Selection -------------------------- -->      
-	      
-	<%@ include file="SizeInYears.jsp" %>      
-	      
-	<!-- -------------------------------- End Kids Garment Size Selection -------------------------- -->
+	<!-- -------------------------------- End Size Selection -------------------------- -->
 								
 							</div>
 							 <div class="clearfix"></div>	                        
@@ -255,47 +250,17 @@ float: left;
 	      			
 	      			
 	      			<!-- -----------------------------  Features Section  ------------------------ -->
-	      			
-	      			
-	      			
-	          	    <div class="single-bottom1">
-						<h6> Product Details</h6>
-						<table>
-						<% if (featureMap != null) {
-			
-								for (Map.Entry<String,String> entry : featureMap.entrySet()) {
-						
-									System.out.println(entry.getKey());
-									System.out.println(entry.getValue());
-						%>									
-									<tr>
-										<td><%=entry.getKey() %></td>
-										<td>&nbsp; : &nbsp;</td>
-										<td><%=entry.getValue() %></td>										
-									</tr>
-																	
-						<%
-								}	// for close
-							}  else {
-						%>
-									<tr>
-										<td>No Product features updated.</td>
-									</tr>
-									<!-- <p class="prod-desc"></p> -->
-						<%  } %>
-						</table>
-	                    
-					</div>	                
-	                <%-- <div class="single-bottom1">
+	      			   			  			
+	          	                    
+	                <div class="single-bottom1">
 						<h6> Key features</h6>
-						<ul>
-							<li><%=productBean.getKeyFeatures().getKf1() %></li>
-							<li><%=productBean.getKeyFeatures().getKf2() %></li>
-							<li><%=productBean.getKeyFeatures().getKf3() %></li>
-							<li><%=productBean.getKeyFeatures().getKf4() %></li>
+						<ul style="list-style: none; text-align: left;">
+						<% for (KeyFeature keyFeature : productBean.getKeyFeatures()) {%>
+							<li><%=keyFeature.getKey() %> : <%=keyFeature.getValue() %></li>
+						<% } %>	
 						</ul>						
 						<!-- <p class="prod-desc"> Reading Level : 7      </p> -->	                    
-					</div> --%>				
+					</div>				
 		    	</div>		
 				<div class="clearfix"></div>		
 			</div>

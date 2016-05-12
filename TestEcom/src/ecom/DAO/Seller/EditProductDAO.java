@@ -97,7 +97,12 @@ public class EditProductDAO {
 		} 		
 		
 		return null;
+		
 	}// editProduct
+	
+	
+	
+	/***  Delete It ***/
 	
 	public Product getBasicFeatures(long productId) {		
 		
@@ -108,7 +113,7 @@ public class EditProductDAO {
 			connection = ConnectionFactory.getNewConnection();
 			connection.setAutoCommit(false);
 			
-			sql = "SELECT * FROM product WHERE product_id = ?";
+			sql = "SELECT * FROM product WHERE id = ?";
 				
 			preparedStatement = connection.prepareStatement(sql);			
 			preparedStatement.setLong (1,  productId);			
@@ -117,7 +122,7 @@ public class EditProductDAO {
 			
 			while (resultSet.next()) {
 				
-				productBean.setProductId                 (resultSet.getInt   ("product_id"));				
+				productBean.setProductId                 (resultSet.getInt   ("id"          ));				
 				
 				productBean.setCategory                  (resultSet.getString("category"    ));
 				productBean.setSubCategory               (resultSet.getString("sub_category"));

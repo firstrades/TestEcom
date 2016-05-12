@@ -88,9 +88,9 @@ public class Controller extends HttpServlet {
 				System.out.println("Entered BuyerMainPanel");	
 				
 				/*********** Database **************/				
-				Map<String,Product> map = buyerSearchDAO.getFirstPageProducts();
+				//Map<String,Product> map = buyerSearchDAO.getFirstPageProducts();
 				
-				request.setAttribute("map", map);
+				//request.setAttribute("map", map);
 				
 				/*****************************************
 				 			* Next Page *
