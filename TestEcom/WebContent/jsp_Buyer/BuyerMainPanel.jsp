@@ -1,7 +1,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="ecom.model.User"%>
 <%@page import="ecom.beans.CartAttributesBean"%>
-<%@page import="ecom.model.ProductBean"%>
+<%@page import="ecom.model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="ecom.common.FrequentUse"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -36,9 +36,9 @@
 <%
 	User user = (User) session.getAttribute("user");
 	@SuppressWarnings("all")
-	Map<String,ProductBean> map = (Map<String,ProductBean>) request.getAttribute("map");
+	Map<String,Product> map = (Map<String,Product>) request.getAttribute("map");
 	
-	ProductBean productBean = null;
+	Product productBean = null;
 %>
 
 
@@ -146,7 +146,7 @@
 		<h3>Electronic Products</h3>
 			<div class="specia-top">
 				<ul class="grid_2">
-					<% 
+					<%-- <% 
 						productBean = map.get("Mobile");
 					%>
 					<li>
@@ -201,7 +201,7 @@
 								</span>
 							</div>
 						</div>
-					</li>
+					</li> --%>
 					<li>
 						<a href="#"><img src="images/electronic3.jpg" class="img-responsive" alt=""></a>
 						<div class="special-info grid_1 simpleCart_shelfItem">
@@ -258,7 +258,7 @@
 			<h3>Women Section </h3>	
 				<div class="specia-top">
 					<ul class="grid_2">
-						<% 
+						<%-- <% 
 							productBean = map.get("Leggings"); 
 						%>
 						<li>
@@ -313,7 +313,7 @@
 									</span>
 								</div>
 							</div>
-						</li>
+						</li> --%>
 						<li>
 							<a href="#"><img src="images/camera.jpg" class="img-responsive" alt=""></a>
 							<div class="special-info grid_1 simpleCart_shelfItem">
@@ -370,7 +370,7 @@
 
 				<div class="specia-top">
 					<ul class="grid_2">
-						<% 
+						<%-- <% 
 							productBean = map.get("MenTshirt"); 
 						%>
 						<li>
@@ -426,7 +426,7 @@
 									</span>
 								</div>
 							</div>
-						</li>
+						</li> --%>
 						<li>
 							<a href="#"><img src="images/electronic13.jpg" class="img-responsive" alt=""></a>
 							<div class="special-info grid_1 simpleCart_shelfItem">
@@ -482,7 +482,7 @@
 		
 				<div class="specia-top">
 					<ul class="grid_2">
-						<% 
+						<%-- <% 
 							productBean = map.get("Boys_Shirt"); 
 						%>
 						<li>
@@ -509,7 +509,7 @@
 									</span>
 								</div>
 							</div>
-						</li>
+						</li> --%>
 						<li>
 							<a href="#"><img src="images/men2.jpg" class="img-responsive" alt=""></a>
 							<div class="special-info grid_1 simpleCart_shelfItem">

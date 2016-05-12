@@ -49,7 +49,7 @@ public class BuyerSearchDAO {
 				//productBean.setKeyFeatures(new KeyFeatures());
 				//productBean.setPrice(new Price());
 				
-				productBean.setProductId                 (resultSet.getInt   ("product_id"));
+				productBean.setProductId                 (resultSet.getInt   ("id"));
 				productBean.setSellerId                  (resultSet.getLong  ("seller_id"));
 				
 				productBean.setCategory                  (resultSet.getString("category"));

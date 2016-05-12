@@ -49,7 +49,7 @@
 
 <%
 	@SuppressWarnings("all")
-	List<ProductBean> productBeanList = (List<ProductBean>) request.getAttribute("productBeanList");
+	List<Product> productBeanList = (List<Product>) request.getAttribute("productBeanList");
 	Integer MAX = (Integer) request.getAttribute("MAX");
 	
 	int tempCount = productBeanList.size() / 5; 
@@ -660,14 +660,14 @@
 								<h5>
 									<a href="CompleteProductDetails?subCategory=<%=productBeanList.get(k+j).getSubCategory() %>&productId=<%=productBeanList.get(k+j).getProductId() %>"> <%=productBeanList.get(k+j).getProductName() %>  (<%=productBeanList.get(k+j).getCompanyName() %>) </a>
 								</h5>
-                    				<div class="div_key_feature">
+                    				<%-- <div class="div_key_feature">
                      					<ul>
 				                    		<li> <%=productBeanList.get(k+j).getKeyFeatures().getKf1() %> </li>
 				                    		<li> <%=productBeanList.get(k+j).getKeyFeatures().getKf2() %> </li>
 				                    		<li> <%=productBeanList.get(k+j).getKeyFeatures().getKf3() %> </li>
 				                    		<li> <%=productBeanList.get(k+j).getKeyFeatures().getKf4() %> </li>
                    						</ul>
-                   					</div>
+                   					</div> --%>
                    				
 								<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.<%=productBeanList.get(k+j).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=productBeanList.get(k+j).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=productBeanList.get(k+j).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
 								<div class="item_add">
