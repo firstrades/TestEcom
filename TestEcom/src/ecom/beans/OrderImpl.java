@@ -446,15 +446,15 @@ public class OrderImpl implements OrderInterface {
 			   
 			   callableStatement = connection.prepareCall("{call setOrderFailed(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 			   
-			   callableStatement.setLong  (1, userId );
-			   callableStatement.setString(2, orderId);
-			   callableStatement.setString(3, stringArray.toString());
-			   callableStatement.setString(4, status);
+			   callableStatement.setLong  (1,  userId );
+			   callableStatement.setString(2,  orderId);
+			   callableStatement.setString(3,  stringArray.toString());
+			   callableStatement.setString(4,  status);
 			   callableStatement.registerOutParameter(5, Types.BOOLEAN);
-			   callableStatement.setString(6, order.getDeliveryAddress().getContact());
-			   callableStatement.setString(7, order.getDeliveryAddress().getAddress());
-			   callableStatement.setString(8, order.getDeliveryAddress().getCity());
-			   callableStatement.setString(9, order.getDeliveryAddress().getState());
+			   callableStatement.setString(6,  order.getDeliveryAddress().getContact());
+			   callableStatement.setString(7,  order.getDeliveryAddress().getAddress());
+			   callableStatement.setString(8,  order.getDeliveryAddress().getCity());
+			   callableStatement.setString(9,  order.getDeliveryAddress().getState());
 			   callableStatement.setString(10, order.getDeliveryAddress().getPin());
 			   callableStatement.setString(11, order.getDeliveryAddress().getfName());
 			   callableStatement.setString(12, order.getDeliveryAddress().getlName());
