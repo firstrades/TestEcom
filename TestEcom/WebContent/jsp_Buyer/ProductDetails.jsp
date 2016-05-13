@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="ecom.model.Size"%>
 <%@page import="ecom.model.KeyFeature"%>
 <%@page import="java.math.BigDecimal"%>
 <%@page import="java.util.Map"%>
@@ -113,6 +115,7 @@ float: left;
 	/************************* /CompleteProductDetails ********************************/
 
 	Product productBean    = (Product)      request.getAttribute("productBean"  ); 	
+	List<Size> sizes        = productBean.getSizes();
 	int stock              = (Integer)      request.getAttribute("stock"        );	
 	// API
 	BigDecimal rate        = (BigDecimal)   request.getAttribute("rate"         );
@@ -184,9 +187,30 @@ float: left;
 								<br>
 		
 		
-	<!----------------------------------- Size Selection -------------------------------------->							
-								
+	<!----------------------------------- Size Selection -------------------------------------->	
 	
+	<% if (sizes.size() > 0) { %>
+	
+		<div class="multiSelectionWidget unit size1of2" id="sizeBlock" style="display: block;">
+			<div class="multiSelectionWidget-title">Select Size</div>			
+			<div class="multiSelectionWidget-selectors-wrap">						
+									
+			<% for (Size size : sizes) { %>
+			
+				<div class="multiSelectionWidget-selector-link"  style="cursor: pointer;">
+					<div class="multiSelectionWidget-selector selector-type-boxes  checkStyleJ size">
+						<div class="selector-boxes">
+							<span><%=size.getSize() %></span>
+						</div>
+					</div>
+				</div>			
+			
+			<% } %>
+			
+			</div>
+		</div>
+		
+	<% } %>
 	      
 	<!-- -------------------------------- End Size Selection -------------------------- -->
 								

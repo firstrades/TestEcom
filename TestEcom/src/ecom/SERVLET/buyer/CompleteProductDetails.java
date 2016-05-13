@@ -31,11 +31,10 @@ import ecom.model.User;
 public class CompleteProductDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;	
 	
-	private ProductDAO     productDAO;    
+	private ProductDAO productDAO;    
 	
 	@Override
-	public void init() {
-		
+	public void init() {		
 		productDAO     = new ProductDAO();
 	}
 	
