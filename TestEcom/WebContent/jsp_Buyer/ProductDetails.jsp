@@ -200,7 +200,7 @@ float: left;
 				<div class="multiSelectionWidget-selector-link"  style="cursor: pointer;">
 					<div class="multiSelectionWidget-selector selector-type-boxes  checkStyleJ size">
 						<div class="selector-boxes">
-							<span><%=size.getSize() %></span>
+							<span data-ng-click="setSize('<%=size.getSize() %>')"><%=size.getSize() %></span>
 						</div>
 					</div>
 				</div>			

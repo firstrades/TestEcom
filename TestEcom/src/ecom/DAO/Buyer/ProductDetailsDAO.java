@@ -13,7 +13,7 @@ public class ProductDetailsDAO {
 		
 		String sql = null;			
 		TwoObjects<Double, String> twoObjects = new TwoObjects<>();		
-		sql = "SELECT salePriceCustomer, warranty FROM product WHERE product_id = ?";
+		sql = "SELECT salePriceCustomer, warranty FROM product WHERE id = ?";
 		
 		try (Connection connection = ConnectionFactory.getNewConnection();
 			 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {					

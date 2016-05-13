@@ -917,7 +917,7 @@ public class BuyerSearchDAO {
 				connection = ConnectionFactory.getNewConnection();
 				connection.setAutoCommit(false);				
 				
-				sql = "SELECT category, company_name, product_name, seller_company, sub_category, warranty, calcellation_after_booked FROM product WHERE product_id = ?";
+				sql = "SELECT category, company_name, product_name, seller_company, sub_category, warranty, calcellation_after_booked FROM product WHERE id = ?";
 				
 				preparedStatement = connection.prepareStatement(sql);				
 				preparedStatement.setLong  (1, productId);

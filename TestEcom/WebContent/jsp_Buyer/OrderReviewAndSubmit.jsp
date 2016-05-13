@@ -892,8 +892,8 @@ z-index: 101;
 	            			
 	            			<div class="tmargin20 login-btn-wrap" style="margin-left: 20%;">
 	                			
-	                			<a class="frgt-pswd fk-font-12 lpadding20" href="OrderCOD" style="font-size: 13px;padding: 6px 40px;background-color: #09A0E4;color: #fff;border-radius: 2px;border-bottom: 2px solid #008CCC;">COD</a>
-	                			<a class="frgt-pswd fk-font-12 lpadding20" href="OrderBank" style="font-size: 13px;padding: 6px 40px;background-color: #fc8332;color: #fff;border-radius: 2px;border-bottom: 2px solid #DA6212;">BANK</a>
+	                			<a href="OrderCOD" class="frgt-pswd fk-font-12 lpadding20"  style="font-size: 13px;padding: 6px 40px;background-color: #09A0E4;color: #fff;border-radius: 2px;border-bottom: 2px solid #008CCC;">COD</a>
+	                			<a href="OrderBank" class="frgt-pswd fk-font-12 lpadding20"  style="font-size: 13px;padding: 6px 40px;background-color: #fc8332;color: #fff;border-radius: 2px;border-bottom: 2px solid #DA6212;">BANK</a>
 	            			</div>
 	        			</div>
 	        		<!-- 	<div class="modal-footer">

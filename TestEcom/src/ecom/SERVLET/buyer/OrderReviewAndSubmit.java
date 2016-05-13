@@ -66,7 +66,7 @@ public class OrderReviewAndSubmit extends HttpServlet {
 			System.out.println("Entered OrderReview_ProductDetails");
 			
 			/************ Get Request **************/
-			String size          = (String) request.getParameter("size");  
+			String size           = (String) request.getParameter("size");  //System.out.println("Size: " + size);
 			String productId111   = request.getParameter("productId");
 			String cartOrWishlist = request.getParameter("cartOrWishlist");
 			

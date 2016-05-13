@@ -33,7 +33,7 @@ $(function() {
 				var color = $(this).css('background-color');   //alert(color);
 				
 				if(color === 'rgb(255, 165, 0)') {  // space is must in 'rgb'					
-					status = true;					
+					status = true;	//break; not required as there is no else statement
 				}				
 				
 			});	
@@ -120,6 +120,24 @@ var application = angular.module('ProductDetailsApplication', []);
 /********************** AdminPanel.js *********************************/
 application.controller('ProductDetailsController', function($scope, $http, $window) {   	
 	
+	$scope.setSize = function(size) {
+		//$window.alert(size);
+		$scope.size = size;
+	};
+	
 	
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
