@@ -599,6 +599,30 @@ public class EditProductServlet extends HttpServlet {
 				}
 			}
 			
+			
+			/************ If-Size-Exists *****************/
+			
+			int totalSizesStock = 0;
+			
+			if (productBean.getSizes().size() > 0) {
+				
+				for (Size size : productBean.getSizes()) {
+					
+					if (size.getCount() > 0)
+						totalSizesStock += size.getCount();
+				}
+				
+				productBean.setStock(totalSizesStock);
+			}
+			
+			
+			
+			/************ End If-Size-Exists *****************/
+			
+			
+			
+			
+			
 			/*******************************************************
 			 	*  Database - Edit Product Table  *
 			*******************************************************/	

@@ -251,6 +251,24 @@ public class SellerServlet extends HttpServlet {
 			product.setWarranty               (request.getParameter("warranty")                           .trim());
 			product.setCancellationAfterBooked(Integer.parseInt(request.getParameter("cancellationPeriod").trim()));
 			
+			/************ If-Size-Exists *****************/
+			
+			int totalSizesStock = 0;
+			
+			if (product.getSizes().size() > 0) {
+				
+				for (Size size : product.getSizes()) {
+					
+					if (size.getCount() > 0)
+						totalSizesStock += size.getCount();
+				}
+				
+				product.setStock(totalSizesStock);
+			}
+			
+			
+			
+			/************ End If-Size-Exists *****************/
 			
 			
 			//Images

@@ -102,7 +102,7 @@ public class CartAttributesBean {
 					
 					for (TwoObjects<Long, Integer> twoObjects : list) {
 						
-						sql = "SELECT salePriceCustomer FROM product WHERE product_id = ? ";
+						sql = "SELECT salePriceCustomer FROM product WHERE id = ? ";
 						preparedStatement = connection.prepareStatement(sql);
 						preparedStatement.setLong(1, twoObjects.getObj1());
 						resultSet         = preparedStatement.executeQuery();
