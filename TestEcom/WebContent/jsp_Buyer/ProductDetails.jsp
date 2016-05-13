@@ -191,6 +191,8 @@ float: left;
 	
 	<% if (sizes.size() > 0) { %>
 	
+		
+	
 		<div class="multiSelectionWidget unit size1of2" id="sizeBlock" style="display: block;">
 			<div class="multiSelectionWidget-title">Select Size</div>			
 			<div class="multiSelectionWidget-selectors-wrap">						

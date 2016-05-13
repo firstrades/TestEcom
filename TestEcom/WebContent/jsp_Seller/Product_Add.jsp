@@ -70,13 +70,13 @@ hr {
 					<label><span style="color:red;">*</span> Company Name </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="company" class="form-control" required placeholder="Samsung" value="Pantaloons" />
+					<input type="text" name="company" class="form-control" required placeholder="Samsung" value="" />
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<label>	<span style="color:red;">*</span> Product Name </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="product" class="form-control" required placeholder="Galaxy S4" value="Naughty Ninos Printed Boy's Polo Neck T-Shirt" />
+					<input type="text" name="product" class="form-control" required placeholder="Galaxy S4" value="" />
 				</div>
 			</div>	
 			
@@ -90,10 +90,10 @@ hr {
 		 				
 			<div class="row">
 				<div class="col-md-2 col-sm-6 col-xs-12">					
-					<input type="text" name="key1" class="form-control" placeholder="Key Feature 1" value = "Sleeve" style="margin-bottom:2px;" />				
+					<input type="text" name="key1" class="form-control" placeholder="Key Feature 1" value = "" style="margin-bottom:2px;" />				
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="value1" class="form-control" placeholder="Feature" value="Half Sleeve" style="margin-bottom:10px;" />
+					<input type="text" name="value1" class="form-control" placeholder="Feature" value="" style="margin-bottom:10px;" />
 				</div>	
 				
 				<div class="col-md-2 col-sm-6 col-xs-12  col-md-offset-2">					
@@ -268,14 +268,14 @@ hr {
 					<label>	<span style="color:red;">*</span> Manufacturing Cost </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="manufacturingCost" id="manufacturingCost" class="form-control" required value="1700" />
+					<input type="text" name="manufacturingCost" id="manufacturingCost" class="form-control" required value="" />
 				</div>
 				
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<label><span style="color:red;">*</span> Profit Margin % </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="profitMarginPercentage" id="profitMarginPercentage" class="form-control" required value="5"/>
+					<input type="text" name="profitMarginPercentage" id="profitMarginPercentage" class="form-control" required value=""/>
 				</div> 
 			</div>		
 			
@@ -285,13 +285,13 @@ hr {
 					<label>	Sale Price To Admin </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="salePriceToAdmin" id="salePriceToAdmin" class="form-control" readonly value="105" />
+					<input type="text" name="salePriceToAdmin" id="salePriceToAdmin" class="form-control" readonly value="" />
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<label>Profit Margin </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="profitMargin" id="profitMargin" class="form-control" readonly value="5"/>
+					<input type="text" name="profitMargin" id="profitMargin" class="form-control" readonly value=""/>
 				</div> 
 			</div>	
 			
@@ -301,13 +301,13 @@ hr {
 					<label> <span style="color:red;">*</span> List Price </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="listPrice" id="ListPrice" class="form-control" required value="1000" />
+					<input type="text" name="listPrice" id="ListPrice" class="form-control" required value="" />
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<label> Discount %</label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="discount" id="discount" class="form-control" required readonly value="89.5"/>
+					<input type="text" name="discount" id="discount" class="form-control" required readonly value=""/>
 				</div>					
 			</div>
 			
@@ -320,13 +320,13 @@ hr {
 					<label><span style="color:red;">*</span> Stock </label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="stock" class="form-control" required placeholder="50" value="500"/>
+					<input type="text" name="stock" class="form-control" required placeholder="50" value=""/>
 				</div> 
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<label><span style="color:red;">*</span> Weight In KG</label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="weight" class="form-control" required placeholder="0.2" value="0.3" />
+					<input type="text" name="weight" class="form-control" required placeholder="0.2" value="" />
 				</div> 
 			</div>			
 						
