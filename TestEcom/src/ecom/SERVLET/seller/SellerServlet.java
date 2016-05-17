@@ -288,6 +288,7 @@ public class SellerServlet extends HttpServlet {
 			 	*  Database - Insert & Generate Product Code  *
 			*******************************************************/			
 			long productId = 0;  boolean isPacketTooBig = false; int keyCount = 0; int sizeCount = 0;
+			boolean error = false;
 			
 			try {
 				
@@ -314,6 +315,8 @@ public class SellerServlet extends HttpServlet {
 				
 				if (productId != 0 && sizeCount == 0)
 					productDAO.deleteKeyFeatures(productId);
+				
+				error = true;
 			}
 			
 			if (productId != -1)
@@ -327,6 +330,8 @@ public class SellerServlet extends HttpServlet {
 			/*********************  Send Response  *****************************/
 			if (isPacketTooBig)
 				response.getWriter().write("Decrease Image Size.");
+			else if (error == true)
+				response.getWriter().write("Some error occured.");
 			else
 				response.getWriter().write("Product Sent For Approval. Product ID: " + productId);
 			

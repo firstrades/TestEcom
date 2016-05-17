@@ -9,7 +9,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title> O7DBazar </title>
+	<title> Firstrades </title>
 	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />	
 	<script type="text/javascript" src="<%=FrequentUse.jQuery %>"></script>
 	<!-- Custom Theme files -->
