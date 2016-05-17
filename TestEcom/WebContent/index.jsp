@@ -312,7 +312,7 @@
 						<img src="images/hot_deal.jpg">
 					</div>
 		
-			<h3>Shop By Branded</h3>		
+			<!-- <h3>Shop By Branded</h3>	 -->	
 	</div>
 </div>
 
