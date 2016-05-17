@@ -131,12 +131,12 @@
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> MEN<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">                            	
-                                <li>
-                                	<a href="ViewProductList?category=MEN&subCategory=MenTshirt" target="iframe">T-Shirt</a>
-                                </li>
-                                <li>
-                                    <a href="ViewProductList?category=MEN&subCategory=Jeans" target="iframe">Jeans</a>
-                                </li>                                
+                                <li><a href="ViewProductList?category=MEN&subCategory=MenTshirt"  target="iframe">T-Shirt</a></li>
+                                <li><a href="ViewProductList?category=MEN&subCategory=Jeans"      target="iframe">Jeans</a></li> 
+                                <li><a href="ViewProductList?category=MEN&subCategory=MenShirt"   target="iframe">Shirt</a></li>
+                                <li><a href="ViewProductList?category=MEN&subCategory=MenTrouser" target="iframe">Trouser</a></li> 
+                                <li><a href="ViewProductList?category=MEN&subCategory=MenShoes"   target="iframe">Shoes</a></li>
+                                <!-- <li><a href="ViewProductList?category=MEN&subCategory=Jeans" target="iframe">Jeans</a></li>  -->                               
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

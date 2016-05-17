@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="ecom.model.FirstPageProducts"%>
 <%@page import="ecom.model.Product"%>
 <%@page import="ecom.DAO.Buyer.BuyerSearchDAO"%>
 <%@page import="java.util.Map"%>
@@ -57,9 +59,14 @@
 	session.removeAttribute("user");
 	session.invalidate();
 	
-	//BuyerSearchDAO buyerSearchDAO = new BuyerSearchDAO();
-	//Map<String,Product> map   = buyerSearchDAO.getFirstPageProducts();
-	Product productBean       = null;
+	BuyerSearchDAO buyerSearchDAO = new BuyerSearchDAO();
+	FirstPageProducts firstPageProducts = buyerSearchDAO.getFirstPageProducts();
+	
+	List<Product> electronics = firstPageProducts.getElectronics();
+	List<Product> men         = firstPageProducts.getMen();
+	List<Product> women       = firstPageProducts.getWomen();
+	List<Product> herbal      = firstPageProducts.getHerbal();
+	List<Product> babyAndKids = firstPageProducts.getBabyAndKids();
 %>
 
 <!-- Header -->
@@ -165,36 +172,8 @@
 		<h3>Recommended For You</h3>
 			<div class="specia-top">
 				<ul class="grid_2">
-					<%-- <% 
-						productBean = map.get("Mobile");
-					%>
-					<li>
-						<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">
-							<img src="IconImageFromProduct?productId=<%=productBean.getProductId() %>" class="img-responsive" alt="">
-						</a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5> 
-								<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>"> <%=productBean.getProductName() %>  (<%=productBean.getCompanyName() %>)  </a> 
-							</h5>
-						
-	                    	<div class="div_key_feature">
-	                      		<ul>
-				                    <li> <%=productBean.getKeyFeatures().getKf1() %> </li>
-		                    		<li> <%=productBean.getKeyFeatures().getKf2() %> </li>
-		                    		<li> <%=productBean.getKeyFeatures().getKf3() %> </li>
-		                    		<li> <%=productBean.getKeyFeatures().getKf4() %> </li>
-	                    		</ul>
-	                    	</div>
-	                    	<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.<%=productBean.getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=productBean.getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=productBean.getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
-							<div class="item_add">
-								<span class="item_price">
-									<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">More Details</a>
-								</span>
-							</div>
-						</div>
-					</li>
 					<% 
-						productBean = map.get("Laptop");
+						for (Product productBean : electronics) {
 					%>
 					<li>
 						<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">
@@ -203,16 +182,7 @@
 						<div class="special-info grid_1 simpleCart_shelfItem">
 							<h5> 
 								<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>"> <%=productBean.getProductName() %>  (<%=productBean.getCompanyName() %>)  </a> 
-							</h5>
-						
-	                    	<div class="div_key_feature">
-	                      		<ul>
-				                    <li> <%=productBean.getKeyFeatures().getKf1() %> </li>
-		                    		<li> <%=productBean.getKeyFeatures().getKf2() %> </li>
-		                    		<li> <%=productBean.getKeyFeatures().getKf3() %> </li>
-		                    		<li> <%=productBean.getKeyFeatures().getKf4() %> </li>
-	                    		</ul>
-	                    	</div>
+							</h5>	                    	
 	                    	<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.<%=productBean.getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=productBean.getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=productBean.getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
 							<div class="item_add">
 								<span class="item_price">
@@ -220,56 +190,8 @@
 								</span>
 							</div>
 						</div>
-					</li> --%>
-					<li>
-						<a href="#"><img src="images/electronic3.jpg" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5><a href="#"> LAPTOP(LENOVO) </a></h5>
-                     		<div class="div_key_feature">
-                      			<ul>
-				                    <li> Key feature </li>
-				                    <li> Key feature1 </li>
-				                    <li> Key feature2 </li>
-				                    <li> Key feature3 </li>
-                    			</ul>
-                    		</div>
-							<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.28000 </small> &nbsp; <strong>Rs 25800</strong> <small> (8% Off) </small></span></h6></div>
-							<div class="item_add"><span class="item_price"><a href="#">More Details</a></span></div>
-						</div>
 					</li>
-					<li>
-						<a href="#"><img src="images/electronic4.jpg" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5><a href="#"> LAPTOP(LENOVO) </a> </h5>
-                     		<div class="div_key_feature">
-                      			<ul>
-				                    <li> Key feature </li>
-				                    <li> Key feature1 </li>
-				                    <li> Key feature2 </li>
-				                    <li> Key feature3 </li>
-                    			</ul>
-                    		</div>
-							<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.24000 </small> &nbsp; <strong>Rs 22200</strong> <small> (8% Off) </small></span></h6></div>
-							<div class="item_add"><span class="item_price"><a href="#">More Details</a></span></div>
-						</div>
-					</li>
-        
-        			<li>
-						<a href="#"><img src="images/electronic5.jpg" class="img-responsive" alt=""></a>
-						<div class="special-info grid_1 simpleCart_shelfItem">
-							<h5> <a href="#"> Mixer Grinder(Bajaj) </a> </h5>
-                     		<div class="div_key_feature">
-                      			<ul>
-				                    <li> Juice Extractor  </li>
-				                    <li> Key feature1 </li>
-				                    <li> Key feature2 </li>
-				                    <li> Key feature3 </li>
-                    			</ul>
-                    		</div>
-							<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.3100.00 </small> &nbsp; <strong>Rs 1725.00</strong> <small> (45% Off) </small></span></h6></div>
-							<div class="item_add"><span class="item_price"><a href="#">More Details</a></span></div>
-						</div>
-					</li>		
+					<% } %>	
 				</ul>
 				<div class="clearfix"> </div>
 			</div>
@@ -277,111 +199,26 @@
 			<h3>Products To Bring You </h3>	
 				<div class="specia-top">
 					<ul class="grid_2">
-						<%-- <% 
-							productBean = map.get("Leggings"); 
-						%>
-						<li>
-							<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">
-								<img src="IconImageFromProduct?productId=<%=productBean.getProductId() %>" class="img-responsive" alt="">
-							</a>
-							<div class="special-info grid_1 simpleCart_shelfItem">
-								<h5> 
-									<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>"> <%=productBean.getProductName() %>  (<%=productBean.getCompanyName() %>)  </a> 
-								</h5>
-							
-		                    	<div class="div_key_feature">
-		                      		<ul>
-					                    <li> <%=productBean.getKeyFeatures().getKf1() %> </li>
-			                    		<li> <%=productBean.getKeyFeatures().getKf2() %> </li>
-			                    		<li> <%=productBean.getKeyFeatures().getKf3() %> </li>
-			                    		<li> <%=productBean.getKeyFeatures().getKf4() %> </li>
-		                    		</ul>
-		                    	</div>
-		                    	<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.<%=productBean.getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=productBean.getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=productBean.getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
-								<div class="item_add">
-									<span class="item_price">
-										<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">More Details</a>
-									</span>
-								</div>
-							</div>
-						</li>
 						<% 
-							productBean = map.get("Top"); 
-						%>
-						<li>
-							<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">
-								<img src="IconImageFromProduct?productId=<%=productBean.getProductId() %>" class="img-responsive" alt="">
-							</a>
-							<div class="special-info grid_1 simpleCart_shelfItem">
-								<h5> 
-									<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>"> <%=productBean.getProductName() %>  (<%=productBean.getCompanyName() %>)  </a> 
-								</h5>
-							
-		                    	<div class="div_key_feature">
-		                      		<ul>
-					                    <li> <%=productBean.getKeyFeatures().getKf1() %> </li>
-			                    		<li> <%=productBean.getKeyFeatures().getKf2() %> </li>
-			                    		<li> <%=productBean.getKeyFeatures().getKf3() %> </li>
-			                    		<li> <%=productBean.getKeyFeatures().getKf4() %> </li>
-		                    		</ul>
-		                    	</div>
-		                    	<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.<%=productBean.getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=productBean.getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=productBean.getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
-								<div class="item_add">
-									<span class="item_price">
-										<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">More Details</a>
-									</span>
-								</div>
+						for (Product productBean : men) {
+					%>
+					<li>
+						<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">
+							<img src="IconImageFromProduct?productId=<%=productBean.getProductId() %>" class="img-responsive" alt="">
+						</a>
+						<div class="special-info grid_1 simpleCart_shelfItem">
+							<h5> 
+								<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>"> <%=productBean.getProductName() %>  (<%=productBean.getCompanyName() %>)  </a> 
+							</h5>	                    	
+	                    	<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.<%=productBean.getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=productBean.getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=productBean.getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+							<div class="item_add">
+								<span class="item_price">
+									<a href="CompleteProductDetails?subCategory=<%=productBean.getSubCategory() %>&productId=<%=productBean.getProductId() %>">More Details</a>
+								</span>
 							</div>
-						</li> --%>
-						<li>
-							<a href="#"><img src="images/camera.jpg" class="img-responsive" alt=""></a>
-							<div class="special-info grid_1 simpleCart_shelfItem">
-								<h5><a href="#"> Camera </a></h5>
-                     				<div class="div_key_feature">
-                      					<ul>
-						                    <li> Key feature </li>
-						                    <li> Key feature1 </li>
-						                    <li> Key feature2 </li>
-						                    <li> Key feature3 </li>
-                    					</ul>
-                    				</div>
-									<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.16000 </small> &nbsp; <strong>Rs 7000</strong> <small> (40% Off) </small></span></h6></div>
-									<div class="item_add"><span class="item_price"><a href="#">More Details</a></span></div>
-							</div>
-						</li>
-						<li>
-							<a href="#"><img src="images/electronic9.jpg" class="img-responsive" alt=""></a>
-							<div class="special-info grid_1 simpleCart_shelfItem">
-								<h5><a href="#"> Sandwich Toaster </a></h5>
-                     				<div class="div_key_feature">
-                      					<ul>
-						                    <li> Key feature </li>
-						                    <li> Key feature1 </li>
-						                    <li> Key feature2 </li>
-						                    <li> Key feature3 </li>
-                    					</ul>
-                    				</div>
-									<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.1460 </small> &nbsp; <strong>Rs 876</strong> <small> (40% Off) </small></span></h6></div>
-									<div class="item_add"><span class="item_price"><a href="#">More Details</a></span></div>
-							</div>
-						</li>
-        				<li>
-							<a href="#"><img src="images/electronic10.jpg" class="img-responsive" alt=""></a>
-							<div class="special-info grid_1 simpleCart_shelfItem">
-								<h5> <a href="#"> Pop-Toaster </a> </h5>
-                     				<div class="div_key_feature">
-                      					<ul>
-						                    <li> Key feature </li>
-						                    <li> Key feature1 </li>
-						                    <li> Key feature2 </li>
-						                    <li> Key feature3 </li>
-                    					</ul>
-                    				</div>
-									<div class="item_add"><h6><span class="item_price"> <small class="over_flow"> Rs.1850 </small> &nbsp; <strong>Rs 1110</strong> <small> (40% Off) </small></span></h6></div>
-									<div class="item_add"><span class="item_price"><a href="#">More Details</a></span></div>
-							</div>
-						</li>
-		
+						</div>
+					</li>
+					<% } %>	
 					</ul>
 					<div class="clearfix"> </div>
 				</div>

@@ -15,6 +15,7 @@ import ecom.common.ConnectionFactory;
 import ecom.model.CartWishlist;
 import ecom.model.CustomerOrderHistroy;
 import ecom.model.DeliveryAddress;
+import ecom.model.FirstPageProducts;
 import ecom.model.Order;
 import ecom.model.Price;
 import ecom.model.Product;
@@ -1326,15 +1327,22 @@ public class BuyerSearchDAO {
 	}//getDeliveryAddressCustomer
 	
 	
-	/**** Delete It *******/
 	
-	public Map<String,Product> getFirstPageProducts() {
+	
+	
+	public FirstPageProducts getFirstPageProducts() {
 		
 		Connection connection = null; CallableStatement callableStatement = null; ResultSet resultSet = null;  
 	    
 		String sql = "{call getFirstPageProducts()}";	
 		
-		Map<String,Product> map = new HashMap<>();	
+		FirstPageProducts firstPageProducts = new FirstPageProducts();
+		
+		List<Product> electronics = new ArrayList<>();
+		List<Product> men         = new ArrayList<>();
+		List<Product> women       = new ArrayList<>();
+		List<Product> herbal      = new ArrayList<>();
+		List<Product> babyAndKids = new ArrayList<>();
 		
 		try {
 				connection = ConnectionFactory.getNewConnection();
@@ -1348,29 +1356,38 @@ public class BuyerSearchDAO {
 					
 					Product productBean = new Product();					
 					
-					productBean.setProductId                 (resultSet.getInt   ("id"       ));
-					productBean.setSellerId                  (resultSet.getLong  ("seller_id"));
+					productBean.setProductId                   (resultSet.getInt   ("id"               ));
+					productBean.setSellerId                    (resultSet.getLong  ("seller_id"        ));
 					
-					productBean.setCategory                  (resultSet.getString("category"));
-					productBean.setSubCategory               (resultSet.getString("sub_category"));
-					productBean.setProductName               (resultSet.getString("product_name"));
-					productBean.setCompanyName               (resultSet.getString("company_name"));
+					productBean.setCategory                    (resultSet.getString("category"         ));
+					productBean.setSubCategory                 (resultSet.getString("sub_category"     ));
+					productBean.setProductName                 (resultSet.getString("product_name"     ));
+					productBean.setCompanyName                 (resultSet.getString("company_name"     ));
 					
-					productBean.getPrice().setListPrice      (resultSet.getDouble("list_price"));
-					productBean.getPrice().setDiscount       (resultSet.getDouble("discount"));
+					productBean.getPrice().setListPrice        (resultSet.getDouble("list_price"       ));
+					productBean.getPrice().setDiscount         (resultSet.getDouble("discount"         ));
 					productBean.getPrice().setSalePriceCustomer(resultSet.getDouble("salePriceCustomer"));				
-					productBean.getPrice().setMarkup         (resultSet.getDouble("markup"));		
+					productBean.getPrice().setMarkup           (resultSet.getDouble("markup"           ));		
+					
+					if (productBean.getCategory().equals("ELECTRONICS") && electronics.size() < 5) {						
+						electronics.add(productBean);  System.out.println("ELECTRONICS");
+					}
+					if (productBean.getCategory().equals("MEN") && men.size() < 5) {						
+						men.add(productBean);          System.out.println("MEN");
+					}					
 					
 					
-					map.put(productBean.getSubCategory(), productBean);
 				}
+				
+				firstPageProducts.setElectronics(electronics);
+				firstPageProducts.setMen(men);
 				
 				connection.commit();
 				callableStatement.close();
 				
 				System.out.println("SQL - Select getFirstPageProducts() successfull.");
 				
-				return map;
+				return firstPageProducts;
 				
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException e) {			
@@ -1378,7 +1395,8 @@ public class BuyerSearchDAO {
 			e.printStackTrace();
 			
 		} finally {	
-			map = null;
+			firstPageProducts = null;
+			electronics = men = women = herbal = babyAndKids = null;
 			try { resultSet.close();         } catch (SQLException e)  { e.printStackTrace();  }
 			try { callableStatement.close(); } catch (SQLException e)  { e.printStackTrace();  }
 			try { connection.close();        } catch (SQLException e)  { e.printStackTrace();  }
