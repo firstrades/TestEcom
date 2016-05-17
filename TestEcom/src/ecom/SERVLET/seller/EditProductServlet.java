@@ -684,11 +684,7 @@ public class EditProductServlet extends HttpServlet {
 			*******************************************************/			
 			boolean status = editProductDAO.editImage(productId, sellerId, inputStream, "iconImage");
 			
-			/*********************************************
-						* Next Page *
-			*********************************************/
 			
-			//response.sendRedirect("MobileEdit");
 		}
 		else if (servletPath.equals("/EditImage1")) {
 			
@@ -712,11 +708,7 @@ public class EditProductServlet extends HttpServlet {
 			*******************************************************/		
 			boolean status = editProductDAO.editImage(productId, sellerId, inputStream, "image1");
 			
-			/*********************************************
-						* Next Page *
-			*********************************************/
 			
-			//response.sendRedirect("MobileEdit");
 		}
 		else if (servletPath.equals("/EditImage2")) {
 	
@@ -740,11 +732,7 @@ public class EditProductServlet extends HttpServlet {
 			*******************************************************/			
 			boolean status = editProductDAO.editImage(productId, sellerId, inputStream, "image2");
 			
-			/*********************************************
-						* Next Page *
-			*********************************************/
 			
-			//response.sendRedirect("MobileEdit");
 		}
 		
 		
