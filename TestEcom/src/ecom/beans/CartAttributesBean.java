@@ -65,6 +65,7 @@ public class CartAttributesBean {
 				} catch (SQLException e) {					
 					e.printStackTrace();
 				}
+				System.gc();
 			}
 	}
 	
@@ -130,6 +131,7 @@ public class CartAttributesBean {
 				} catch (SQLException e) {					
 					e.printStackTrace();
 				}
+				System.gc();
 			}
 	}
 	

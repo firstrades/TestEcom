@@ -685,6 +685,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 			try { resultSet.close();         } catch (SQLException e) {	e.printStackTrace(); }
 			try { callableStatement.close(); } catch (SQLException e) {	e.printStackTrace(); }
 			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
 		}	
 		
 	} // getDataForTrackNumberGeneration
@@ -724,6 +725,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 		} finally {					
 			try { callableStatement.close(); } catch (SQLException e) {	e.printStackTrace(); }
 			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
 		}	
 		
 		return status;

@@ -44,6 +44,7 @@ public class TransientData {
 					} catch (SQLException e) {				
 						e.printStackTrace();
 					}
+					System.gc();
 				}	
 				
 				return stock;
@@ -89,6 +90,7 @@ public class TransientData {
 					} catch (SQLException e) {				
 						e.printStackTrace();
 					}
+					System.gc();
 				}	
 				
 				return MAX;

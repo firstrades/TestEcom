@@ -333,6 +333,7 @@ public class OrderImpl implements OrderInterface {
 			} catch (SQLException e) {			
 				e.printStackTrace();
 			}
+			System.gc();
 		}   
         
         return false;
@@ -382,6 +383,7 @@ public class OrderImpl implements OrderInterface {
 			} catch (SQLException e) {			
 				e.printStackTrace();
 			}
+			System.gc();
 		}   
         
         return false;
@@ -497,6 +499,7 @@ public class OrderImpl implements OrderInterface {
 				} catch (SQLException e) {			
 					e.printStackTrace();
 				}
+				System.gc();
 			}
 		   
 			
@@ -567,6 +570,7 @@ public class OrderImpl implements OrderInterface {
 			} catch (SQLException e) {			
 				e.printStackTrace();
 			}
+			System.gc();
 		}   
         
         return null;

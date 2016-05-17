@@ -67,7 +67,11 @@ public class CreateUserDAO {
 				
 			} catch (InstantiationException | IllegalAccessException
 					| ClassNotFoundException | SQLException e) {
-				
+				try {
+					callableStatement.close();
+				} catch (SQLException e1) {					
+					e1.printStackTrace();
+				}
 				try {
 					connection.rollback();
 				} catch (SQLException e1) {					
@@ -75,6 +79,19 @@ public class CreateUserDAO {
 				}
 				
 				e.printStackTrace();
+			}
+			finally {
+				try {
+					callableStatement.close();;
+				} catch (SQLException e1) {					
+					e1.printStackTrace();
+				}
+				try {
+					connection.close();;
+				} catch (SQLException e1) {					
+					e1.printStackTrace();
+				}
+				System.gc();
 			}
 		
 		
@@ -148,6 +165,19 @@ public class CreateUserDAO {
 				}
 				
 				e.printStackTrace();
+			}
+			finally {
+				try {
+					callableStatement.close();;
+				} catch (SQLException e1) {					
+					e1.printStackTrace();
+				}
+				try {
+					connection.close();;
+				} catch (SQLException e1) {					
+					e1.printStackTrace();
+				}
+				System.gc();
 			}
 		
 		
@@ -505,15 +535,7 @@ public class CreateUserDAO {
 		return msg;
 	 }
 	
-/*	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-    @SuppressWarnings("unused")
-	boolean sellerDAOSSS = CreateUserDAO.setSellerRegistration("HHH55", "HHH55", "HHH55", "HHH55", "FEMALE", "HHH55", "HHH55", 
-"HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", 
-"HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55", "HHH55");
-    System.out.println("sellerDAOSSS");
-	}*/
+
 	
  
 }
