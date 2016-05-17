@@ -10,7 +10,7 @@ public class FirstPageProducts implements Serializable {
 	protected List<Product> electronics;
 	protected List<Product> men;
 	protected List<Product> women; 
-	protected List<Product> herbal;  
+	protected List<Product> homeAndKitchen;  
 	protected List<Product> babyAndKids;
 	
 	
@@ -24,9 +24,7 @@ public class FirstPageProducts implements Serializable {
 	public List<Product> getWomen() {
 		return women;
 	}
-	public List<Product> getHerbal() {
-		return herbal;
-	}
+	
 	public List<Product> getBabyAndKids() {
 		return babyAndKids;
 	}
@@ -39,11 +37,15 @@ public class FirstPageProducts implements Serializable {
 	public void setWomen(List<Product> women) {
 		this.women = women;
 	}
-	public void setHerbal(List<Product> herbal) {
-		this.herbal = herbal;
-	}
+	
 	public void setBabyAndKids(List<Product> babyAndKids) {
 		this.babyAndKids = babyAndKids;
+	}
+	public List<Product> getHomeAndKitchen() {
+		return homeAndKitchen;
+	}
+	public void setHomeAndKitchen(List<Product> homeAndKitchen) {
+		this.homeAndKitchen = homeAndKitchen;
 	}
 	
 	

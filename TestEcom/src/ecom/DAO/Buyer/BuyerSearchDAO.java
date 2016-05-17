@@ -7,10 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import ecom.common.ConnectionFactory;
 import ecom.model.CartWishlist;
 import ecom.model.CustomerOrderHistroy;
@@ -1338,11 +1335,11 @@ public class BuyerSearchDAO {
 		
 		FirstPageProducts firstPageProducts = new FirstPageProducts();
 		
-		List<Product> electronics = new ArrayList<>();
-		List<Product> men         = new ArrayList<>();
-		List<Product> women       = new ArrayList<>();
-		List<Product> herbal      = new ArrayList<>();
-		List<Product> babyAndKids = new ArrayList<>();
+		List<Product> electronics    = new ArrayList<>();
+		List<Product> men            = new ArrayList<>();
+		List<Product> women          = new ArrayList<>();
+		List<Product> homeAndKitchen = new ArrayList<>();
+		List<Product> babyAndKids    = new ArrayList<>();
 		
 		try {
 				connection = ConnectionFactory.getNewConnection();
@@ -1367,20 +1364,33 @@ public class BuyerSearchDAO {
 					productBean.getPrice().setListPrice        (resultSet.getDouble("list_price"       ));
 					productBean.getPrice().setDiscount         (resultSet.getDouble("discount"         ));
 					productBean.getPrice().setSalePriceCustomer(resultSet.getDouble("salePriceCustomer"));				
-					productBean.getPrice().setMarkup           (resultSet.getDouble("markup"           ));		
+					productBean.getPrice().setMarkup           (resultSet.getDouble("markup"           ));	
+					
 					
 					if (productBean.getCategory().equals("ELECTRONICS") && electronics.size() < 5) {						
 						electronics.add(productBean);  System.out.println("ELECTRONICS");
 					}
 					if (productBean.getCategory().equals("MEN") && men.size() < 5) {						
 						men.add(productBean);          System.out.println("MEN");
-					}					
+					}		
+					if (productBean.getCategory().equals("WOMEN") && women.size() < 5) {						
+						women.add(productBean);          System.out.println("WOMEN");
+					}	
+					if (productBean.getCategory().equals("KIDS") && babyAndKids.size() < 5) {						
+						babyAndKids.add(productBean);          System.out.println("KIDS");
+					}	
+					if (productBean.getCategory().equals("HomeAndKitchen") && homeAndKitchen.size() < 5) {						
+						homeAndKitchen.add(productBean);          System.out.println("HomeAndKitchen");
+					}	
 					
 					
 				}
 				
 				firstPageProducts.setElectronics(electronics);
 				firstPageProducts.setMen(men);
+				firstPageProducts.setWomen(women);
+				firstPageProducts.setBabyAndKids(babyAndKids);
+				firstPageProducts.setHomeAndKitchen(homeAndKitchen);
 				
 				connection.commit();
 				callableStatement.close();
@@ -1396,7 +1406,7 @@ public class BuyerSearchDAO {
 			
 		} finally {	
 			firstPageProducts = null;
-			electronics = men = women = herbal = babyAndKids = null;
+			electronics = men = women = homeAndKitchen = babyAndKids = null;
 			try { resultSet.close();         } catch (SQLException e)  { e.printStackTrace();  }
 			try { callableStatement.close(); } catch (SQLException e)  { e.printStackTrace();  }
 			try { connection.close();        } catch (SQLException e)  { e.printStackTrace();  }

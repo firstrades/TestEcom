@@ -86,11 +86,11 @@ public class ProductCategoryList extends HttpServlet {
 		}
 		else if (value.equals("WOMEN")) {
 			
-			options = "<option value=\"Leggings\">Leggings</option>"
-					+"<option value=\"Top\">Top</option>"
-					//+"<option value=\"Watches\">Watches</option>"
-					//+"<option value=\"Bags\">Bags</option>"
-					//+"<option value=\"Belts\">Belts</option>"
+			options = "<option value=\"WomenShoe\">Shoes</option>"
+					+"<option value=\"WomenKurta\">Kurta</option>"
+					+"<option value=\"WomenSharee\">Sharee</option>"
+					+"<option value=\"WomenSalwar\">Salwar</option>"
+					+"<option value=\"WomenJeans\">Jeans</option>"
 					//+"<option value=\"Wallets\">Wallets</option>"
 					//+"<option value=\"Sunglasses\">Sunglasses</option>"
 					+"";
@@ -98,7 +98,19 @@ public class ProductCategoryList extends HttpServlet {
 		else if (value.equals("KIDS")) {
 			
 			options = "<option value=\"Boys_Shirt\">Boy's Shirt</option>"
-					+"<option value=\"Boys_Pant\">Boy's Pant</option>"					
+					+"<option value=\"Boys_Pant\">Boy's Pant</option>"
+					+"<option value=\"Girls_Top\">Girl's Top</option>"
+					+"<option value=\"Girls_Shorts\">Girl's Shorts</option>"
+					+"<option value=\"Baby_Diapers\">Diapers</option>"
+					+"";
+		}		
+		else if (value.equals("HomeAndKitchen")) {
+			
+			options = "<option value=\"Bedsheets\">Bedsheets</option>"
+					+"<option value=\"Curtains\">Curtains</option>"		
+					+"<option value=\"SofaCovers\">Sofa Covers</option>"	
+					+"<option value=\"PressureCookers\">Pressure Cookers</option>"	
+					+"<option value=\"GasStoves\">Gas Stoves</option>"	
 					+"";
 		}
 		

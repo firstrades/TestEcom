@@ -53,6 +53,7 @@ hr {
 						<option value="MEN">MEN</option>
 						<option value="WOMEN">WOMEN</option>
 						<option value="KIDS">KIDS</option>
+						<option value="HomeAndKitchen">HomeAndKitchen</option>
 					</select>
 				</div>				
 				<div class="col-md-3 col-sm-6 col-xs-12">

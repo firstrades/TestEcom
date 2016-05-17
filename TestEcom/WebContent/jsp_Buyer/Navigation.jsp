@@ -8,7 +8,9 @@
     	<div class="container">
 		<!-- start header menu -->
 			<ul class="megamenu skyblue">
+			
 				<li class="active grid"><a class="color1" href="index.jsp">HOME</a>
+				
 				<li class="grid"><a class="color1" href="#">ELECTRONICS</a>
 					<div class="megapanel">
 						<div class="row">
@@ -21,13 +23,13 @@
 										<li><a href="SearchBySubCategory?subCategory=Tablet">Tablet</a></li>
 										<li><a href="SearchBySubCategory?subCategory=Camera">Camera</a></li>
 										<li><a href="SearchBySubCategory?subCategory=Television">Television</a></li>
-										<li><a href="SearchBySubCategory?subCategory=AirCondition">Air Condition</a></li>	
+										<!-- <li><a href="SearchBySubCategory?subCategory=AirCondition">Air Condition</a></li>	
 										<li><a href="SearchBySubCategory?subCategory=Refrigerator">Refrigerator</a></li>
 										<li><a href="SearchBySubCategory?subCategory=WashingMachine">Washing Machine</a></li>
 										<li><a href="SearchBySubCategory?subCategory=MicrowaveOven">Microwave Oven</a></li>
 										<li><a href="SearchBySubCategory?subCategory=VacuumCleaner">Vacuum Cleaner</a></li>
 										<li><a href="SearchBySubCategory?subCategory=Speaker">Speaker</a></li>
-										<li><a href="SearchBySubCategory?subCategory=Geyser">Geyser</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Geyser">Geyser</a></li> -->
 									</ul>	
 								</div>							
 							</div>
@@ -74,11 +76,11 @@
 									<h4>Clothing</h4>
 									<ul class="leftIndentOfProduct">
 										<li><a href="SearchBySubCategory?subCategory=MenTshirt">T-Shirt</a></li><!-- half complete -->
+										<li><a href="SearchBySubCategory?subCategory=MenJeans">Jeans</a></li>
 										<li><a href="SearchBySubCategory?subCategory=MenShirt">Shirt</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MenKurta">Kurta</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MenSherwani">Sherwani</a></li>
-										<li><a href="SearchBySubCategory?subCategory=Jeans">Jeans</a></li>          <!-- complete -->
-										<li><a href="SearchBySubCategory?subCategory=MenTrouser">Trouser</a></li>										
+										<li><a href="SearchBySubCategory?subCategory=MenTrouser">Trouser</a></li>
+										<li><a href="SearchBySubCategory?subCategory=MenShoes">Shoes</a></li>          <!-- complete -->
+																				
 									</ul>	
 								</div>							
 							</div>
@@ -86,13 +88,13 @@
 								<div class="h_nav">
 									<h4>Accessories</h4>
 									<ul class="leftIndentOfProduct">
-										<li><a href="SearchBySubCategory?subCategory=MenShoes">Shoes</a></li>      <!-- Different -->
-										<li><a href="SearchBySubCategory?subCategory=MenWatch">Watch</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MenWallet">Wallet</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MenBelt">Belt</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MenSunglasses">Sunglasses</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MenDeodrants">Deodrants</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MenPerfumes">Perfumes</a></li>
+										<li><a href="#">Shoes</a></li>     
+										<li><a href="#">Watch</a></li>
+										<li><a href="#">Wallet</a></li>
+										<li><a href="#">Belt</a></li>
+										<li><a href="#">Sunglasses</a></li>
+										<li><a href="#">Deodrants</a></li>
+										<li><a href="#">Perfumes</a></li>
 									</ul>	
 								</div>							
 							</div>
@@ -121,12 +123,12 @@
 								<div class="h_nav">
 									<h4>Clothing</h4>
 									<ul>
-										<li><a href="SearchBySubCategory?subCategory=Leggings">Leggings</a></li>
-										<li><a href="SearchBySubCategory?subCategory=Top">Tops</a></li>
-										<li><a href="#">women</a></li>
-										<li><a href="#">accessories</a></li>
-										<li><a href="#">kids</a></li>
-										<li><a href="#">brands</a></li>
+										<li><a href="SearchBySubCategory?subCategory=WomenShoe">Shoes</a></li>
+										<li><a href="SearchBySubCategory?subCategory=WomenKurta">Kurti</a></li>
+										<li><a href="SearchBySubCategory?subCategory=WomenSharee">Sarees</a></li>
+										<li><a href="SearchBySubCategory?subCategory=WomenSalwar">Salwars</a></li>
+										<li><a href="SearchBySubCategory?subCategory=WomenJeans">Jeans</a></li>
+										
 									</ul>	
 								</div>							
 							</div>
@@ -161,19 +163,18 @@
 						</div>
     				</div>
 				</li>				
-				<li><a class="color5" href="#">HERBAL</a>
+				<li><a class="color5" href="#">Home&amp;Kitchen</a>
 					<div class="megapanel">
 						<div class="row">
 							<div class="col1">
 								<div class="h_nav">
-									<h4>Clothing</h4>
+									<h4>Required</h4>
 									<ul>
-										<li><a href="#">new arrivals</a></li>
-										<li><a href="#">men</a></li>
-										<li><a href="#">women</a></li>
-										<li><a href="#">accessories</a></li>
-										<li><a href="#">kids</a></li>
-										<li><a href="#">brands</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Bedsheets">Bedsheets</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Curtains">Curtains</a></li>
+										<li><a href="SearchBySubCategory?subCategory=SofaCovers">Sofa Covers</a></li>
+										<li><a href="SearchBySubCategory?subCategory=PressureCookers">Pressure Cookers</a></li>
+										<li><a href="SearchBySubCategory?subCategory=GasStoves">Gas Stoves</a></li>
 									</ul>	
 								</div>							
 							</div>
@@ -215,8 +216,10 @@
 								<div class="h_nav">
 									<h4>Boys</h4>
 									<ul>
-										<li><a href="SearchBySubCategory?subCategory=Boys_Shirt">Shirts</a></li>
-										<li><a href="#">Pants</a></li>										
+										<li><a href="SearchBySubCategory?subCategory=Boys_Shirt">Shirt</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Boys_Pant">Pant</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Baby_Diapers">Baby Diapers</a></li>
+																			
 									</ul>	
 								</div>							
 							</div>
@@ -224,12 +227,8 @@
 								<div class="h_nav">
 									<h4>Girls</h4>
 									<ul>
-										<li><a href="#">Pools&#38;Tees</a></li>
-										<li><a href="#">shirts</a></li>
-										<li><a href="#">shorts</a></li>
-										<li><a href="#">twinsets</a></li>
-										<li><a href="#">kurts</a></li>
-										<li><a href="#">jackets</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Girls_Top">Top</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Girls_Shorts">Shorts</a></li>	
 									</ul>	
 								</div>							
 							</div>
@@ -252,53 +251,7 @@
 	    				</div>
 				</li>				
 			
-				<li><a class="color7" href="#">HOME&KITCHEN</a>
-					<div class="megapanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<h4>Clothing</h4>
-									<ul>
-										<li><a href="#">new arrivals</a></li>
-										<li><a href="#">men</a></li>
-										<li><a href="#">women</a></li>
-										<li><a href="#">accessories</a></li>
-										<li><a href="#">kids</a></li>
-										<li><a href="#">brands</a></li>
-									</ul>	
-								</div>							
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>kids</h4>
-									<ul>
-										<li><a href="#">Pools&#38;Tees</a></li>
-										<li><a href="#">shirts</a></li>
-										<li><a href="#">shorts</a></li>
-										<li><a href="#">twinsets</a></li>
-										<li><a href="#">kurts</a></li>
-										<li><a href="#">jackets</a></li>
-									</ul>	
-								</div>							
-							</div>
-		
-					
-								<div class="col_images">
-								<div class="h_nav">
-									<img src="images/home&Kitchen.jpg" alt="home&Kitchen">
-									</div>
-									</div>
-					
-						</div>
-						<div class="row">
-							<div class="col2"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-							<div class="col1"></div>
-						</div>
-	    				</div>
-				</li>				
+								
 				<li><a class="color4" href="#">FOOD&GROCERY</a>
 				<div class="megapanel">
 						<div class="row">

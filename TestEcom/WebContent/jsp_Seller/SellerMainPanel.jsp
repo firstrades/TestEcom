@@ -119,12 +119,11 @@
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> WOMEN<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">                            	
-                                <li>
-                                	<a href="ViewProductList?category=WOMEN&subCategory=Leggings" target="iframe">Leggings</a>
-                                </li>
-                                <li>
-                                    <a href="ViewProductList?category=WOMEN&subCategory=Top" target="iframe">Tops</a>
-                                </li>                                
+                                <li><a href="ViewProductList?category=WOMEN&subCategory=WomenShoe" target="iframe">Shoes</a></li>
+                                <li><a href="ViewProductList?category=WOMEN&subCategory=WomenKurta" target="iframe">Kurta</a></li>  
+                                <li><a href="ViewProductList?category=WOMEN&subCategory=WomenSharee" target="iframe">Sharee</a></li>
+                                <li><a href="ViewProductList?category=WOMEN&subCategory=WomenSalwar" target="iframe">Salwar</a></li>
+                                <li><a href="ViewProductList?category=WOMEN&subCategory=WomenJeans" target="iframe">Jeans</a></li>                              
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -132,13 +131,12 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> MEN<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">                            	
                                 <li><a href="ViewProductList?category=MEN&subCategory=MenTshirt"  target="iframe">T-Shirt</a></li>
-                                <li><a href="ViewProductList?category=MEN&subCategory=Jeans"      target="iframe">Jeans</a></li> 
+                                <li><a href="ViewProductList?category=MEN&subCategory=MenJeans"      target="iframe">Jeans</a></li> 
                                 <li><a href="ViewProductList?category=MEN&subCategory=MenShirt"   target="iframe">Shirt</a></li>
                                 <li><a href="ViewProductList?category=MEN&subCategory=MenTrouser" target="iframe">Trouser</a></li> 
                                 <li><a href="ViewProductList?category=MEN&subCategory=MenShoes"   target="iframe">Shoes</a></li>
                                 <!-- <li><a href="ViewProductList?category=MEN&subCategory=Jeans" target="iframe">Jeans</a></li>  -->                               
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            </ul>                            
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> KIDS<span class="fa arrow"></span></a>
@@ -146,18 +144,30 @@
                                 <li>
                                 	<a href="#">Boys</a>
                                 	<ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="ViewProductList?category=KIDS&subCategory=Boys_Shirt" target="iframe">Shirts</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Pants</a>
-                                        </li>                                        
+                                        <li><a href="ViewProductList?category=KIDS&subCategory=Boys_Shirt" target="iframe">Boy's Shirt</a></li>
+                                        <li><a href="ViewProductList?category=KIDS&subCategory=Boys_Pant" target="iframe">Boy's Pants</a></li>
+                                        <li><a href="ViewProductList?category=KIDS&subCategory=Baby_Diapers" target="iframe">Diapers</a></li>                                     
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="#">Girls</a>
+                                    <ul class="nav nav-third-level">
+                                        <li><a href="ViewProductList?category=KIDS&subCategory=Girls_Top" target="iframe">Girl's Top</a></li>
+                                        <li><a href="ViewProductList?category=KIDS&subCategory=Girls_Shorts" target="iframe">Girl's Shorts</a></li>                                                                        
+                                    </ul>
                                 </li>                                
                             </ul>                           
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Home&amp;Kitchen<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">                            	
+                                <li><a href="ViewProductList?category=HomeAndKitchen&subCategory=Bedsheets"  target="iframe">Bedsheets</a></li>
+                                <li><a href="ViewProductList?category=HomeAndKitchen&subCategory=Curtains"      target="iframe">Curtains</a></li> 
+                                <li><a href="ViewProductList?category=HomeAndKitchen&subCategory=SofaCovers"   target="iframe">Sofa Covers</a></li>
+                                <li><a href="ViewProductList?category=HomeAndKitchen&subCategory=PressureCookers" target="iframe">Pressure Cookers</a></li> 
+                                <li><a href="ViewProductList?category=HomeAndKitchen&subCategory=GasStoves"   target="iframe">Gas Stoves</a></li>
+                                                             
+                            </ul>                            
                         </li>
                         
                         <li>
