@@ -38,4 +38,14 @@ public interface FrequentUse {
 	public static final String fedExKey           = "EazJZ9F2y1kw5ncS";
 	public static final String fedExPassword      = "pZtFhjWrKwVd1SLTK7qXGmsUo";
 	*/
+	
+	
+	
+	
+	
+	
+	//Standart_Overnight  - Air - >5000
+	//Priority_Overnight  - Air - <5000
+	//Economy             - Road
+	
 }

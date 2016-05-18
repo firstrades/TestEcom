@@ -1375,7 +1375,7 @@ width: 370px;
 	display: block;
 }
 .special h3:after {
-width: 371px;
+	width: 371px;
     content: '';
     /* background: url(../images/line.png)no-repeat; */
     display: block;

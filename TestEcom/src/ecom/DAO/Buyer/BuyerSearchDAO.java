@@ -7,12 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import ecom.common.ConnectionFactory;
 import ecom.model.CartWishlist;
 import ecom.model.CustomerOrderHistroy;
 import ecom.model.DeliveryAddress;
-import ecom.model.FirstPageProducts;
 import ecom.model.Order;
 import ecom.model.Price;
 import ecom.model.Product;
@@ -1326,20 +1328,13 @@ public class BuyerSearchDAO {
 	
 	
 	
-	
-	public FirstPageProducts getFirstPageProducts() {
+	public Map<String,Product> getFirstPageProducts() {
 		
 		Connection connection = null; CallableStatement callableStatement = null; ResultSet resultSet = null;  
 	    
 		String sql = "{call getFirstPageProducts()}";	
 		
-		FirstPageProducts firstPageProducts = new FirstPageProducts();
-		
-		List<Product> electronics    = new ArrayList<>();
-		List<Product> men            = new ArrayList<>();
-		List<Product> women          = new ArrayList<>();
-		List<Product> homeAndKitchen = new ArrayList<>();
-		List<Product> babyAndKids    = new ArrayList<>();
+		Map<String,Product> map = new HashMap<>();	
 		
 		try {
 				connection = ConnectionFactory.getNewConnection();
@@ -1364,49 +1359,25 @@ public class BuyerSearchDAO {
 					productBean.getPrice().setListPrice        (resultSet.getDouble("list_price"       ));
 					productBean.getPrice().setDiscount         (resultSet.getDouble("discount"         ));
 					productBean.getPrice().setSalePriceCustomer(resultSet.getDouble("salePriceCustomer"));				
-					productBean.getPrice().setMarkup           (resultSet.getDouble("markup"           ));	
+					productBean.getPrice().setMarkup           (resultSet.getDouble("markup"           ));
 					
-					
-					if (productBean.getCategory().equals("ELECTRONICS") && electronics.size() < 5) {						
-						electronics.add(productBean);  System.out.println("ELECTRONICS");
-					}
-					if (productBean.getCategory().equals("MEN") && men.size() < 5) {						
-						men.add(productBean);          System.out.println("MEN");
-					}		
-					if (productBean.getCategory().equals("WOMEN") && women.size() < 5) {						
-						women.add(productBean);          System.out.println("WOMEN");
-					}	
-					if (productBean.getCategory().equals("KIDS") && babyAndKids.size() < 5) {						
-						babyAndKids.add(productBean);          System.out.println("KIDS");
-					}	
-					if (productBean.getCategory().equals("HomeAndKitchen") && homeAndKitchen.size() < 5) {						
-						homeAndKitchen.add(productBean);          System.out.println("HomeAndKitchen");
-					}	
-					
-					
+					map.put(productBean.getSubCategory(), productBean);
 				}
-				
-				firstPageProducts.setElectronics(electronics);
-				firstPageProducts.setMen(men);
-				firstPageProducts.setWomen(women);
-				firstPageProducts.setBabyAndKids(babyAndKids);
-				firstPageProducts.setHomeAndKitchen(homeAndKitchen);
 				
 				connection.commit();
 				callableStatement.close();
 				
 				System.out.println("SQL - Select getFirstPageProducts() successfull.");
 				
-				return firstPageProducts;
+				return map;
 				
 		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException | SQLException e) {			
-			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }
-			e.printStackTrace();
+				| ClassNotFoundException | SQLException e1) {			
+			try { connection.rollback();     } catch (SQLException e)  { e.printStackTrace(); }
+			e1.printStackTrace();
 			
 		} finally {	
-			firstPageProducts = null;
-			electronics = men = women = homeAndKitchen = babyAndKids = null;
+			map = null;
 			try { resultSet.close();         } catch (SQLException e)  { e.printStackTrace();  }
 			try { callableStatement.close(); } catch (SQLException e)  { e.printStackTrace();  }
 			try { connection.close();        } catch (SQLException e)  { e.printStackTrace();  }
