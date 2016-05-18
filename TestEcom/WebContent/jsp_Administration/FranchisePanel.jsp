@@ -63,6 +63,8 @@ margin-right: 24px;
 <body>
 
 <%
+//Administration------------
+
 	User user = (User) session.getAttribute("user");
 	long user_id = user.getUserInfo().getId();
 	
@@ -85,7 +87,8 @@ margin-right: 24px;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">FRANCHISE MAIN PANEL </a><span style="margin-top: 14px;margin-left: 11px;float: left;">( <%=company + " - " +  fName + " " + lName%> )</span>
+                <a class="navbar-brand">FRANCHISE MAIN PANEL </a>
+                <span style="margin-top: 14px;margin-left: 11px;float: left;">( <%=company + " - " +  fName + " " + lName%> )</span>
             </div>            
 
             <ul class="nav navbar-top-links navbar-right">

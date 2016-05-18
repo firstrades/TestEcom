@@ -144,6 +144,13 @@ a.tooltip span b {
 
 <body>
 
+<%
+//Administration------------
+
+	String company = (String) request.getAttribute("company");
+
+%>
+
 <div data-ng-controller="ViewController">
 
     <div id="wrapper">  <!-- Wrapper -->
@@ -159,7 +166,7 @@ a.tooltip span b {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">ADMIN MAIN PANEL</a>
+                <a class="navbar-brand">ADMIN MAIN PANEL (<%=company %>)</a>
             </div>
             <!-- /.navbar-header -->
 
