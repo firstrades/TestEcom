@@ -71,6 +71,8 @@ public class Controller extends HttpServlet {
 					session.setAttribute("sellerId", user.getUserInfo().getId());
 					session.setAttribute("user", user);
 					
+					request.setAttribute("userId", user.getLogin().getUserId());
+					
 					request.getRequestDispatcher("jsp_Seller/SellerMainPanel.jsp").forward(request, response);
 					
 				} else {

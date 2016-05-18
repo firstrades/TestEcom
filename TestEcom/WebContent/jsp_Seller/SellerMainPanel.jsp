@@ -42,6 +42,13 @@
 
 <body>
 
+<%
+//SellerMainPanel-------------------
+
+	String userId = (String) request.getAttribute("userId");
+
+%>
+
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -53,9 +60,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SELLER MAIN PANEL</a>
+                <div style="font-size: 110%;
+    				font-family: monospace;
+    				color: green;
+   					margin-top: 4%;
+    				margin-left: 17%;">SELLER MAIN PANEL (<%=userId %>)</div>
             </div>
-            <!-- /.navbar-header -->
+          
 
             <ul class="nav navbar-top-links navbar-right">                
                 
