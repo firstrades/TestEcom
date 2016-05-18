@@ -504,7 +504,7 @@ declare minPrice double;
 
 select min(salePriceCustomer) into  minPrice from product where sub_category = subCategory and status = 'approved';
 
-select id into productId from product where salePriceCustomer = minPrice limit 1;
+select id into productId from product where sub_category = subCategory and salePriceCustomer = minPrice limit 1;
 
 RETURN productId;
 
@@ -1022,7 +1022,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `getFirstPageProducts`()
 BEGIN
 
 	select * from product 
-    where 
+    where     
     id = minPriceId('Mobile') 
     or 
     id = minPriceId('Laptop')
@@ -1032,7 +1032,46 @@ BEGIN
     id = minPriceId('Camera')
     or
     id = minPriceId('Television')
-    ;
+    or    
+    id = minPriceId('MenTshirt') 
+    or 
+    id = minPriceId('MenShirt')
+    or
+    id = minPriceId('MenJeans')
+    or
+    id = minPriceId('MenTrouser')
+    or
+    id = minPriceId('MenShoes')
+    or    
+    id = minPriceId('WomenShoe') 
+    or 
+    id = minPriceId('WomenKurta')
+    or
+    id = minPriceId('WomenSharee')
+    or
+    id = minPriceId('WomenSalwar')
+    or
+    id = minPriceId('WomenJeans')
+    or    
+    id = minPriceId('Baby_Diapers') 
+    or 
+    id = minPriceId('Boys_Pant')
+    or
+    id = minPriceId('Boys_Shirt')
+    or
+    id = minPriceId('Girls_Top')
+    or
+    id = minPriceId('Girls_Shorts')
+    or    
+    id = minPriceId('Bedsheets') 
+    or 
+    id = minPriceId('Curtains')
+    or
+    id = minPriceId('SofaCovers')
+    or
+    id = minPriceId('PressureCookers')
+    or
+    id = minPriceId('GasStoves');
 
 END ;;
 DELIMITER ;
@@ -2515,4 +2554,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-18 15:09:20
+-- Dump completed on 2016-05-18 15:57:27

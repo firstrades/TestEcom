@@ -144,7 +144,8 @@
 
 <div class="special">
 	<div class="container">
-		<h3>Recommended For You</h3>
+	
+		<h3><a href="#" style="color: #FF8F00;">ELECTRONICS</a></h3>
 			<div class="specia-top">
 				<ul class="grid_2">
 					<% 
@@ -256,7 +257,7 @@
 				<div class="clearfix"> </div>
 			</div>
 		
-			<h3>Products To Bring You </h3>	
+			<h3><a href="#" style="color: #FF8F00;">MEN</a> </h3>	
 				<div class="specia-top">
 					<ul class="grid_2">
 						<% 
@@ -368,7 +369,7 @@
 					<div class="clearfix"> </div>
 				</div>
 
-
+			<h3><a href="#" style="color: #FF8F00;">WOMEN</a></h3>
 				<div class="specia-top">
 					<ul class="grid_2">
 						<% 
@@ -480,6 +481,7 @@
 					<div class="clearfix"> </div>
 				</div>		
 		
+			<h3><a href="#" style="color: #FF8F00;">HOME &amp; KITCHEN</a></h3>
 				<div class="specia-top">
 					<ul class="grid_2">
 						<% 
@@ -592,7 +594,7 @@
 				</div>	
 
 
-
+			<h3><a href="#" style="color: #FF8F00;">BABY &amp; KIDS</a></h3>
 				<div class="specia-top">
 					<ul class="grid_2">
 						<% 
