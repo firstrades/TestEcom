@@ -71,16 +71,18 @@
 			
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<label> *First Name </label>
+					<label> *First Name (20 Character)</label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="first_name1" id="first_name1" class="form-control"  placeholder="Enter First Name" required value = "Soumya"/>
+					<input type="text" name="first_name1" id="first_name1" class="form-control"  placeholder="Enter First Name" 
+						required value = "Soumya" maxlength="20" />
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<label>	*Last Name </label>
+					<label>	*Last Name (15 Character)</label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="last_name1" class="form-control" id="last_name1" placeholder="Enter Last Name"  required value = "Paul"/>
+					<input type="text" name="last_name1" class="form-control" id="last_name1" placeholder="Enter Last Name"  
+						required value = "Paul" maxlength="15" />
 				</div>
 			</div>		
 
@@ -174,16 +176,18 @@
 			
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<label>*Address Line 1 </label>
+					<label>*Address Line 1  (35 Character)</label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="address1" class="form-control" id="address1" placeholder="Enter Address 1" required value = "5/55, M.G.Road" />
+					<input type="text" name="address1" class="form-control" id="address1" placeholder="Enter Address 1" 
+						required value = "5/55, M.G.Road" maxlength="35" />
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<label>	Address Line 2 </label>
+					<label>	Address Line 2  (35 Character)</label>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
-					<input type="text" name="address2" class="form-control" id="address2" placeholder="Enter Address 2"  value = "8/88, R.K.G.Road" />
+					<input type="text" name="address2" class="form-control" id="address2" placeholder="Enter Address 2"  
+					value = "8/88, R.K.G.Road"  maxlength="35" />
 				</div>
 			</div>	
 			
