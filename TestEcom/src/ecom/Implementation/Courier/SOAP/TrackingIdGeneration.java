@@ -78,12 +78,14 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 	private String trackingIdType;
 	private String formId;
 	private String trackingNumber;	
-	private String image;
+	private String[] image;	
 	
 	
 	/**************************** New Instance *************************************/
 	
-	private TrackingIdGeneration() {}
+	private TrackingIdGeneration() {
+		image = new String[2];
+	}
 	
 	public static TrackingIdGeneration getNewInstance() {
 		return new TrackingIdGeneration();
@@ -524,7 +526,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         soapMessage.writeTo(stream);
         String message = new String(stream.toByteArray(), "utf-8"); 
-        System.out.println(message); 
+        System.out.println(message); //-----------------------------------------------------////////////////////////////////
         
 		return soapMessage;
 	}
@@ -603,21 +605,22 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 		/**************************** PDF Image (Laser Printer) ***********************************************/
 		//Other option is PNG for Thermal Printer
 		NodeList ImageList = document.getElementsByTagName("Image");
+		System.out.println("ImageList length: " + ImageList.getLength());
 		
 		for (int i = 0; i < ImageList.getLength(); i++) {
 			
 			Node ImageNode = ImageList.item(i);
 			
 			//Image
-			Node Image     = ImageNode.getFirstChild();	
+			Node Image     = ImageNode.getFirstChild();	   	
 			
 			if (Image instanceof CharacterData) {				
-				this.image = ((CharacterData) Image).getData();  
-			}			
+				this.image[i] = ((CharacterData) Image).getData();  //System.out.println(this.image[i]);
+			}					
 			
 		}
 		
-		//System.out.println(this.image);
+		
 	}
 	
 	
@@ -693,7 +696,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 	private boolean setTrackNumberIntoDatabase() {
 		
 		Connection connection = null; CallableStatement callableStatement = null; 
-		String sql = "{call setTrackNumberIntoDatabase(?,?,?,?,?,?)}";	
+		String sql = "{call setTrackNumberIntoDatabase(?,?,?,?,?,?,?)}";	
 		boolean status = false;
 	
 		try {
@@ -707,8 +710,9 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 			callableStatement.setString(2, this.trackingIdType);
 			callableStatement.setString(3, this.formId        );
 			callableStatement.setString(4, this.trackingNumber);
-			callableStatement.setString(5, this.image         );
-			callableStatement.setLong  (6, this.orderTableId  );
+			callableStatement.setString(5, this.image[0]      );
+			callableStatement.setString(6, this.image[1]      );
+			callableStatement.setLong  (7, this.orderTableId  );
 			
 			callableStatement.execute();
 			
