@@ -205,7 +205,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
         		DropoffType.addTextNode("REGULAR_PICKUP");
         		
         		SOAPElement ServiceType = RequestedShipment.addChildElement("ServiceType", xlns);
-        		ServiceType.addTextNode("STANDARD_OVERNIGHT");
+        		ServiceType.addTextNode("FEDEX_EXPRESS_SAVER");
         		
         		SOAPElement PackagingType = RequestedShipment.addChildElement("PackagingType", xlns);
         		PackagingType.addTextNode("YOUR_PACKAGING");
