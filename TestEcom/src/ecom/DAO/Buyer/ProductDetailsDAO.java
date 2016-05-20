@@ -27,7 +27,7 @@ public class ProductDetailsDAO {
 								twoObjects.setObj1(resultSet.getDouble("salePriceCustomer"));
 								twoObjects.setObj2(resultSet.getString("warranty"  ));					
 							}	 
-						} catch(SQLException e1) { e1.printStackTrace(); }
+						} catch(SQLException e) { throw e; }
 				
 				System.out.println("SQL getSellPriceAndWarranty(long productId) Executed");
 				return twoObjects;
@@ -41,7 +41,12 @@ public class ProductDetailsDAO {
 		}
 		
 		return null;
-	}
+	}//getSellPriceAndWarranty
+	
+	
+	
+	
+	
 
 	
 

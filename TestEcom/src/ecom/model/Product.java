@@ -18,8 +18,9 @@ public class Product implements Serializable {
 	protected String      productName;
 	protected String      companyName;
 	
-	protected List<KeyFeature> keyFeatures;   
+	protected List<KeyFeature>  keyFeatures;   
 	protected List<Size>        sizes;
+	
 	protected Price       price;
 	
 	protected int         stock;

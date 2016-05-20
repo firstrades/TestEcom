@@ -472,6 +472,89 @@ public class ProductDAO {
 	
 	
 	
+	/********************  Get Products - 4 methods **************************/
+	
+	public List<Product> getProducts(
+			long productId          /*default: 0   */,
+			String[] subCategories  /*default: null*/
+			) {			
+		
+		Connection connection = null; Statement statement = null; ResultSet resultSet = null;		
+		String sql = getSQLForGetProducts(productId, subCategories);		
+		Product product = null;		
+		List<Product> productList = new ArrayList<>();		
+		
+		try {
+			connection = ConnectionFactory.getNewConnection();			
+			connection.setAutoCommit(false);		
+				
+			statement = connection.createStatement();						
+			resultSet = statement.executeQuery(sql);				
+			 			
+			while (resultSet.next()) {
+				
+				product = new Product();				
+				
+				product.setProductId                   (resultSet.getInt   ("id"            ));
+				product.setSellerId                    (resultSet.getLong  ("seller_id"     ));
+				product.setSellerCompany               (resultSet.getString("seller_company"));                  
+				
+				product.setCategory                    (resultSet.getString("category"      ));
+				product.setSubCategory                 (resultSet.getString("sub_category"  ));
+				product.setProductName                 (resultSet.getString("product_name"  ));
+				product.setCompanyName                 (resultSet.getString("company_name"  ));
+				
+				product.getPrice().setManufacturingCost     (resultSet.getDouble("manufacturingCost"     ));
+				product.getPrice().setProfitMarginPercentage(resultSet.getDouble("profitMarginPercentage"));
+				product.getPrice().setSalePriceToAdmin      (resultSet.getDouble("sale_price"            ));
+				product.getPrice().setMarkup                (resultSet.getDouble("markup"                ));
+				product.getPrice().setSalePriceCustomer     (resultSet.getDouble("salePriceCustomer"     ));
+				product.getPrice().setListPrice             (resultSet.getDouble("list_price"            ));
+				product.getPrice().setDiscount              (resultSet.getDouble("discount"              ));
+								
+				product.setStock                       (resultSet.getInt   ("stock"                      ));
+				product.setWeight                      (resultSet.getDouble("weight"                     ));
+				product.setWarranty                    (resultSet.getString("warranty"                   ));
+				product.setCancellationAfterBooked     (resultSet.getInt   ("calcellation_after_booked"  ));
+				product.setStatus(Conversions.getEnumStatus(resultSet.getString("status"                )));
+				
+				product.getCommission().setFranchiseCommission  (resultSet.getDouble("f_commission"      ));
+				product.getCommission().setDistributorCommission(resultSet.getDouble("d_commission"      ));
+				
+				product.setProductAdditionDate         (resultSet.getString("productAdditionDate"        ));
+				
+				//Other Tables with Foreign Key
+				product.setKeyFeatures(getKeyFeatures(product.getProductId()));
+				product.setSizes      (getSizes      (product.getProductId()));
+				
+				productList.add(product);
+			}
+			
+			connection.commit();
+			
+			System.out.println("SQL getProducts Executed");
+			
+			return productList;			
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {			
+			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }
+			e.printStackTrace();
+			
+		} finally {				
+			productList = null; product = null;
+			try { resultSet.close();         } catch (SQLException e)  { e.printStackTrace();  }
+			try { statement.close();         } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close();        } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}		
+		
+		return null;
+		
+	}//getProducts
+	
+	
+	
 	public List<KeyFeature> getKeyFeatures(long productId) {
 		
 		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
@@ -579,6 +662,72 @@ public class ProductDAO {
 		
 		return null;
 	}//getSizes
+	
+	
+	
+	private String getSQLForGetProducts(
+			long productId          /*default: 0   */,
+			String[] subCategories  /*default: null*/
+			) {
+		
+		String sql = null;
+		
+		
+		if (productId == 0 && subCategories == null) {			
+			sql = "select * from product";
+			 System.out.println(sql);
+		}
+		
+		if (productId != 0 && subCategories == null) {
+			sql = "select * from product where id = "+ productId;
+			System.out.println(sql);
+		}
+		
+		if (subCategories != null && subCategories.length > 0 && productId == 0) {
+			
+			StringBuffer stringBuffer = new StringBuffer();
+			
+			stringBuffer.append("select * from product where ");
+			
+			for (int i = 0; i < subCategories.length; i++) {
+			
+				if (i == 0)
+					stringBuffer.append("sub_category = '"+ subCategories[i] +"'");
+				else 
+					stringBuffer.append(" or sub_category = '"+ subCategories[i] +"'");				
+			}
+			
+			sql = stringBuffer.toString();    System.out.println(sql);
+		}
+		
+		return sql;
+	}
+	
+	
+	/********************  End Get Products - 4 methods **************************/
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void main(String...args) {
+		
+		String[] str = {"Mobile", "Laptop", "Leggings"};
+		
+		List<Product> list = new ProductDAO().getProducts(0, str);
+		
+		for (Product product : list) {
+			
+			System.out.println(product.getProductId());
+			List<KeyFeature> keyFeatures = product.getKeyFeatures();
+			
+			for (KeyFeature keyFeature : keyFeatures)
+				System.out.println(keyFeature.getKey());
+		}
+	}
 	
 	
 }

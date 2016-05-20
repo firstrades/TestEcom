@@ -88,7 +88,7 @@
     <div class="navigation" style="background-color: #F57D51;height: 39px;">
     	<div class="container">
 		<!-- start header menu -->
-			<ul class="megamenu skyblue">
+			<ul class="megamenu skyblue" style="width: 107%;">
 				<% if (user == null) { %>
 				<li class="grid"><a class="color1" href="index.jsp">HOME</a>
 				<% } else { %>
@@ -109,14 +109,7 @@
 										<li><a href="SearchBySubCategory?subCategory=Laptop">Laptop</a></li>
 										<li><a href="SearchBySubCategory?subCategory=Tablet">Tablet</a></li>
 										<li><a href="SearchBySubCategory?subCategory=Camera">Camera</a></li>
-										<li><a href="SearchBySubCategory?subCategory=Television">Television</a></li>
-										<!-- <li><a href="SearchBySubCategory?subCategory=AirCondition">Air Condition</a></li>	
-										<li><a href="SearchBySubCategory?subCategory=Refrigerator">Refrigerator</a></li>
-										<li><a href="SearchBySubCategory?subCategory=WashingMachine">Washing Machine</a></li>
-										<li><a href="SearchBySubCategory?subCategory=MicrowaveOven">Microwave Oven</a></li>
-										<li><a href="SearchBySubCategory?subCategory=VacuumCleaner">Vacuum Cleaner</a></li>
-										<li><a href="SearchBySubCategory?subCategory=Speaker">Speaker</a></li>
-										<li><a href="SearchBySubCategory?subCategory=Geyser">Geyser</a></li> -->
+										<li><a href="SearchBySubCategory?subCategory=Television">Television</a></li>										
 									</ul>	
 								</div>							
 							</div>
@@ -355,7 +348,7 @@
 				</li>				
 			
 							
-				<li><a class="color4" href="#">FOOD&GROCERY</a>
+				<li><a class="color4" href="#">FOOD&amp;GROCERY</a>
 				<div class="megapanel">
 						<div class="row">
 							<div class="col1">
@@ -403,7 +396,8 @@
 	    				</div>
 				
 				</li>
-				<li><a class="color5" href="#">BOND & MUTUAL FUND</a>	
+				<li><a class="color5" href="#">Herbal</a></li>
+				<li><a class="color5" href="#">BOND &amp; MUTUAL FUND</a>	
 				<div class="megapanel">
 						<div class="row">
 							<div class="col1">
@@ -497,10 +491,11 @@
 						</div>
 	    				</div>
 				</li>	
+				<li><a class="color5" href="#">Hot</a></li>
 		 	</ul> 
 		</div>    
 	</div>
-</div>
+
 
 <!-- ------------------------------------End Navigation--------------------------------------------- -->
 
