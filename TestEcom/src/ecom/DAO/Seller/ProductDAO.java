@@ -507,37 +507,37 @@ public class ProductDAO {
 				
 				product = new Product();				
 				
-				product.setProductId                   (resultSet.getInt   ("id"            ));
-				product.setSellerId                    (resultSet.getLong  ("seller_id"     ));
-				product.setSellerCompany               (resultSet.getString("seller_company"));                  
+				product.setProductId                        (resultSet.getInt   ("id"                       ));
+				product.setSellerId                         (resultSet.getLong  ("seller_id"                ));
+				product.setSellerCompany                    (resultSet.getString("seller_company"           ));                  
 				
-				product.setCategory                    (resultSet.getString("category"      ));
-				product.setSubCategory                 (resultSet.getString("sub_category"  ));
-				product.setProductName                 (resultSet.getString("product_name"  ));
-				product.setCompanyName                 (resultSet.getString("company_name"  ));
+				product.setCategory                         (resultSet.getString("category"                 ));
+				product.setSubCategory                      (resultSet.getString("sub_category"             ));
+				product.setProductName                      (resultSet.getString("product_name"             ));
+				product.setCompanyName                      (resultSet.getString("company_name"             ));
 				
-				product.getPrice().setManufacturingCost     (resultSet.getDouble("manufacturingCost"     ));
-				product.getPrice().setProfitMarginPercentage(resultSet.getDouble("profitMarginPercentage"));
-				product.getPrice().setSalePriceToAdmin      (resultSet.getDouble("sale_price"            ));
-				product.getPrice().setMarkup                (resultSet.getDouble("markup"                ));
-				product.getPrice().setSalePriceCustomer     (resultSet.getDouble("salePriceCustomer"     ));
-				product.getPrice().setListPrice             (resultSet.getDouble("list_price"            ));
-				product.getPrice().setDiscount              (resultSet.getDouble("discount"              ));
+				product.getPrice().setManufacturingCost     (resultSet.getDouble("manufacturingCost"        ));
+				product.getPrice().setProfitMarginPercentage(resultSet.getDouble("profitMarginPercentage"   ));
+				product.getPrice().setSalePriceToAdmin      (resultSet.getDouble("sale_price"               ));
+				product.getPrice().setMarkup                (resultSet.getDouble("markup"                   ));
+				product.getPrice().setSalePriceCustomer     (resultSet.getDouble("salePriceCustomer"        ));
+				product.getPrice().setListPrice             (resultSet.getDouble("list_price"               ));
+				product.getPrice().setDiscount              (resultSet.getDouble("discount"                 ));
 								
-				product.setStock                       (resultSet.getInt   ("stock"                      ));
-				product.setWeight                      (resultSet.getDouble("weight"                     ));
-				product.setWarranty                    (resultSet.getString("warranty"                   ));
-				product.setCancellationAfterBooked     (resultSet.getInt   ("calcellation_after_booked"  ));
-				product.setStatus(Conversions.getEnumStatus(resultSet.getString("status"                )));
+				product.setStock                            (resultSet.getInt   ("stock"                    ));
+				product.setWeight                           (resultSet.getDouble("weight"                   ));
+				product.setWarranty                         (resultSet.getString("warranty"                 ));
+				product.setCancellationAfterBooked          (resultSet.getInt   ("calcellation_after_booked"));
+				product.setStatus(Conversions.getEnumStatus (resultSet.getString("status"                  )));
 				
-				product.getCommission().setFranchiseCommission  (resultSet.getDouble("f_commission"      ));
-				product.getCommission().setDistributorCommission(resultSet.getDouble("d_commission"      ));
+				product.getCommission().setFranchiseCommission  (resultSet.getDouble("f_commission"         ));
+				product.getCommission().setDistributorCommission(resultSet.getDouble("d_commission"         ));
 				
-				product.setProductAdditionDate         (resultSet.getString("productAdditionDate"        ));
+				product.setProductAdditionDate              (resultSet.getString("productAdditionDate"      ));
 				
 				//Other Tables with Foreign Key
-				product.setKeyFeatures(getKeyFeatures(product.getProductId()));
-				product.setSizes      (getSizes      (product.getProductId()));
+				product.setKeyFeatures                      (getKeyFeatures(product.getProductId()          ));
+				product.setSizes                            (getSizes      (product.getProductId()          ));
 				
 				productList.add(product);
 			}
@@ -571,7 +571,8 @@ public class ProductDAO {
 		
 		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
 		String sql = null; 		
-		List<KeyFeature> keyFeatures = new ArrayList<>();		
+		List<KeyFeature> keyFeatures = new ArrayList<>();	
+		KeyFeature keyFeature = null;
 		
 		try {
 			connection = ConnectionFactory.getNewConnection();
@@ -586,7 +587,7 @@ public class ProductDAO {
 			
 			while (resultSet.next()) { 				
 				
-				KeyFeature keyFeature = new KeyFeature();
+				keyFeature = new KeyFeature();
 				
 				keyFeature.setId       (resultSet.getLong("id"        ));
 				keyFeature.setProductId(resultSet.getLong("product_id"));
@@ -611,7 +612,7 @@ public class ProductDAO {
 				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
 			e1.printStackTrace();
 		} finally {
-			keyFeatures = null;
+			keyFeatures = null; keyFeature = null;
 			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
 			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
 			System.gc();
@@ -626,7 +627,8 @@ public class ProductDAO {
 		
 		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
 		String sql = null; 		
-		List<Size> sizes = new ArrayList<>();		
+		List<Size> sizes = new ArrayList<>();
+		Size size = null;
 		
 		try {
 			connection = ConnectionFactory.getNewConnection();
@@ -641,7 +643,7 @@ public class ProductDAO {
 			
 			while (resultSet.next()) { 				
 				
-				Size size = new Size();
+				size = new Size();
 				
 				size.setId       (resultSet.getLong  ("id"        ));
 				size.setProductId(resultSet.getLong  ("product_id"));
@@ -666,7 +668,7 @@ public class ProductDAO {
 				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
 			e1.printStackTrace();
 		} finally {
-			sizes = null;
+			sizes = null; size = null;
 			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
 			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
 			System.gc();
