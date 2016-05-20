@@ -472,9 +472,21 @@ public class ProductDAO {
 	
 	
 	
-	/********************  Get Products - 4 methods **************************/
+	/********************  Get Products - 7 methods **************************/
 	
-	public List<Product> getProducts(
+	public List<Product> getProducts() {
+		return getProducts(0, null);
+	}
+	
+	public List<Product> getProducts(long productId) {
+		return getProducts(productId, null);
+	}
+	
+	public List<Product> getProducts(String[] subCategories) {
+		return getProducts(0, subCategories);
+	}
+	
+	private List<Product> getProducts(
 			long productId          /*default: 0   */,
 			String[] subCategories  /*default: null*/
 			) {			
@@ -673,17 +685,17 @@ public class ProductDAO {
 		String sql = null;
 		
 		
-		if (productId == 0 && subCategories == null) {			
+		if (productId == 0 && subCategories == null) {		//getProducts()	
 			sql = "select * from product";
 			 System.out.println(sql);
 		}
 		
-		if (productId != 0 && subCategories == null) {
+		if (productId != 0 && subCategories == null) {      //getProducts(productId, null)	
 			sql = "select * from product where id = "+ productId;
 			System.out.println(sql);
 		}
 		
-		if (subCategories != null && subCategories.length > 0 && productId == 0) {
+		if (subCategories != null && subCategories.length > 0 && productId == 0) {      //getProducts(0, subCategories)
 			
 			StringBuffer stringBuffer = new StringBuffer();
 			
@@ -703,8 +715,10 @@ public class ProductDAO {
 		return sql;
 	}
 	
+	 
 	
-	/********************  End Get Products - 4 methods **************************/
+	
+	/********************  End Get Products - 7 methods **************************/
 	
 	
 	
