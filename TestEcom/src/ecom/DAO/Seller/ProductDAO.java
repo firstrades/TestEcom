@@ -474,15 +474,15 @@ public class ProductDAO {
 	
 	/********************  Get Products - 7 methods **************************/
 	
-	public List<Product> getProducts() {
+	public List<Product> getProducts() {  // All Products
 		return getProducts(0, null);
 	}
 	
-	public List<Product> getProducts(long productId) {
+	public List<Product> getProducts(long productId) {  // 1 product
 		return getProducts(productId, null);
 	}
 	
-	public List<Product> getProducts(String[] subCategories) {
+	public List<Product> getProducts(String[] subCategories) {  // products by subCategory
 		return getProducts(0, subCategories);
 	}
 	
