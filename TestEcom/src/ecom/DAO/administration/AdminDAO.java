@@ -18,6 +18,22 @@ import ecom.model.User;
 import ecom.model.UserAndPickupAddress;
 
 public class AdminDAO {
+	
+	private static AdminDAO adminDAO;
+	
+	private AdminDAO() {}
+	
+	public static AdminDAO getInstance() {
+		
+		if (adminDAO == null) {			
+			synchronized (adminDAO) {				
+				if (adminDAO == null)
+					adminDAO = new AdminDAO();
+			}			
+		}
+		
+		return adminDAO;
+	}
 
 	public List<Product> getAwaitingProductList() {		
 			

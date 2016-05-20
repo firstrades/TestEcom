@@ -228,6 +228,12 @@ a.tooltip span b {
                             </a>
                         </li>
                         <li>
+                            <a href="#" data-ng-click="redirectToOfferedProductsSelection()">
+                            	<i class="fa fa-dashboard fa-fw"></i>
+                            	Offered Products Selection
+                            </a>
+                        </li>
+                        <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> FRANCHISE<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">                            	
                                 <li>
@@ -421,8 +427,10 @@ a.tooltip span b {
 		
 			<h1 style="margin-left: 1%;background-color: #eee;padding: 8px 14px; font-size: 23px;width: 98%;"> Products For Approval </h1>
 			
+			<div data-ng-bind="noData" style="color: red;margin-left: 15px;"></div>
 		
-			<div class="container" style="width: 96%;border: 1px solid #ccc; float: left;" data-ng-repeat="item in items" data-ng-remove-item>
+			<div class="container" style="width: 96%;border: 1px solid #ccc; float: left;" data-ng-repeat="item in items" 
+				data-ng-remove-item data-ng-show="productApprovalNoData">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="col-md-1" style="padding: 0px;">
@@ -987,10 +995,6 @@ a.tooltip span b {
 			
     	</div>   <!-- End -->
 		<!-- -------------- End Approve Seller ---------------------- -->
-		
-		
-		
-		
 		
 		
 		

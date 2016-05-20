@@ -35,7 +35,7 @@ public class CompleteProductDetails extends HttpServlet {
 	
 	@Override
 	public void init() {		
-		productDAO     = new ProductDAO();
+		productDAO     = ProductDAO.getInstance();
 	}
 	
 	@Override

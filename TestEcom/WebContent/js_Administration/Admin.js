@@ -6,15 +6,25 @@ admin.controller('ViewController', function($scope, $http, $window) {
 	
 	$scope.dashboard = true;	
 	
-	$scope.approveProductList = function() { 		
+	$scope.approveProductList = function() { 
+		
+		//$window.location.reload();
 		
 		$scope.hideAll();
 		$scope.productApproval = true;
+		$scope.productApprovalNoData = true;
 		
 		$http.post('RetrieveProductForApproval', {}).success(function(data) {
 			
-			$scope.items = data.items;   
+			//$window.alert(data.items);			
 			
+			if (data.items != '') {
+				$scope.items = data.items; 
+			}
+			else {
+				$scope.noData = 'No Products for approval.';
+				$scope.productApprovalNoData = false;
+			}
 		});
 		
 		
@@ -82,6 +92,11 @@ admin.controller('ViewController', function($scope, $http, $window) {
 	$scope.redirectToUserRegistration = function() {
 		
 		$window.open('FranchiseRegistration', '_blank');
+	};
+	
+	$scope.redirectToOfferedProductsSelection = function() {
+		
+		$window.open('OfferedProductsSelection', '_blank');
 	};
 	
 	$scope.approveSellerRegistrationPage = function(id) {   
@@ -283,6 +298,16 @@ admin.controller('CreateEditUserController', function($scope, $http, $window) {
 	};
 	
 });  // CreateEditUserController
+
+
+
+/************************ Offered Hot Selection *****************************/
+
+admin.controller('OfferedHotSelection', function($scope, $http, $window) {
+	
+	
+	
+}); //OfferedHotSelection
 
 /***************************    jQuery   *******************************/
 

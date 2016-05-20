@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import ecom.DAO.Seller.ProductDAO;
 import ecom.DAO.User.CreateUserDAO;
 import ecom.DAO.administration.AdminDAO;
 import ecom.model.ExtractFranchiseDetails;
@@ -29,10 +30,12 @@ public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private AdminDAO adminDAO;
+	private ProductDAO productDAO;
 	
 	@Override
 	public void init() {
-		adminDAO = new AdminDAO();
+		adminDAO = AdminDAO.getInstance();
+		productDAO = ProductDAO.getInstance();
 	}
 	
 	@Override
@@ -853,7 +856,20 @@ public class AdminServlet extends HttpServlet {
 			
 			} //ApproveSeller
 			
-			
+			else if (servletPath.equals("/OfferedProductsSelection")) {
+				
+				System.out.println("Entered OfferedProductsSelection");				
+				
+				/********* Database ***********/
+				List<Product> products = productDAO.getProducts();
+				
+				/********* Set Request **********/
+				request.setAttribute("products", products);
+				
+				/******** Next Page *********/
+				request.getRequestDispatcher("jsp_Administration/OfferedHotSelection.jsp").forward(request, response);
+				
+		} // OfferedProductsSelection
 			
 	}
 }

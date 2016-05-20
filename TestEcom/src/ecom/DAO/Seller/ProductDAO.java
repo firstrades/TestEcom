@@ -21,6 +21,22 @@ import ecom.common.Conversions;
 
 public class ProductDAO {
 	
+	private static ProductDAO productDAO;
+	
+	private ProductDAO() {}
+	
+	public static ProductDAO getInstance() {
+		
+		if (productDAO == null) {			
+			synchronized (productDAO) {				
+				if (productDAO == null)
+					productDAO = new ProductDAO();
+			}			
+		}
+		
+		return productDAO;
+	}
+	
 	
 	//------------------------------ Product Creation -------------------------------------------//
 	

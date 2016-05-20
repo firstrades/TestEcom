@@ -119,6 +119,7 @@
 		<url-pattern>/RetrieveAllSellerForApprovalRegistration</url-pattern>
 		<url-pattern>/ApproveSellerRegistrationPage</url-pattern>
 		<url-pattern>/ApproveSeller</url-pattern>
+		<url-pattern>/OfferedProductsSelection</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>FranchiseServlet</servlet-name>
