@@ -45,6 +45,7 @@
 		<url-pattern>/GetTrackingDetails</url-pattern>
 		<url-pattern>/SetItemCancelled</url-pattern>
 		<url-pattern>/GeneratePDF</url-pattern>
+		<url-pattern>/GeneratePDFRet</url-pattern>
 		<url-pattern>/EditProduct</url-pattern>
 	</servlet-mapping>
 	<servlet>

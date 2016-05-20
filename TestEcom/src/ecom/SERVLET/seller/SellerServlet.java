@@ -728,7 +728,31 @@ public class SellerServlet extends HttpServlet {
 			response.setContentType("application/json");
 			response.getWriter().write(jsonObject.toString());
 			
-		} //  /SetItemCancelled
+		} //  /GeneratePDF
+		
+		else if (servletPath.equals("/GeneratePDFRet")) {
+			
+			System.out.println("Entered GeneratePDFRet");
+			
+			/********* Get Request **********/
+			
+			long orderTableId = Long.parseLong(request.getParameter("orderTableId"));	
+			
+			/*********** Database *************/			
+			String base64 = sellerDAO.generatePDFRet(orderTableId);	
+			//boolean status = true;
+			
+			/************* JSON Data for Next Page ****************/
+			JSONObject jsonObject = new JSONObject();
+			
+			try {
+				jsonObject.put("base64", base64);
+			} catch (JSONException e) {	e.printStackTrace(); }
+			
+			response.setContentType("application/json");
+			response.getWriter().write(jsonObject.toString());
+			
+		} //  /GeneratePDFRet
 		
 		
 		else if (servletPath.equals("/EditProduct")) {
@@ -756,20 +780,7 @@ public class SellerServlet extends HttpServlet {
 			nextPage = "jsp_Seller/EditProduct.jsp";
 			request.getRequestDispatcher("jsp_Seller/EditProduct.jsp").forward(request, response);
 			
-		}//EditProduct
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		} //EditProduct
 				
 		
 	}

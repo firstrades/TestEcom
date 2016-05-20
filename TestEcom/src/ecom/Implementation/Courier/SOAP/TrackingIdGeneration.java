@@ -37,7 +37,7 @@ import ecom.common.FrequentUse;
 
 public class TrackingIdGeneration implements TrackingIdGenerationInterface {	
 	
-	private long   orderTableId;
+	private long   orderTableId;	
 	private String paymentType;
 	
 	private String highestSeverity;
@@ -73,6 +73,8 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 	private String companyName;
 	
 	private double weight;
+	
+	private String orderId;
 	
 	//Into Database
 	private String trackingIdType;
@@ -515,7 +517,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
     					CustomerReferenceType.addTextNode("CUSTOMER_REFERENCE");
     					
     					SOAPElement Value1 = CustomerReferences.addChildElement("Value", xlns);
-    					Value1.addTextNode("RET_OUTBOUND_TRACKING_NUMBER");  // my order_id
+    					Value1.addTextNode(this.orderId);  // order_table --> order_id  starts with 'J'
         				
         		
         		
@@ -643,9 +645,11 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 			
 			while (resultSet.next()) {
 				
+				this.orderId          = resultSet.getString("order_id"        );    // Starts with 'J'
+				
 				this.shipperContact   = resultSet.getString("da_contact"      );
 				this.shipperAddress   = resultSet.getString("da_address"      );
-				this.shipperAddress1   = resultSet.getString("da_address1"      );
+				this.shipperAddress1  = resultSet.getString("da_address1"     );
 				this.shipperCity      = resultSet.getString("da_city"         );
 				this.shipperState     = resultSet.getString("da_state"        );
 				this.shipperPin       = resultSet.getString("da_pin"          );
@@ -657,7 +661,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 				
 				this.recipientContact = resultSet.getString("contact"         );
 				this.recipientAddress = resultSet.getString("address"         );
-				this.recipientAddress1 = resultSet.getString("address1"         );
+				this.recipientAddress1= resultSet.getString("address1"        );
 				this.recipientCity    = resultSet.getString("city"            );
 				this.recipientState   = resultSet.getString("state"           );
 				this.recipientPin     = resultSet.getString("pin"             );

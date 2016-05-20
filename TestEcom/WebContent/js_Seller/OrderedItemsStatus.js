@@ -3,7 +3,7 @@ var application = angular.module('Jewel', []);
 application.controller('LoopController', function($scope, $http, $window) {	
 		
 	
-	
+	/************ Generate TrackNumber COD **********/
 	$scope.generateTrackNumberCOD = function(orderTableId) {	
 		
 		$scope.loader = true;
@@ -35,6 +35,7 @@ application.controller('LoopController', function($scope, $http, $window) {
 	};
 	
 	
+	/************ Generate TrackNumber Bank **********/
 	$scope.generateTrackNumberBANK = function(orderTableId) {
 		
 		$scope.loader = true;
@@ -61,11 +62,12 @@ application.controller('LoopController', function($scope, $http, $window) {
 	};
 	
 	
+	/************ Change State Picked **********/
 	$scope.date = '12-02-2016';	
-	$scope.changeStateToPicked = function(orderTableId) {	  //$window.alert("j");	
+	$scope.changeStateToPicked = function(orderTableId) {	 
 
-		var date        = $scope.date;           //$window.alert(date);
-		var courierName = $scope.courierName;    //$window.alert(courierName);
+		var date        = $scope.date;          
+		var courierName = $scope.courierName;   
 		
 		var data = $.param ({
 			orderTableId: orderTableId,
@@ -94,7 +96,7 @@ application.controller('LoopController', function($scope, $http, $window) {
 		
 	};
 	
-	
+	/*********** Tracking Details ****************/
 	$scope.trackingDetails = function(orderTableId) {		
 		
 		$scope.loader1 = true;
@@ -121,6 +123,8 @@ application.controller('LoopController', function($scope, $http, $window) {
 		});	
 	};
 	
+	
+	/********** Generate PDF **************/
 	$scope.generatePDF = function(orderTableId) {
 		
 		var data = $.param ({
@@ -145,12 +149,35 @@ application.controller('LoopController', function($scope, $http, $window) {
 	};
 	
 	
+	/********** Generate PDF Return **************/
+	$scope.generatePDFRet = function(orderTableId) {
+		
+		var data = $.param ({
+			orderTableId: orderTableId			
+		});
+		
+		var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8;'
+                }
+        }
+		
+		$http.post('GeneratePDFRet', data, config).success(function(data) {
+			
+			if (data.base64) {				
+				
+				var unicode = $window.atob(data.base64);   
+				
+				$window.open("data:application/pdf," + escape(unicode));
+			}
+		});	
+	};
 	
 	
 	
-	/********************* Set Item Cancelled **************************/
 	
 	
+	/********************* Set Item Cancelled **************************/	
 	$scope.setCancelledCOD = function(orderTableId) {			
 		
 		var data = $.param ({
