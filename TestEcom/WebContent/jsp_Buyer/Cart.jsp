@@ -112,7 +112,7 @@ float: left;
 				
 					for (TwoObjects<Product, CartWishlist> productBeanAndQty : productBeanAndCW) { 
 				
-						UserDAO userDAO = new UserDAO();
+						UserDAO userDAO = UserDAO.getInstance();
 						String sellerCompany = userDAO.getSellerCompany(productBeanAndQty.getObj1().getSellerId());
 						int    stock         = TransientData.getStock(productBeanAndQty.getObj1().getProductId());    
 						double subtotal      = productBeanAndQty.getObj1().getPrice().getSalePriceCustomer() * productBeanAndQty.getObj2().getQty();    

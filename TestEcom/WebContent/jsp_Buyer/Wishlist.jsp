@@ -104,7 +104,7 @@
 				<tbody class="cart-body">
 				<% for (TwoObjects<Product, CartWishlist> productBeanAndQty : productBeanAndCW) { 
 				
-						UserDAO userDAO = new UserDAO();
+						UserDAO userDAO = UserDAO.getInstance();
 						String sellerCompany = userDAO.getSellerCompany(productBeanAndQty.getObj1().getSellerId());
 						
 						int stock = TransientData.getStock(productBeanAndQty.getObj1().getProductId());

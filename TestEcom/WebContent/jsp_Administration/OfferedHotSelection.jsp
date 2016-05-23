@@ -1,3 +1,8 @@
+<%@page import="ecom.model.OfferedHot"%>
+<%@page import="java.util.Map"%>
+<%@page import="ecom.DAO.administration.AdminDAO"%>
+<%@page import="ecom.model.Product"%>
+<%@page import="java.util.List"%>
 <%@page import="ecom.common.FrequentUse"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -31,26 +36,58 @@
 </head>
 <body data-ng-controller="OfferedHotSelection">
 
+<%
+	@SuppressWarnings("all")
+	List<Product> products = (List<Product>) request.getAttribute("products");
+	
+	AdminDAO adminDAO = AdminDAO.getInstance();
+	Map<Long, OfferedHot> offeredHotMap = (Map<Long, OfferedHot>) adminDAO.getHotOffered();
 
+%>
 
 		
-	<div data-ng-show="productApproval" style="position:absolute;top:8%;margin:auto;width:99%;border:1px solid #ccc;max-height:auto; overflow: auto; overflow-x: none;">
+	<div style="position:absolute;top:8%;margin:auto;width:99%;border:1px solid #ccc;max-height:auto; overflow: auto; overflow-x: none;">
 		
 			<h1 style="margin-left: 1%;background-color: #eee;padding: 8px 14px; font-size: 23px;width: 98%;"> Products For Approval </h1>
 			
 		<div data-ng-bind="noData" style="color: red;margin-left: 15px;"></div>
 		
-		<div class="container" style="width: 99%;border: 1px solid #ccc; margin:auto;"  
-				data-ng-remove-item data-ng-show="productApprovalNoData">
+		<div class="container" style="width: 99%;border: 1px solid #ccc; margin:auto;">
+				
+		
+		<form action="OfferedProductsSelected" method="post">
+		
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-offset-11">
+							<input type="submit" class="btn-primary" value="Submit" style="padding:10px;"/>							
+						</div>
+					</div>
+				</div>
 				
 				
+	<% 
+		for (Product product : products) { 
+		
+			OfferedHot offeredHot = (OfferedHot) offeredHotMap.get(product.getProductId());
+			
+			boolean isOffered = false;
+			boolean isHot     = false;
+			if (offeredHot != null) {
+				isOffered = offeredHot.isOffered();
+				isHot     = offeredHot.isHot();
+			}
+	%>
+		
 			<!-- ------------------ Row Starts -------------------- -->	
 			
+		
+		
 			<div class="row">
 				<div class="col-md-12">						
 					<div class="col-md-12" style="width:100%;border:1px solid #ddd;margin-bottom:10px;box-shadow: 1px 1px 1px #f5f5f5;background-color: #FFFFF5;">
 						<div class="col-md-2" style="border: 1px solid #EAEAEA; box-shadow: 1px 1px 1px #e7e7e7; margin-top:10px; margin-bottom: 11px;">
-							<img alt="image" src="IconImageFromProduct?productId=15" width="150" height="150">
+							<img alt="image" src="IconImageFromProduct?productId=<%=product.getProductId() %>" width="150" height="150">
 						</div>
 						<div class="col-md-7">
 							<div class="col-md-6">
@@ -128,7 +165,7 @@
 							</div>					
 						</div>				
 				
-						<div class="col-md-3" style="margin-top:100px;" data-ng-show="item.orderTableData.orderState == 'Booked'">
+						<div class="col-md-3" style="margin-top:100px;">
 						<div class="row">
 							<div class="col-md-12">
 							<span style="float: left;
@@ -138,9 +175,13 @@
 								    	font-family: fantasy;
 								    	font-size: large;
 								    	color: green;">
-								Hot
+								Offer
 							</span>
-							<input type="checkbox"  class="field"; value=""; style="float: right;zoom: 2.0;margin-top: -13px; margin-left: 20px;"/>
+							<% if (isOffered) { %>
+								<input type="checkbox" checked="checked" class="field" name="offered" value="<%=product.getProductId() %>" style="float: right;zoom: 2.0;margin-top: -13px; margin-left: 20px;" />
+							<% } else { %>
+								<input type="checkbox" class="field" name="offered" value="<%=product.getProductId() %>" style="float: right;zoom: 2.0;margin-top: -13px; margin-left: 20px;" />
+							<% } %>
 							</div>
 						</div>
 						<div class="row">
@@ -152,9 +193,13 @@
 								    	font-family: fantasy;
 								    	font-size: large;
 								    	color: green;">
-								Offer
+								Hot
 							</span>
-							<input type="checkbox"  class="field"; value=""; style="float: right;zoom: 2.0;margin-top: 14px; margin-left: 20px;"/>
+							<% if (isHot) { %>
+								<input type="checkbox" checked="checked" class="field" name="hot" value="<%=product.getProductId() %>" style="float: right;zoom: 2.0;margin-top: 14px; margin-left: 20px;" />
+							<% } else { %>
+								<input type="checkbox"  class="field" name="hot" value="<%=product.getProductId() %>" style="float: right;zoom: 2.0;margin-top: 14px; margin-left: 20px;" />
+							<% } %>
 							</div>
 						</div>
 						
@@ -197,7 +242,7 @@
 								(Cancel pending by Stockist)
 							</span>
 						</div>
-						<div class="col-md-3 ng-hide" style="margin-top:100px;" data-ng-show="item.orderTableData.orderState == 'Return'">
+						<div class="col-md-3 ng-hide" style="margin-top:100px;" >
 							<span style="float: left;
 										margin-top: 9px;    
 										float: left;
@@ -210,15 +255,15 @@
 							</span>
 						</div>			
 				
-						<div class="col-md-3 ng-scope ng-hide" data-ng-show="item.orderTableData.orderState == 'Delivered'" data-ng-controller="DeliveredController" style="margin-top:100px;">
+						<div class="col-md-3 ng-scope ng-hide" style="margin-top:100px;">
 							<!-- ngIf: item.orderTableData.orderState == 'Delivered' -->
-							<span data-ng-show="delivered" style="float: left;
-																margin-top: 9px;    
-																float: left;
-														    	margin-top: -24px;
-														    	margin-left: 96px;
-														    	font-family: fantasy;
-														    	font-size: large;" class="ng-hide">
+							<span style="float: left;
+										margin-top: 9px;    
+										float: left;
+								    	margin-top: -24px;
+								    	margin-left: 96px;
+								    	font-family: fantasy;
+								    	font-size: large;" class="ng-hide">
 								Order Delivered <br>
 								(Payment to Stockist pending)
 							</span>
@@ -232,20 +277,18 @@
 							</span>
 						</div>
 				
-				<div class="row">
-							<div class="col-md-12">
-							<div class="col-md-offset-11">
-							<input type="button" class="btn-primary" value="Submit" style="padding:10px;"/>
-							
-							</div>
-							</div>
-							</div>
+				
 				
 					</div>	
 				</div>
 				
-			</div>		
-					
+			</div>	
+			
+		
+			
+	<% } %>	
+		
+		</form>			
 			<!-- ------------------ End Row Starts -------------------- -->		
 			
 			

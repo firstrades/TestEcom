@@ -5,13 +5,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ecom.beans.AdminServletHelper;
 import ecom.common.ConnectionFactory;
 import ecom.common.Conversions;
 import ecom.model.ExtractFranchiseDetails;
+import ecom.model.OfferedHot;
 import ecom.model.OrderTable;
 import ecom.model.Product;
 import ecom.model.User;
@@ -55,7 +59,7 @@ public class AdminDAO {
 					
 					Product productBean = new Product(); 					
 					
-					productBean.setProductId           (resultSet.getLong  ("id"    ));
+					productBean.setProductId           (resultSet.getLong  ("id"            ));
 					productBean.setSellerId            (resultSet.getLong  ("seller_id"     ));
 					productBean.setSellerCompany       (resultSet.getString("seller_company"));
 					
@@ -682,7 +686,137 @@ public class AdminDAO {
 	} // setApproveSeller
 	
 	
+	public Map<Long, OfferedHot> getHotOffered() {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;	
+		ResultSet resultSet = null;
+		String sql = "select * from hot_offered";	
+		Map<Long, OfferedHot> map = new HashMap<>();
+		OfferedHot offeredHot = null;
 	
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			preparedStatement = connection.prepareStatement(sql);  			  								
+			
+			resultSet = preparedStatement.executeQuery();		
+			
+			while (resultSet.next()) {		
+				
+				offeredHot = new OfferedHot();
+				
+				offeredHot.setProductId(resultSet.getLong("product_id"));
+				
+				if (resultSet.getString("offered" ).equals("Y"))
+					offeredHot.setOffered(true);
+				
+				if (resultSet.getString("hot").equals("Y"))
+					offeredHot.setHot(true);
+				
+				map.put(offeredHot.getProductId(), offeredHot);
+			}
+			
+			connection.commit();					
+			System.out.println("SQL - setCommission executed");
+				
+			return map;
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try { connection.rollback();     } catch (SQLException e) { e.printStackTrace(); }
+			e1.printStackTrace();
+			
+		} finally {	
+			map = null; offeredHot = null;
+			try { resultSet.close();         } catch (SQLException e)  { e.printStackTrace();  }
+			try { preparedStatement.close(); } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close();        } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}  
+		
+		
+		
+		return null;
+	}
+	
+	
+	public int setOfferedHot(String[] offered, String[] hot) {
+		
+		Connection connection = null; Statement statement = null;
+		String sql = null;		
+		
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			statement = connection.createStatement(); 
+			
+			sql = "truncate hot_offered";		
+			
+			int j = statement.executeUpdate(sql);
+			
+			connection.commit();					
+			System.out.println("SQL - setOfferedHot executed");
+			
+			for (int i = 0; i < offered.length; i++)
+				setOfferedHot(Long.parseLong(offered[i]), "offered");
+			
+			for (int i = 0; i < hot.length; i++)
+				setOfferedHot(Long.parseLong(hot[i]), "hot");
+				
+			return j;
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try { connection.rollback();     } catch (SQLException e) { e.printStackTrace(); }
+			e1.printStackTrace();
+			
+		} finally {				
+			
+			try { statement.close();    } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close();   } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}  
+		
+		return 0;
+	}
+	
+	// See Above
+	private void setOfferedHot(long value, String attribute) {
+		
+		Connection connection = null; CallableStatement callableStatement = null;
+		String sql = "{call setOfferedHot(?,?)}";		
+		
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			callableStatement = connection.prepareCall(sql);
+			callableStatement.setLong  (1, value);
+			callableStatement.setString(2, attribute);
+			
+			callableStatement.execute();
+			
+			connection.commit();					
+			System.out.println("SQL - setOfferedHot executed");
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try { connection.rollback();     } catch (SQLException e) { e.printStackTrace(); }
+			e1.printStackTrace();
+			
+		} finally {					
+			try { callableStatement.close();    } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close();           } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}  
+		
+	}
 	
 	
 	/****************** Testing ********************/

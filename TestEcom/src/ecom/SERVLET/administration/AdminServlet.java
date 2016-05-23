@@ -869,7 +869,33 @@ public class AdminServlet extends HttpServlet {
 				/******** Next Page *********/
 				request.getRequestDispatcher("jsp_Administration/OfferedHotSelection.jsp").forward(request, response);
 				
-		} // OfferedProductsSelection
+			} // OfferedProductsSelection
+			
+			else if (servletPath.equals("/OfferedProductsSelected")) {
+				
+				System.out.println("Entered OfferedProductsSelected");	
+				
+				/********** Get Request *********/
+				String[] offered = request.getParameterValues("offered");
+				String[] hot = request.getParameterValues("hot");
+				
+				for (int i = 0; i < offered.length; i++) 
+					System.out.println("Offered: " + offered[i]);
+				
+				for (int i = 0; i < hot.length; i++) 
+					System.out.println("Hot: " + hot[i]);
+				
+				/********* Database ***********/
+				adminDAO.setOfferedHot(offered, hot);
+				List<Product> products = productDAO.getProducts();
+				
+				/********* Set Request **********/
+				request.setAttribute("products", products);
+				
+				/******** Next Page *********/
+				request.getRequestDispatcher("jsp_Administration/OfferedHotSelection.jsp").forward(request, response);
+				
+			} // OfferedProductsSelected
 			
 	}
 }
