@@ -34,7 +34,7 @@ public class OrderReviewAndSubmit extends HttpServlet {
 	
 	@Override
 	public void init() {
-		buyerSearchDAO = new BuyerSearchDAO();
+		buyerSearchDAO = BuyerSearchDAO.getInstance();
 	}
 	
 	@Override
@@ -217,8 +217,7 @@ public class OrderReviewAndSubmit extends HttpServlet {
 			List<TwoObjects<BigDecimal, String>> apiDataList) throws ServletException, IOException {		
 		
 			/************ Create Required Objects **********/		
-			Order order = new Order();
-			BuyerSearchDAO buyerSearchDAO = new BuyerSearchDAO();
+			Order order = new Order();			
 			
 			/*************** Set Products To Buy *************/
 		

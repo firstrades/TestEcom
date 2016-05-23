@@ -22,6 +22,24 @@ import ecom.model.TwoObjects;
 import ecom.model.User;
 
 public class BuyerSearchDAO {
+	
+	private static BuyerSearchDAO buyerSearchDAO;
+	
+	private BuyerSearchDAO() {
+		buyerSearchDAO = null;
+	}
+	
+	public static BuyerSearchDAO getInstance() {
+		
+		if (buyerSearchDAO == null) {			
+			synchronized (BuyerSearchDAO.class) {				
+				if (buyerSearchDAO == null)
+					buyerSearchDAO = new BuyerSearchDAO();
+			}			
+		}
+		
+		return buyerSearchDAO;
+	}
 
 	public List<Product> searchBySubCategory(String subCategory) {  		
 		

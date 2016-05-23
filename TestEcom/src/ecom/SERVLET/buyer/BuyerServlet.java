@@ -49,7 +49,7 @@ public class BuyerServlet extends HttpServlet {
 	@Override
 	public void init() {
 		this.helper         = BuyerServletHelper.getNewInstance();
-		this.buyerSearchDAO = new BuyerSearchDAO();
+		this.buyerSearchDAO = BuyerSearchDAO.getInstance();
 	}
 	
 	@Override

@@ -29,7 +29,7 @@ public class EditProductServlet extends HttpServlet {
  
 	@Override
 	public void init() {
-		editProductDAO = new EditProductDAO();
+		editProductDAO = EditProductDAO.getInstance();
 	}
 	
 	@Override

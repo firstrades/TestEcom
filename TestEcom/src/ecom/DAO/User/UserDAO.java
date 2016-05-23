@@ -5,11 +5,30 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import ecom.common.ConnectionFactory;
 import ecom.common.Conversions;
 import ecom.model.User;
 
 public class UserDAO {
+	
+	private static UserDAO userDAO;
+	
+	private UserDAO() {
+		userDAO = null;
+	}
+	
+	public static UserDAO getInstance() {
+		
+		if (userDAO == null) {			
+			synchronized (UserDAO.class) {				
+				if (userDAO == null)
+					userDAO = new UserDAO();
+			}			
+		}
+		
+		return userDAO;
+	}
 
 	public User getUser(String userId, String password) {		//5-3-16
 		

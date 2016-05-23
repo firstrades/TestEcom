@@ -15,6 +15,24 @@ import ecom.model.Product;
 import ecom.model.Size;
 
 public class EditProductDAO {
+	
+	private static EditProductDAO editProductDAO;
+	
+	private EditProductDAO() {
+		editProductDAO = null;
+	}
+	
+	public static EditProductDAO getInstance() {
+		
+		if (editProductDAO == null) {			
+			synchronized (EditProductDAO.class) {				
+				if (editProductDAO == null)
+					editProductDAO = new EditProductDAO();
+			}			
+		}
+		
+		return editProductDAO;
+	}
 
 	public Product editProduct(Product productBean) {			
 		

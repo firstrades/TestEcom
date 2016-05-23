@@ -25,7 +25,7 @@ public class OrderServlet extends HttpServlet {
 	
 	@Override
 	public void init() {
-		userDAO = new UserDAO();
+		userDAO = UserDAO.getInstance();
 	}
 	
 	@Override

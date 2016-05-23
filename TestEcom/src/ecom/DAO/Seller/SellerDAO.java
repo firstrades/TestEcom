@@ -14,10 +14,22 @@ import ecom.model.User;
 
 public class SellerDAO {
 	
-	private SellerDAO() {}
+	private static SellerDAO sellerDAO;
 	
-	public static SellerDAO getNewInstance() {		
-		return new SellerDAO();
+	private SellerDAO() {
+		sellerDAO = null;
+	}
+	
+	public static SellerDAO getInstance() {
+		
+		if (sellerDAO == null) {			
+			synchronized (SellerDAO.class) {				
+				if (sellerDAO == null)
+					sellerDAO = new SellerDAO();
+			}			
+		}
+		
+		return sellerDAO;
 	}
 	
 	/*************************************************************/

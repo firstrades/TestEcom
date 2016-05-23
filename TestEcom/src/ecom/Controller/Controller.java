@@ -27,8 +27,8 @@ public class Controller extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		this.userDAO        = new UserDAO();
-		this.buyerSearchDAO = new BuyerSearchDAO();
+		this.userDAO        = UserDAO.getInstance();
+		this.buyerSearchDAO = BuyerSearchDAO.getInstance();
 	}
 
 	@Override

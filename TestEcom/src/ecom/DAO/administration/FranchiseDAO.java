@@ -15,10 +15,25 @@ import ecom.model.FranchisePins;
 
 public class FranchiseDAO {
 	
-	public static FranchiseDAO getNewInstance() {
-		
-		return new FranchiseDAO();
+	private static FranchiseDAO franchiseDAO;
+	
+	private FranchiseDAO() {
+		franchiseDAO = null;
 	}
+	
+	public static FranchiseDAO getInstance() {
+		
+		if (franchiseDAO == null) {			
+			synchronized (FranchiseDAO.class) {				
+				if (franchiseDAO == null)
+					franchiseDAO = new FranchiseDAO();
+			}			
+		}
+		
+		return franchiseDAO;
+	}
+	
+	
 
 	public String getPins(long userId) {
 		

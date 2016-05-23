@@ -58,7 +58,7 @@
 	session.removeAttribute("user");
 	session.invalidate();
 	
-	BuyerSearchDAO buyerSearchDAO = new BuyerSearchDAO();	
+	BuyerSearchDAO buyerSearchDAO = BuyerSearchDAO.getInstance();	
 	Map<String,Product> map   = buyerSearchDAO.getFirstPageProducts();
 	Product productBean       = null;
 %>

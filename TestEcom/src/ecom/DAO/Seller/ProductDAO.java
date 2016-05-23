@@ -23,12 +23,14 @@ public class ProductDAO {
 	
 	private static ProductDAO productDAO;
 	
-	private ProductDAO() {}
+	private ProductDAO() {
+		productDAO = null;
+	}
 	
 	public static ProductDAO getInstance() {
 		
 		if (productDAO == null) {			
-			synchronized (productDAO) {				
+			synchronized (ProductDAO.class) {				
 				if (productDAO == null)
 					productDAO = new ProductDAO();
 			}			

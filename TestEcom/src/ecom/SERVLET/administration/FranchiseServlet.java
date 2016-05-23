@@ -28,7 +28,7 @@ public class FranchiseServlet extends HttpServlet {
 	
 	@Override
 	public void init() {
-		franchiseDAO = FranchiseDAO.getNewInstance();
+		franchiseDAO = FranchiseDAO.getInstance();
 	}
 	
 	@Override
@@ -186,7 +186,7 @@ public class FranchiseServlet extends HttpServlet {
 				
 				FranchisePins franchisePins = franchiseDAO.getPins1(user_id);
 				
-				List<ExtractDistributorDetails> extractDistributorDetails = FranchiseDAO.getNewInstance().getPinAreaCommission(user_id);				
+				List<ExtractDistributorDetails> extractDistributorDetails = franchiseDAO.getPinAreaCommission(user_id);				
 				
 				/********** JSON for next page ***********/
 				

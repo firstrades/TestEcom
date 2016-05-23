@@ -29,12 +29,12 @@ import ecom.model.UserAndPickupAddress;
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private AdminDAO adminDAO;
+	private AdminDAO   adminDAO;
 	private ProductDAO productDAO;
 	
 	@Override
 	public void init() {
-		adminDAO = AdminDAO.getInstance();
+		adminDAO   = AdminDAO.getInstance();
 		productDAO = ProductDAO.getInstance();
 	}
 	

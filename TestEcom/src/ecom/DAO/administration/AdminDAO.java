@@ -21,12 +21,14 @@ public class AdminDAO {
 	
 	private static AdminDAO adminDAO;
 	
-	private AdminDAO() {}
+	private AdminDAO() {
+		adminDAO = null;
+	}
 	
 	public static AdminDAO getInstance() {
 		
 		if (adminDAO == null) {			
-			synchronized (adminDAO) {				
+			synchronized (AdminDAO.class) {				
 				if (adminDAO == null)
 					adminDAO = new AdminDAO();
 			}			

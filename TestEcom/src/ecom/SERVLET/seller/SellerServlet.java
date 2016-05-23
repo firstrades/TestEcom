@@ -51,7 +51,7 @@ public class SellerServlet extends HttpServlet {
 	
 	@Override
 	public void init() {
-		sellerDAO = SellerDAO.getNewInstance();
+		sellerDAO = SellerDAO.getInstance();
 		productDAO = ProductDAO.getInstance();
 		nextPage = null;
 	}
