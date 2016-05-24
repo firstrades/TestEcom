@@ -493,24 +493,29 @@ public class ProductDAO {
 	/********************  Get Products - 7 methods **************************/
 	
 	public List<Product> getProducts() {  // All Products
-		return getProducts(0, null);
+		return getProducts(0, null, null);
 	}
 	
 	public List<Product> getProducts(long productId) {  // 1 product
-		return getProducts(productId, null);
+		return getProducts(productId, null, null);
 	}
 	
 	public List<Product> getProducts(String[] subCategories) {  // products by subCategory
-		return getProducts(0, subCategories);
+		return getProducts(0, subCategories, null);
+	}
+	
+	public List<Product> getProducts(Long[] productIds) {  // products by subCategory
+		return getProducts(0, null, productIds);
 	}
 	
 	private List<Product> getProducts(
-			long productId          /*default: 0   */,
-			String[] subCategories  /*default: null*/
+			long     productId      /*default: 0   */,
+			String[] subCategories  /*default: null*/,
+			Long[]   productIds     /*default: null*/
 			) {			
 		
 		Connection connection = null; Statement statement = null; ResultSet resultSet = null;		
-		String sql = getSQLForGetProducts(productId, subCategories);		
+		String sql = getSQLForGetProducts(productId, subCategories, productIds);		
 		Product product = null;		
 		List<Product> productList = new ArrayList<>();		
 		
@@ -698,24 +703,26 @@ public class ProductDAO {
 	
 	
 	private String getSQLForGetProducts(
-			long productId          /*default: 0   */,
-			String[] subCategories  /*default: null*/
+			long     productId      /*default: 0   */,
+			String[] subCategories  /*default: null*/,
+			Long[]   productIds     /*default: null*/
 			) {
 		
-		String sql = null;
+		String sql = null;	
 		
-		
-		if (productId == 0 && subCategories == null) {		//getProducts()	
+		//getProducts()	
+		if (productId == 0 && subCategories == null) {		
 			sql = "select * from product";
 			 System.out.println(sql);
 		}
-		
-		if (productId != 0 && subCategories == null) {      //getProducts(productId, null)	
+		//getProducts(productId, null, null)
+		if (productId != 0 && subCategories == null) {      	
 			sql = "select * from product where id = "+ productId;
 			System.out.println(sql);
 		}
-		
-		if (subCategories != null && subCategories.length > 0 && productId == 0) {      //getProducts(0, subCategories)
+		//getProducts(0, subCategories, null)
+		if (subCategories != null && subCategories.length > 0 
+				&& productId == 0) {      
 			
 			StringBuffer stringBuffer = new StringBuffer();
 			
@@ -727,6 +734,24 @@ public class ProductDAO {
 					stringBuffer.append("sub_category = '"+ subCategories[i] +"'");
 				else 
 					stringBuffer.append(" or sub_category = '"+ subCategories[i] +"'");				
+			}
+			
+			sql = stringBuffer.toString();    System.out.println(sql);
+		}
+		//getProducts(0, null, productIds)
+		if (productIds != null && productIds.length > 0 
+				&& subCategories == null && productId == 0) {    
+			
+			StringBuffer stringBuffer = new StringBuffer();
+			
+			stringBuffer.append("select * from product where ");
+			
+			for (int i = 0; i < productIds.length; i++) {
+			
+				if (i == 0)
+					stringBuffer.append("id = "+ productIds[i]);
+				else 
+					stringBuffer.append(" or id = "+ productIds[i]);				
 			}
 			
 			sql = stringBuffer.toString();    System.out.println(sql);
@@ -749,9 +774,9 @@ public class ProductDAO {
 	
 	public static void main(String...args) {
 		
-		String[] str = {"Mobile", "Laptop", "Leggings"};
+		Long[] str = {1l, 2l, 3l};
 		
-		List<Product> list = new ProductDAO().getProducts(0, str);
+		List<Product> list = new ProductDAO().getProducts(0, null, str);
 		
 		for (Product product : list) {
 			

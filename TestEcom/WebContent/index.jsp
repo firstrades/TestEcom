@@ -1,3 +1,5 @@
+<%@page import="ecom.common.OfferedHot"%>
+<%@page import="ecom.DAO.administration.AdminDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="ecom.model.Product"%>
 <%@page import="ecom.DAO.Buyer.BuyerSearchDAO"%>
@@ -48,11 +50,150 @@
 		}
 		.new-login-form {
 		    width: 400px;
-		}    
+		} 
+		
+		.container2{
+	width:800px;
+	height:400px;
+	padding:20px;
+	border:1px solid gray;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	background: black;	
+}
+.slider_wrapper{
+	overflow: hidden;
+	position:relative;
+	height:auto;
+	top:auto;
+}
+#image_slider{
+
+	position: relative;
+	height: auto;
+	list-style: none;
+	overflow: hidden;
+	float: left;
+	/*Chrom default padding for ul is 40px */
+	padding:0px;
+	margin:0px;
+}
+#image_slider li{
+	
+}
+.nvgt{
+	position:absolute;
+	top: 40%;
+	height: 50px;
+	width: 30px;
+	opacity: 0.6;
+}
+.nvgt:hover{
+	opacity: 0.9;
+}
+#prev{
+	background: #000 url('https://dl.dropboxusercontent.com/u/65639888/image/prev.png') no-repeat center;
+	left: 0px;
+}
+#next{
+	background: #000 url('https://dl.dropboxusercontent.com/u/65639888/image/next.png') no-repeat center;
+	right: 0px;
+}
+		
+		   
 	</style>
 
 </head>
 <body>
+
+<script type="text/javascript">
+	//1. set ul width 
+//2. image when click prev/next button
+var ul;
+var li_items;
+var imageNumber;
+var imageWidth;
+var prev, next;
+var currentPostion = 0;
+var currentImage = 0;
+
+
+function init(){
+	ul = document.getElementById('image_slider');
+	li_items = ul.children;
+	imageNumber = li_items.length;
+	imageWidth = li_items[0].children[0].clientWidth;
+	
+	prev = document.getElementById("prev");
+	next = document.getElementById("next");
+	//.onclike = slide(-1) will be fired when onload;
+	/*
+	prev.onclick = function(){slide(-1);};
+	next.onclick = function(){slide(1);};*/
+	prev.onclick = function(){ onClickPrev();};
+	next.onclick = function(){ onClickNext();};
+}
+
+function animate(opts){
+	var start = new Date;
+	var id = setInterval(function(){
+		var timePassed = new Date - start;
+		var progress = timePassed / opts.duration;
+		if (progress > 1){
+			progress = 1;
+		}
+		var delta = opts.delta(progress);
+		opts.step(delta);
+		if (progress == 1){
+			clearInterval(id);
+			opts.callback();
+		}
+	}, opts.delay || 17);
+	//return id;
+}
+
+function slideTo(imageToGo){
+	var direction;
+	var numOfImageToGo = Math.abs(imageToGo - currentImage);
+	// slide toward left
+
+	direction = currentImage > imageToGo ? 1 : -1;
+	currentPostion = -1 * currentImage * imageWidth;
+	var opts = {
+		duration:1000,
+		delta:function(p){return p;},
+		step:function(delta){
+			ul.style.left = parseInt(currentPostion + direction * delta * imageWidth * numOfImageToGo) + 'px';
+		},
+		callback:function(){currentImage = imageToGo;}	
+	};
+	animate(opts);
+}
+
+function onClickPrev(){
+	if (currentImage == 0){
+		slideTo(imageNumber - 1);
+	} 		
+	else{
+		slideTo(currentImage - 1);
+	}		
+}
+
+function onClickNext(){
+	if (currentImage == imageNumber - 1){
+		slideTo(0);
+	}		
+	else{
+		slideTo(currentImage + 1);
+	}		
+}
+
+window.onload = init;
+	
+	
+	</script>
+
 
 <%
 	session.removeAttribute("user");
@@ -61,6 +202,10 @@
 	BuyerSearchDAO buyerSearchDAO = BuyerSearchDAO.getInstance();	
 	Map<String,Product> map   = buyerSearchDAO.getFirstPageProducts();
 	Product productBean       = null;
+	
+	AdminDAO adminDAO = AdminDAO.getInstance();
+	List<Product> offeredProducts = adminDAO.getOfferedHot(OfferedHot.OFFERED);
+	List<Product> hotProducts     = adminDAO.getOfferedHot(OfferedHot.HOT);
 %>
 
 <!-- Header -->
@@ -128,30 +273,94 @@
 
     <div class="clearfix"></div>
         <div class="container">
+        
+        <div class="slider_wrapper">
+				
 			<div class="arriv-las">
+			<ul id="image_slider">
+			<li>
+			<div>
+				<img src="images/special-offer.png" style="position:relative;z-index:2;margin:auto;height:100px;margin-left: 0%;">
+				<img src="images/special-offer.png" style="position:relative;z-index:2;margin:auto;height:100px;margin-left: 17%;">
+				<img src="images/special-offer.png" style="position:relative;z-index:2;margin:auto;height:100px;margin-left: 13%;">
+				
 				<div class="col-md-4 arriv-left2">
-					<img src="images/5.jpg" class="img-responsive" alt="">
-					<div class="arriv-info2">
-						<h3><a href="#">Casual Glasses<i class="ars"></i></a></h3>
+					<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">
+						
+						
+						<img src="IconImageFromProduct?productId=<%=offeredProducts.get(0).getProductId() %>" class="img-responsive" alt="" style="height: 460px;width: 98%;position:relative;z-index:1"/>
+						
+						
+					</a>
+					<div class="special-info grid_1 simpleCart_shelfItem">
+						<h5 style="height: 65px;"> 
+							<a style="font-size: 23px;font-weight: bold;"  href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>"> <%=offeredProducts.get(0).getProductName() %>  (<%=offeredProducts.get(0).getCompanyName() %> )  </a> 
+						</h5>
+					
+                    	
+                    	<div class="item_add"><h6 style="height: 60px;"><span class="item_price"> <small class="over_flow"> Rs.<%=offeredProducts.get(0).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=offeredProducts.get(0).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=offeredProducts.get(0).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+						<div class="item_add" style="height: 32px;">
+							<span class="item_price">
+								<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">More Details</a>
+							</span>
+						</div>
 					</div>
+					
+					
 				</div>
-				<div class="col-md-4 arriv-middle">
-					<img src="images/6.jpg" class="img-responsive" alt="">
-					<div class="arriv-info3">
-						<h3>FRESH LOOK T-SHIRT</h3>
-						<div class="crt-btn">
-							<a href="#">SHOP NOW</a>
+				</div>
+				
+				
+				<div class="col-md-4 arriv-left2">
+					<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(1).getSubCategory() %>&productId=<%=offeredProducts.get(1).getProductId() %>">
+						<img src="IconImageFromProduct?productId=<%=offeredProducts.get(1).getProductId() %>" class="img-responsive" alt="" style="height: 460px;width: 98%;"/>
+					</a>
+					<div class="special-info grid_1 simpleCart_shelfItem">
+						<h5 style="height: 65px;"> 
+							<a style="font-size: 23px;font-weight: bold;" href="CompleteProductDetails?subCategory=<%=offeredProducts.get(1).getSubCategory() %>&productId=<%=offeredProducts.get(1).getProductId() %>"> <%=offeredProducts.get(1).getProductName() %>  (<%=offeredProducts.get(1).getCompanyName() %> )  </a> 
+						</h5>
+					
+                    	
+                    	<div class="item_add"><h6 style="height: 60px;"><span class="item_price"> <small class="over_flow"> Rs.<%=offeredProducts.get(1).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=offeredProducts.get(1).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=offeredProducts.get(1).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+						<div class="item_add" style="height: 32px;">
+							<span class="item_price">
+								<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(1).getSubCategory() %>&productId=<%=offeredProducts.get(1).getProductId() %>">More Details</a>
+							</span>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 arriv-right2">
-					<img src="images/7.jpg" class="img-responsive" alt="">
-					<div class="arriv-info2">
-						<h3><a href="#">Elegant Watches<i class="ars"></i></a></h3>
+				
+				
+				<div class="col-md-4 arriv-left2">
+					<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(2).getSubCategory() %>&productId=<%=offeredProducts.get(2).getProductId() %>">
+						<img src="IconImageFromProduct?productId=<%=offeredProducts.get(2).getProductId() %>" class="img-responsive" alt="" style="height: 460px;width: 98%;"/>
+					
+					</a>
+					<div class="special-info grid_1 simpleCart_shelfItem">
+						<h5 style="height: 65px;"> 
+							<a style="font-size: 20px;font-weight: bold;" href="CompleteProductDetails?subCategory=<%=offeredProducts.get(2).getSubCategory() %>&productId=<%=offeredProducts.get(2).getProductId() %>"> <%=offeredProducts.get(2).getProductName() %>  (<%=offeredProducts.get(2).getCompanyName() %> )  </a> 
+						</h5>
+					
+                    	
+                    	<div class="item_add"><h6 style="height: 60px;"><span class="item_price"> <small class="over_flow"> Rs.<%=offeredProducts.get(2).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=offeredProducts.get(2).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=offeredProducts.get(2).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+						<div class="item_add" style="height: 32px;">
+							<span class="item_price">
+								<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(2).getSubCategory() %>&productId=<%=offeredProducts.get(2).getProductId() %>">More Details</a>
+							</span>
+						</div>
 					</div>
 				</div>
+				</li>
+				
+				
+				</ul>
             </div>
 			<div class="clearfix"> </div>
+			
+			<span class="nvgt" id="prev"></span>
+				<span class="nvgt" id="next"></span>
+		</div>
+		
 		</div>
 </div>
 
@@ -728,10 +937,85 @@
 				
 				
 
-				<h3>Hot Categori</h3>	
-					<div class="hot_categori" style="margin-top:10px;">
-						<img src="images/hot_deal.jpg">
+				<h3 style="margin-bottom: 15px;">Hot Categori</h3>
+				<div>
+				<img src="images/hot-offer.png" style="position:relative;z-index:2;margin:auto;height:100px;margin-left: -100%;"/>
+				<img src="images/hot-offer.png" style="position:relative;z-index:2;margin:auto;height:100px;margin-left: 16%;"/>	
+				<img src="images/hot-offer.png" style="position:relative;z-index:2;margin:auto;height:100px;margin-left: 16%;"/>	
+				<img src="images/hot-offer.png" style="position:relative;z-index:2;margin:auto;height:100px;margin-left: 16%;"/>		
+					<div class="col-md-3 arriv-left2">
+					<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">
+						<img src="IconImageFromProduct?productId=<%=offeredProducts.get(0).getProductId() %>" class="img-responsive" alt="" style="height: 425px;width: 88%;">
+					</a>
+					<div class="special-info grid_1 simpleCart_shelfItem">
+						<h5 style="height: 65px;"> 
+							<a style="font-size: 23px;font-weight: bold;"  href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>"> <%=offeredProducts.get(0).getProductName() %>  (<%=offeredProducts.get(0).getCompanyName() %> )  </a> 
+						</h5>
+					
+                    	
+                    	<div class="item_add"><h6 style="height: 60px;"><span class="item_price"> <small class="over_flow"> Rs.<%=offeredProducts.get(0).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=offeredProducts.get(0).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=offeredProducts.get(0).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+						<div class="item_add" style="height: 32px;">
+							<span class="item_price">
+								<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">More Details</a>
+							</span>
+						</div>
 					</div>
+				</div>
+				<div class="col-md-3 arriv-left2">
+					<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">
+						<img src="IconImageFromProduct?productId=<%=offeredProducts.get(0).getProductId() %>" class="img-responsive" alt="" style="height: 425px;width: 88%;">
+					</a>
+					<div class="special-info grid_1 simpleCart_shelfItem">
+						<h5 style="height: 65px;"> 
+							<a style="font-size: 23px;font-weight: bold;"  href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>"> <%=offeredProducts.get(0).getProductName() %>  (<%=offeredProducts.get(0).getCompanyName() %> )  </a> 
+						</h5>
+					
+                    	
+                    	<div class="item_add"><h6 style="height: 60px;"><span class="item_price"> <small class="over_flow"> Rs.<%=offeredProducts.get(0).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=offeredProducts.get(0).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=offeredProducts.get(0).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+						<div class="item_add" style="height: 32px;">
+							<span class="item_price">
+								<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">More Details</a>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 arriv-left2">
+					<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">
+						<img src="IconImageFromProduct?productId=<%=offeredProducts.get(0).getProductId() %>" class="img-responsive" alt="" style="height: 425px;width: 88%;">
+					</a>
+					<div class="special-info grid_1 simpleCart_shelfItem">
+						<h5 style="height: 65px;"> 
+							<a style="font-size: 23px;font-weight: bold;"  href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>"> <%=offeredProducts.get(0).getProductName() %>  (<%=offeredProducts.get(0).getCompanyName() %> )  </a> 
+						</h5>
+					
+                    	
+                    	<div class="item_add"><h6 style="height: 60px;"><span class="item_price"> <small class="over_flow"> Rs.<%=offeredProducts.get(0).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=offeredProducts.get(0).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=offeredProducts.get(0).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+						<div class="item_add" style="height: 32px;">
+							<span class="item_price">
+								<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">More Details</a>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 arriv-left2">
+					<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">
+						<img src="IconImageFromProduct?productId=<%=offeredProducts.get(0).getProductId() %>" class="img-responsive" alt="" style="height: 425px;width: 88%;">
+					</a>
+					<div class="special-info grid_1 simpleCart_shelfItem">
+						<h5 style="height: 65px;"> 
+							<a style="font-size: 23px;font-weight: bold;"  href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>"> <%=offeredProducts.get(0).getProductName() %>  (<%=offeredProducts.get(0).getCompanyName() %> )  </a> 
+						</h5>
+					
+                    	
+                    	<div class="item_add"><h6 style="height: 60px;"><span class="item_price"> <small class="over_flow"> Rs.<%=offeredProducts.get(0).getPrice().getListPrice() %> </small> &nbsp; <small class="item_price"> (<%=offeredProducts.get(0).getPrice().getDiscount() %>% Off) </small> <br> <strong class="main_value">Rs <%=offeredProducts.get(0).getPrice().getSalePriceCustomer() %></strong> </span></h6></div>
+						<div class="item_add" style="height: 32px;">
+							<span class="item_price">
+								<a href="CompleteProductDetails?subCategory=<%=offeredProducts.get(0).getSubCategory() %>&productId=<%=offeredProducts.get(0).getProductId() %>">More Details</a>
+							</span>
+						</div>
+					</div>
+				</div>
+				</div>
 		
 			<!-- <h3>Shop By Branded</h3>	 -->	
 	</div>

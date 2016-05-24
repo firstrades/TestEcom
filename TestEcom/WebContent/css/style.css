@@ -452,7 +452,7 @@ background: rgb(9, 209, 182);
 border: none;
 color: #fff;
 padding: 10px 20px;
-font-size: 0.85em;
+font-size: 1.2em;
 border: none;
 }
 
@@ -999,6 +999,7 @@ color: #333333;
   
 
   border: 1px solid #e9e9e9;
+  text-align: center;
 }
 .special {
   padding: 4em 0;
@@ -1442,10 +1443,10 @@ ul.grid_2 li a img{
 .over_flow{
 	text-decoration:line-through;
 	color:#FF8409;
-	    font-size: 11px;
+	    font-size: 21px;
 }
 .main_value{
-	font-size: 15px;
+	font-size: 23px;
 }
 .arriv-info2 a {
   text-decoration: none;

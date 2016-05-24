@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ecom.DAO.Seller.ProductDAO;
 import ecom.beans.AdminServletHelper;
 import ecom.common.ConnectionFactory;
 import ecom.common.Conversions;
@@ -24,9 +25,11 @@ import ecom.model.UserAndPickupAddress;
 public class AdminDAO {
 	
 	private static AdminDAO adminDAO;
+	private ProductDAO productDAO;
 	
 	private AdminDAO() {
 		adminDAO = null;
+		productDAO = ProductDAO.getInstance();
 	}
 	
 	public static AdminDAO getInstance() {
@@ -819,23 +822,67 @@ public class AdminDAO {
 	}
 	
 	
+	public List<Product> getOfferedHot(ecom.common.OfferedHot type) {
+		
+		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
+		String sql = null; 			
+		List<Product> products = null;
+		List<Long> productIdList = new ArrayList<Long>();
+		
+		try {
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			if (type == ecom.common.OfferedHot.OFFERED)
+				sql = "SELECT product_id FROM hot_offered WHERE offered = ?";
+			else if (type == ecom.common.OfferedHot.HOT)
+				sql = "SELECT product_id FROM hot_offered WHERE hot = ?";
+				
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, "Y");
+		
+			resultSet = preparedStatement.executeQuery();	
+			
+			while (resultSet.next()) { 						
+				productIdList.add(resultSet.getLong("product_id"));				
+			}		
+			
+			connection.commit();			
+			System.out.println("SQL getProduct Executed");
+			
+			Long[] productIds = (Long[]) productIdList.toArray(new Long[productIdList.size()]);
+			products = productDAO.getProducts(productIds);
+			
+			return products;			
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try {
+				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
+			e1.printStackTrace();
+		} finally {
+			products = null;
+			try { resultSet.close();         } catch (SQLException e) { e.printStackTrace(); }
+			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
+		}			
+		
+		return null;
+	}
+	
+	
 	/****************** Testing ********************/
 	
 	public static void main (String...args) {		
 		
-		List<ExtractFranchiseDetails> list = new AdminDAO().getFranchiseDetails();
+		AdminDAO adminDAO = AdminDAO.getInstance();
+		List<Product> products = adminDAO.getOfferedHot(ecom.common.OfferedHot.HOT);
 		
-		for (ExtractFranchiseDetails c: list) {
-			
-			//System.out.println(c.getCommission().getCommission());
-			System.out.println(c.getFranchisePins().getPin1());
-			System.out.println(c.getFranchisePins().getPin2());
-			System.out.println(c.getFranchisePins().getPin3());
-			System.out.println(c.getFranchisePins().getPin4());
-			System.out.println(c.getFranchisePins().getPin5());
-		}
-		
-		list = null;
-		System.gc();
+		System.out.println(products.get(0).getProductId());
+		System.out.println(products.get(1).getProductId());
+		System.out.println(products.get(2).getProductId());
 	}
+	
+	
 }
