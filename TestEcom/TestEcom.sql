@@ -219,7 +219,7 @@ CREATE TABLE `hot_offered` (
 
 LOCK TABLES `hot_offered` WRITE;
 /*!40000 ALTER TABLE `hot_offered` DISABLE KEYS */;
-INSERT INTO `hot_offered` VALUES (1,'Y','Y'),(2,'Y','Y'),(3,'Y','N');
+INSERT INTO `hot_offered` VALUES (1,'N','Y'),(2,'Y','Y'),(3,'N','Y'),(4,'Y','Y'),(5,'Y','Y'),(6,'N','Y'),(7,'Y','Y'),(8,'Y','Y'),(10,'Y','N'),(11,'Y','N'),(12,'Y','N');
 /*!40000 ALTER TABLE `hot_offered` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2662,4 +2662,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-23 18:16:31
+-- Dump completed on 2016-05-27 19:59:14
