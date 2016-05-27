@@ -315,6 +315,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  
 }
 .img-rounded {
   border-radius: 6px;
@@ -439,7 +440,9 @@ h5 .small,
 .h5 .small,
 h6 .small,
 .h6 .small {
-  font-size: 75%;
+  font-size: 125%;
+    color: green;
+    font-weight: bold;
 }
 h1,
 .h1 {
@@ -460,6 +463,8 @@ h4,
 h5,
 .h5 {
   font-size: 14px;
+  padding-top: 10px;
+ height: 54px;
 }
 h6,
 .h6 {

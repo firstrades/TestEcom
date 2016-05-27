@@ -4,99 +4,129 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-<script src="<%=FrequentUse.jQuery%>"></script>
-
-
 <script type="text/javascript">
-  var userip;
-</script>
-<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
-<script type="text/javascript">
-  document.write("Your IP is :", userip);
-</script>
-<script src="http://freegeoip.net/json/?callback=cb" type="text/javascript"></script>
-<script type="text/javascript">
-		
-function cb(a){
-	alert(a.ip)
+
+var ul;
+var liItems; 
+var imageWidth;
+var imageNumber;
+
+function init(){
+
+    ul = document.getElementById('image_slider');
+    liItems = ul.children;
+    imageNumber = liItems.length;
+    imageWidth = liItems[0].children[0].offsetWidth;
+    // set ul’s width as the total width of all images in image slider.
+    ul.style.width = parseInt(imageWidth * imageNumber) + 'px';
+    slider(ul);
 }
+
+
+
+
+function slider(ul){ 
+    animate({
+        delay:17,
+        duration: 3000,
+        delta:function(p){return Math.max(0, -1 + 2 * p)},
+        step:function(delta){
+            ul.style.left = '-' + parseInt(currentImage * imageWidth + delta * imageWidth) + 'px';
+    },
+        callback:function(){
+            currentImage++;
+        // if it doesn’t slied to the last image, keep sliding
+            if(currentImage < imageNumber-1){
+                slider(ul);
+        }
+       // if current image it’s the last one, it slides back to the first one
+            else{
+                var leftPosition = (imageNumber - 1) * imageWidth;
+               // after 2 seconds, call the goBack function to slide to the first image 
+                setTimeout(function(){goBack(leftPosition)},2000); 
+                setTimeout(function(){slider(ul)}, 4000);
+            }
+        }
+    });
+}
+
+function goBack(leftPosition){
+    currentImage = 0; 
+    var id = setInterval(function(){
+        if(leftPosition >= 0){
+            ul.style.left = '-' + parseInt(leftPosition) + 'px';
+            leftPosition -= imageWidth / 10;
+        }
+        else{
+            clearInterval(id);
+        } 
+    }, 17);
+}
+
+
+function animate(opts){
+    var start = new Date;
+    var id = setInterval(function(){
+        var timePassed = new Date - start;
+        var progress = timePassed / opts.duration
+        if(progress > 1){
+            progress = 1;
+        }
+        var delta = opts.delta(progress);
+        opts.step(delta);
+        if (progress == 1){
+            clearInterval(id);
+           opts.callback();
+         }
+    }, opts.dalay || 17);
+}
+window.onload = init;
+
+
 </script>
 
+<style type="text/css">
 
+.container{
+    width:800px;
+    height:400px;
+    padding:20px;
+    border:1px solid gray;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    background: black; 
+}
+.image-slider-wrapper{
+    overflow: hidden;
+}
+#image_slider{
+    position: relative;
+    height: 280px;
+    padding:0;
+}
+#image_slider li{
+    max-width: 100%;
+    float:left;
+    list-style: none;
+}
 
-
-
+</style>
 
 </head>
 <body>
 
 
-<script type="text/javascript">
-$(document).ready(function(){
-	  var totalWidth = 0;
-	  $('#container').children().each(function(){
-	    totalWidth += $(this).outerWidth();
-	  });
-	  $('#container').css('width', totalWidth+7);
-});
-</script>
-
-<div id="container" style="    width: 316px;border: 1px solid;">
-	<div style="width:100px;border: 1px solid;display: inline-block;">jewel</div>
-	<div style="width:100px;border: 1px solid;display: inline-block;">jewel</div>
-	<div style="width:100px;border: 1px solid;display: inline-block;">jewel</div>
+<div class="container">
+    <div class="image-slider-wrapper">
+        <ul id="image_slider">
+            <li><img src="next-horizontal.png"></li>
+            <li><img src="prev-horizontal.png"></li>
+            
+        </ul> 
+    </div>
 </div>
 
-<!-- ------------------------------------------------------------------------------------------------------------ -->
 
-<section class="row">
-        <div class="scroll-left" style="opacity: 0;"></div>
-        <div class="row-scroll">
-            <div class="tile">
-                <img class="tile-image" src="http://cache.gawker.com/assets/images/lifehacker/2011/08/1030-macpack-notational-velocity.jpg" />
-                <title class="tile-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</title>
-            </div>
-          
-            <div class="tile">
-                <img class="tile-image" src="http://cache.gawker.com/assets/images/lifehacker/2011/08/1030-macpack-notational-velocity.jpg" />
-                <title class="tile-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</title>
-            </div>
-        </div>
-        <div class="scroll-right" style="opacity: 0;"></div>
-    </section>
-    <section class="row">
-        <div class="scroll-left" style="opacity: 0;"></div>
-        <div class="row-scroll">
-            <div class="tile">
-                <img class="tile-image" src="http://cache.gawker.com/assets/images/lifehacker/2011/08/1030-macpack-notational-velocity.jpg" />
-                <title class="tile-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</title>
-            </div>
-           
-            <div class="tile">
-                <img class="tile-image" src="http://cache.gawker.com/assets/images/lifehacker/2011/08/1030-macpack-notational-velocity.jpg" />
-                <title class="tile-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</title>
-            </div>
-        </div>
-        <div class="scroll-right" style="opacity: 0;"></div>
-    </section>
-<script type="text/javascript">
-$(".scroll-left").hover(function() {
-    $(this).parent().animate({scrollLeft: 0}, 7000);
-    $(this).fadeIn('fast');
-}, function() {
-    $(this).parent().stop();
-    $(this).fadeOut('fast');
-});
-
-$(".scroll-right").hover(function() {
-    $(this).parent().animate({scrollLeft: $(this).siblings(".row-scroll").width()}, 7000);
-    $(this).fadeIn('fast');
-}, function() {
-    $(this).parent().stop();
-    $(this).fadeOut('fast');
-});
-</script>
 </body>
 </html>

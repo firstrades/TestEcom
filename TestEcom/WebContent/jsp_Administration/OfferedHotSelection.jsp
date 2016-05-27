@@ -255,8 +255,7 @@
 							</span>
 						</div>			
 				
-						<div class="col-md-3 ng-scope ng-hide" style="margin-top:100px;">
-							<!-- ngIf: item.orderTableData.orderState == 'Delivered' -->
+						<div class="col-md-3 ng-scope ng-hide" style="margin-top:100px;">							
 							<span style="float: left;
 										margin-top: 9px;    
 										float: left;

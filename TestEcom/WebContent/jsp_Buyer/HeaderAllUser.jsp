@@ -37,8 +37,13 @@
 					<div class="rgt-bottom">
 						<div class="log">
 							<div class="login" >
-								<div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
-								    <div id="loginBox">                
+								<div id="loginContainer"><a href="#"  data-toggle="modal" data-target="#myModal1"><span style="border-radius: 10px; background: #F57D51; color: white;">Login</span></a>
+								    <div class="modal fade" id="myModal1">
+    	<div class="modal-dialog" style="width:360px;">    
+      		<!-- Modal content-->
+      		<div class="modal-content" style="width:330px;">
+        		<div class="modal-header">
+          			<button type="button" class="close" data-dismiss="modal">&times;</button>               
 								        <form id="loginForm" action="CustomerLogin" method="post">
 								                <fieldset id="body">
 								                	<fieldset>
@@ -55,12 +60,17 @@
 								            <span><a href="#">Forgot your password?</a></span>
 										</form>
 									</div>
+									
 								</div>
 							</div>
 						</div>
+						</div>
+						</div>
+						</div>
+						
 						<div class="reg">
 							
-							<div id="loginContainer"><a href="CustomerRegistrationPage" id="loginButton" style="background-color: #099C0C;color: #fff;padding: 1px 0px;"><span>REGISTER</span></a> </div>
+							<div id="loginContainer"><a href="CustomerRegistrationPage"  id="loginButton" style="background-color: #099C0C;color: #fff;padding: 1px 0px;"><span>REGISTER</span></a> </div>
 						</div>
 						<div class="cart box_1">
 							<h3><a href="#">
