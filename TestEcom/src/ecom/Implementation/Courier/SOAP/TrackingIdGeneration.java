@@ -346,13 +346,15 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
         					
         		/*************************************************************************************************************/	
         			
+	            if (this.paymentType.equals("COD")) { 				
+	            				
     			//SpecialServicesRequested
         		SOAPElement SpecialServicesRequested = RequestedShipment.addChildElement("SpecialServicesRequested", xlns);
         		
         			SOAPElement SpecialServiceTypes1 = SpecialServicesRequested.addChildElement("SpecialServiceTypes", xlns);
         			SpecialServiceTypes1.addTextNode("DELIVERY_ON_INVOICE_ACCEPTANCE");
         		
-        			if (this.paymentType.equals("COD")) {  
+        			 
         		
         			SOAPElement SpecialServiceTypes = SpecialServicesRequested.addChildElement("SpecialServiceTypes", xlns);
         			SpecialServiceTypes.addTextNode("COD");        			
@@ -368,9 +370,8 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
         					Amount1.addTextNode(String.valueOf((this.sellPrice + this.shippingCost) * this.qtyOrdered));    //Amount
         					
         				SOAPElement CollectionType = CodDetail.addChildElement("CollectionType", xlns);
-        				CollectionType.addTextNode("CASH");
-        				
-        			}
+        				CollectionType.addTextNode("CASH");        				
+        			
         					
         			SOAPElement DeliveryOnInvoiceAcceptanceDetail = SpecialServicesRequested.addChildElement("DeliveryOnInvoiceAcceptanceDetail", xlns);
         					
@@ -406,7 +407,8 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 		        				
 		        				SOAPElement CountryCode3 = Address3.addChildElement("CountryCode", xlns);
 		        				CountryCode3.addTextNode("IN");		
-        				
+        		
+	            }
         			
         		//CustomsClearanceDetail
         		SOAPElement CustomsClearanceDetail = RequestedShipment.addChildElement("CustomsClearanceDetail", xlns);
