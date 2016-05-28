@@ -271,13 +271,13 @@ a.tooltip span b {
 				<% } %>
 				
 				<div class="col-md-3" style="margin-top:58px;" data-ng-show="pickupLabelCOD">
-					<a data-toggle="modal" data-target="#myModal<%=i%>" style="padding: 5px 6px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PckupReq</a> 
+					<a data-toggle="modal" data-target="#myModal<%=i%>" 
+						style="padding: 3px 0px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PckupReq</a> 
 					<a data-ng-click="generatePDF(<%=orderTable.getId() %>)"
-						style="padding: 5px 6px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLblRet</a>
+						style="padding: 3px 2px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLblRet</a>
 					<a data-ng-click="generatePDFRet(<%=orderTable.getId() %>)"
-						style="padding: 5px 6px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLbl</a>  <br><br>
-					
-					<a style="padding: 9px 39px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">Cancel Shipment (COD)</a>	
+						style="padding: 3px 3px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLbl</a>  <br><br>					
+					<a style="padding: 3px 12px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">Cancel Shipment (COD)</a>	
 									
 				</div>
 				
@@ -292,12 +292,12 @@ a.tooltip span b {
 				
 				<div class="col-md-3" style="margin-top:58px;" data-ng-show="pickupLabelBANK">
 					<a data-toggle="modal" data-target="#myModal<%=i%>" 
-						style="padding: 5px 6px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PckupReq</a> 
+						style="padding: 3px 0px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PckupReq</a> 
 					<a data-ng-click="generatePDF(<%=orderTable.getId() %>)"
-						style="padding: 5px 6px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLblRet</a>
-					<a data-ng-click="generatePDFRet(<%=orderTable.getId() %>)"
-						style="padding: 5px 6px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLbl</a>  <br><br>
-					<a style="padding: 9px 35px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">Cancel Shipment (BANK)</a>					
+						style="padding: 3px 2px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLbl</a><br><br>
+					<%-- <a data-ng-click="generatePDFRet(<%=orderTable.getId() %>)"
+						style="padding: 3px 3px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">PrtLblRet</a>  <br><br> --%>
+					<a style="padding: 3px 12px;background:linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);border: 1px solid #0098fe;color:#ffffff;margin-top:18px;cursor: pointer;">Cancel Shipment (BANK)</a>					
 				</div>
 				
 				
