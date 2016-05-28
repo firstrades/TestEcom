@@ -2,6 +2,7 @@ package ecom.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import ecom.DAO.Buyer.BuyerSearchDAO;
 import ecom.DAO.User.CreateUserDAO;
 import ecom.DAO.User.UserDAO;
 import ecom.common.UserType;
+import ecom.controllerAction.CustomerMinimumRegistration;
 import ecom.model.User;
 
 public class Controller extends HttpServlet {
@@ -59,7 +61,7 @@ public class Controller extends HttpServlet {
 				String password = request.getParameter("password").trim();   
 				
 				/********* Database Check ***********/				
-				User user       = userDAO.getUser(userId, password);			
+				User user = userDAO.getUser(userId, password);			
 				
 				
 				/********* Next Page ****************/				
@@ -102,7 +104,7 @@ public class Controller extends HttpServlet {
 				
 				/********* Database Check ***********/			
 				
-				User user       = userDAO.getUser(userId, password);
+				User user = userDAO.getUser(userId, password);
 				
 				
 				/********** Next Page **************/
@@ -428,6 +430,71 @@ public class Controller extends HttpServlet {
 			}
 			
 		 }
+		
+		/*else if (servletPath.equals("/customerMinimumRegistration")) {
+			
+			System.out.println("Entered customerMinimumRegistration");
+			
+			int userIdNo = -1;  //'0' user exists, 'maxId > 0' user created, '-1' some error occurred
+			String nextPage = null;
+			String errorMessage = null;
+			User user = null;
+			
+			try {
+			
+				*//*********** getRequest ************//*			
+				String userId   = request.getParameter("userId")  .trim();    
+				String password = request.getParameter("password").trim(); 			
+				
+				*//********* Database ***********//*				
+				userIdNo = CreateUserDAO.createCustomer(userId, password);
+				
+				if (userIdNo > 0)
+					user = userDAO.getUser(userIdNo);
+				else if (userIdNo == 0)
+					throw new Exception();
+				else if (userIdNo < 0)
+					throw new Exception();
+				
+				*//*********** setSession **************//*
+				session.setAttribute("user", user);
+				
+				nextPage = "jsp_Buyer/BuyerMainPanel.jsp";
+				
+			} catch (Exception e) {				
+				e.printStackTrace();
+				if (userIdNo > 0) {
+					CreateUserDAO.deleteCustomer(userIdNo);
+				}
+				if (userIdNo == 0)
+					errorMessage = "User already exists!";
+				else
+					errorMessage = "Some problem occured!";
+				//error page
+				nextPage = "errorPages/errorMessage.jsp";
+			}
+			
+			request.setAttribute("errorMessage", errorMessage);			
+			request.getRequestDispatcher(nextPage).forward(request, response);
+			
+		}//customerMinimumRegistration
+*/		
+		
+		else if (servletPath.equals("/customerMinimumRegistration")) {	
+			/**** Controller ****/
+			System.out.println("Controller customerMinimumRegistration");			
+			String nextPage = null;
+			/**** Model ****/
+			CustomerMinimumRegistration customerMinimumRegistration = new CustomerMinimumRegistration();
+			customerMinimumRegistration.setUserId(request.getParameter("userId").trim());
+			customerMinimumRegistration.setPassword(request.getParameter("password").trim());			
+			nextPage = customerMinimumRegistration.execute(session, request);
+			/**** Clean Up ****/
+			customerMinimumRegistration = null;
+			/**** View Resolver ****/
+			request.getRequestDispatcher(nextPage).forward(request, response);
+			
+		}//customerMinimumRegistration
 		
 	}
 }

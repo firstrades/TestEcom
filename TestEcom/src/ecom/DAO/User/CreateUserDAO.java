@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import ecom.common.ConnectionFactory;
 import ecom.common.UserType;
@@ -536,6 +538,82 @@ public class CreateUserDAO {
 	 }
 	
 
+	public synchronized static int createCustomer(String userId, String password) throws Exception {	
+		
+		Connection connection = null;
+		CallableStatement callableStatement = null;
 	
- 
+		String sql = "{call createCustomer(?,?)}";
+		int userIdNo = -1;  //'0' user exists, 'maxId > 0' user created, '-1' some error occurred
+		
+		Calendar calendar = new GregorianCalendar();
+		String date = calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH)+1) + "-" + calendar.get(Calendar.DAY_OF_MONTH);
+	
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+				
+			callableStatement = connection.prepareCall(sql);
+			
+			callableStatement.setString(1, userId);
+			callableStatement.setString(2, password);	
+			callableStatement.registerOutParameter(3, Types.INTEGER);
+			callableStatement.setString(4, date);
+			
+			callableStatement.execute(); 
+			
+			userIdNo = callableStatement.getInt(3);
+				
+			System.out.println("SQL- createCustomer executed");
+			
+			connection.commit();
+			
+			return userIdNo;			
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {			
+			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }			
+			e.printStackTrace();  throw e;
+		}
+		finally {
+			try { callableStatement.close(); } catch (SQLException e1) { e1.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e1) { e1.printStackTrace(); }
+			System.gc();
+		}			
+		
+	} //createCustomer
+	
+	
+	public static void deleteCustomer(int userIdNo) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;		
+		String sql = "DELETE FROM user where id = ?";		
+		
+		try{
+			
+			connection = ConnectionFactory.getNewConnection();		
+			connection.setAutoCommit(false);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, userIdNo);
+			
+			preparedStatement.executeUpdate();
+			
+			System.out.println("SQL- deleteCustomer executed");			
+			connection.commit();
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {			
+			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }			
+			e.printStackTrace();  
+		}
+		finally {
+			try { preparedStatement.close(); } catch (SQLException e1) { e1.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e1) { e1.printStackTrace(); }
+			System.gc();
+		}	
+	}//deleteCustomer
+	
 }

@@ -70,7 +70,40 @@
 						
 						<div class="reg">
 							
-							<div id="loginContainer"><a href="CustomerRegistrationPage"  id="loginButton" style="background-color: #099C0C;color: #fff;padding: 1px 0px;"><span>REGISTER</span></a> </div>
+							<div id="loginContainer">
+								<!-- <a href="CustomerRegistrationPage"  id="loginButton" style="background-color: #099C0C;color: #fff;padding: 1px 0px;"> -->
+								<a href="#"  data-toggle="modal" data-target="#myModal2">
+									<span style="    border-radius: 6px;background: #099C0C; color: white;padding: 5px 1px;">REGISTER</span>
+								</a>
+								
+								<div class="modal fade" id="myModal2">
+    	<div class="modal-dialog" style="width:360px;">    
+      		<!-- Modal content-->
+      		<div class="modal-content" style="width:330px;">
+      		<h4 style="font-size: 21px;color: #7B3F28; text-decoration: underline;">Register Panel</h4>
+        		<div class="modal-header">
+          			<button type="button" class="close" data-dismiss="modal">&times;</button>               
+								        <form id="loginForm" action="customerMinimumRegistration" method="post">
+								                <fieldset id="body">
+								                	<fieldset>
+								                          <label for="email">Mobile/Email Address</label>
+								                          <input type="text" name="userId" id="email" placeholder="Enter Mobile/Email"  />
+								                    </fieldset>
+								                    <fieldset>
+								                            <label for="password">Password</label>
+								                            <input type="password" name="password" id="password" placeholder="Enter Password"  />
+								                     </fieldset>
+								                    <input type="submit" id="login" value="Register" style="background:green;margin-left: 33%;">
+								                	
+								            	</fieldset>
+								            
+										</form>
+									</div>
+									
+								</div>
+							</div>
+						</div> 
+							</div>
 						</div>
 						<div class="cart box_1">
 							<h3><a href="#">

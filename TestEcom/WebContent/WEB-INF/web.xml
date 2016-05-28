@@ -26,6 +26,7 @@
 		<url-pattern>/CustomerRegistrationPage</url-pattern>
 		<url-pattern>/RegisterCustomer</url-pattern>
 		<url-pattern>/CheckCustomerUserIdFromDB</url-pattern>
+		<url-pattern>/customerMinimumRegistration</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>SellerServlet</servlet-name>

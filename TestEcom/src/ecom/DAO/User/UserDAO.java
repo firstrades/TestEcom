@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import ecom.common.ConnectionFactory;
 import ecom.common.Conversions;
@@ -314,5 +315,97 @@ public class UserDAO {
 		
 		return msg;
 	 }
+	
+	
+	/**************************** get User - Methods (1) **************************************/
+	
+	public User getUser(int userIdNo) throws Exception {		
+		return getUser(null, null, userIdNo);
+	}
+	
+	public User getUser(String userId, String password, int userIdNo) throws Exception {		
+		
+		User user = null;
+		
+		String sql            = null;
+		Statement statement = null;
+		ResultSet resultSet   = null;
+		Connection connection = null;
+		
+		try {
+			connection = ConnectionFactory.getNewConnection();  
+			
+			sql = getUserSql(userId, password, userIdNo);
+			
+			statement = connection.createStatement();			
+			
+			resultSet = statement.executeQuery(sql);
+			
+			if (resultSet.next()) {  
+				
+				user = new User();
+				
+				user.getLogin().setUserId            (resultSet.getString(  "user_id"       ));           
+				user.getLogin().setPassword          (resultSet.getString(  "password1"     ));
+				
+				user.getPerson().setFirstName        (resultSet.getString(  "first_name"    ));
+				user.getPerson().setLastName         (resultSet.getString(  "last_name"     ));
+				user.getPerson().setSex              (resultSet.getString(  "sex"           ));
+				
+				user.getContact().setMobile1         (resultSet.getString(  "mobile1"       ));
+				user.getContact().setMobile2         (resultSet.getString(  "mobile2"       ));
+				user.getContact().setPhone1          (resultSet.getString(  "phone1"        ));
+				user.getContact().setPhone2          (resultSet.getString(  "phone2"        ));
+				user.getContact().setEmail1          (resultSet.getString(  "email1"        ));
+				user.getContact().setEmail2          (resultSet.getString(  "email2"        ));
+				
+				user.getAddress().setAddress         (resultSet.getString(  "address"       ));
+				user.getAddress().setCity            (resultSet.getString(  "city"          ));
+				user.getAddress().setState           (resultSet.getString(  "state"         ));
+				user.getAddress().setPin             (resultSet.getString(  "pin"           ));
+				
+				user.getUserInfo().setUserType       (Conversions.getEnumUserType(resultSet.getString( "user_type" ))); 
+				user.getUserInfo().setStatus         (resultSet.getString(  "status"        ));
+				user.getUserInfo().setJoiningDate    (resultSet.getString(  "joining_date"  ));
+				user.getUserInfo().setCompany        (resultSet.getString(  "company"       ));
+
+				user.getUserInfo().setId             (resultSet.getLong  (  "id"            ));   System.out.println(user.getUserInfo().getId());
+
+				
+			}
+			
+			
+			System.out.println("SQL - userLogin() of ecom.DAO.User.UserDAO  Executed...");
+			
+			return user;
+			
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace(); throw e;
+		}
+		finally {
+			user = null;
+			try { resultSet.close();         } catch (SQLException e) { e.printStackTrace(); }
+			try { statement.close();         } catch (SQLException e) { e.printStackTrace(); }		
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
+		}	
+		
+		
+	} //getUser
+	
+	
+	private String getUserSql(String userId, String password, int userIdNo) {
+		
+		String sql = null;
+		
+		if (userIdNo > 0) {
+			sql = "select * from user where id = "+userIdNo;
+		}		
+		
+		return sql;
+	}
+	
+	
+	/******************************** End get User - Methods (1) ************************************************/
 
 }

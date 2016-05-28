@@ -408,7 +408,7 @@ public class TrackingIdGeneration implements TrackingIdGenerationInterface {
 		        				SOAPElement CountryCode3 = Address3.addChildElement("CountryCode", xlns);
 		        				CountryCode3.addTextNode("IN");		
         		
-	            }
+	            } // end if (COD)
         			
         		//CustomsClearanceDetail
         		SOAPElement CustomsClearanceDetail = RequestedShipment.addChildElement("CustomsClearanceDetail", xlns);
