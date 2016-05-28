@@ -8,10 +8,10 @@ import ecom.DAO.User.UserDAO;
 import ecom.model.User;
 
 public class CustomerMinimumRegistration {
-	
+	//External
 	private String userId;
 	private String password;
-	
+	//Internal
 	private String errorMessage;
 	private UserDAO userDAO;
 	private int userIdNo;  //'0' user exists, 'maxId > 0' user created, '-1' some error occurred
@@ -54,7 +54,7 @@ public class CustomerMinimumRegistration {
 			else
 				errorMessage = "Some problem occured!";
 			//error page
-			nextPage = "errorPages/errorMessage.jsp";
+			nextPage = "ErrorPages/errorMessage.jsp";
 		}
 		
 		request.setAttribute("errorMessage", errorMessage);
@@ -80,3 +80,89 @@ public class CustomerMinimumRegistration {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*else if (servletPath.equals("/customerMinimumRegistration")) {
+
+System.out.println("Entered customerMinimumRegistration");
+
+int userIdNo = -1;  //'0' user exists, 'maxId > 0' user created, '-1' some error occurred
+String nextPage = null;
+String errorMessage = null;
+User user = null;
+
+try {
+
+	*//*********** getRequest ************//*			
+	String userId   = request.getParameter("userId")  .trim();    
+	String password = request.getParameter("password").trim(); 			
+	
+	*//********* Database ***********//*				
+	userIdNo = CreateUserDAO.createCustomer(userId, password);
+	
+	if (userIdNo > 0)
+		user = userDAO.getUser(userIdNo);
+	else if (userIdNo == 0)
+		throw new Exception();
+	else if (userIdNo < 0)
+		throw new Exception();
+	
+	*//*********** setSession **************//*
+	session.setAttribute("user", user);
+	
+	nextPage = "jsp_Buyer/BuyerMainPanel.jsp";
+	
+} catch (Exception e) {				
+	e.printStackTrace();
+	if (userIdNo > 0) {
+		CreateUserDAO.deleteCustomer(userIdNo);
+	}
+	if (userIdNo == 0)
+		errorMessage = "User already exists!";
+	else
+		errorMessage = "Some problem occured!";
+	//error page
+	nextPage = "ErrorPages/errorMessage.jsp";
+}
+
+request.setAttribute("errorMessage", errorMessage);			
+request.getRequestDispatcher(nextPage).forward(request, response);
+
+}//customerMinimumRegistration
+*/	

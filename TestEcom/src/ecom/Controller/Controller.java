@@ -429,56 +429,7 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		 }
-		
-		/*else if (servletPath.equals("/customerMinimumRegistration")) {
-			
-			System.out.println("Entered customerMinimumRegistration");
-			
-			int userIdNo = -1;  //'0' user exists, 'maxId > 0' user created, '-1' some error occurred
-			String nextPage = null;
-			String errorMessage = null;
-			User user = null;
-			
-			try {
-			
-				*//*********** getRequest ************//*			
-				String userId   = request.getParameter("userId")  .trim();    
-				String password = request.getParameter("password").trim(); 			
-				
-				*//********* Database ***********//*				
-				userIdNo = CreateUserDAO.createCustomer(userId, password);
-				
-				if (userIdNo > 0)
-					user = userDAO.getUser(userIdNo);
-				else if (userIdNo == 0)
-					throw new Exception();
-				else if (userIdNo < 0)
-					throw new Exception();
-				
-				*//*********** setSession **************//*
-				session.setAttribute("user", user);
-				
-				nextPage = "jsp_Buyer/BuyerMainPanel.jsp";
-				
-			} catch (Exception e) {				
-				e.printStackTrace();
-				if (userIdNo > 0) {
-					CreateUserDAO.deleteCustomer(userIdNo);
-				}
-				if (userIdNo == 0)
-					errorMessage = "User already exists!";
-				else
-					errorMessage = "Some problem occured!";
-				//error page
-				nextPage = "errorPages/errorMessage.jsp";
-			}
-			
-			request.setAttribute("errorMessage", errorMessage);			
-			request.getRequestDispatcher(nextPage).forward(request, response);
-			
-		}//customerMinimumRegistration
-*/		
+		 }			
 		
 		else if (servletPath.equals("/customerMinimumRegistration")) {	
 			/**** Controller ****/

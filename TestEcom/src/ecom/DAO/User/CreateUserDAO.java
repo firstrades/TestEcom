@@ -543,7 +543,7 @@ public class CreateUserDAO {
 		Connection connection = null;
 		CallableStatement callableStatement = null;
 	
-		String sql = "{call createCustomer(?,?)}";
+		String sql = "{call createCustomer(?,?,?,?)}";
 		int userIdNo = -1;  //'0' user exists, 'maxId > 0' user created, '-1' some error occurred
 		
 		Calendar calendar = new GregorianCalendar();

@@ -4,9 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>TestEcom</display-name>
-	<welcome-file-list>
-		<welcome-file>BuyerMainPanel-</welcome-file>
-		<welcome-file>SellerMainPanel-</welcome-file>
+	<welcome-file-list>		
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
