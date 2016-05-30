@@ -342,4 +342,46 @@ public class EditProductDAO {
 		
 	} //newKeyFeaturesAndSizes
 	
+	
+	public boolean editShippingDelivery(Product product) {
+		
+		Connection connection = null; PreparedStatement preparedStatement = null;
+		String sql = "UPDATE shipping_delivery SET shippingCost = ?, deliveryTime = ? WHERE product_id = ?";
+	
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setDouble(1, product.getShippingCost());
+			preparedStatement.setInt   (2, product.getDeliveryTime());
+			preparedStatement.setLong  (3, product.getProductId()   );
+			
+			preparedStatement.executeUpdate();
+			
+			connection.commit();					
+			System.out.println("SQL - editShippingDelivery executed");
+			
+			return true;		
+			
+		
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {
+			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }
+			e.printStackTrace();
+			
+			
+		} finally {			
+			try { preparedStatement.close();  } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close();         } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}  
+		
+		
+		return false;
+		
+	} //editShippingDelivery
+	
 }

@@ -345,6 +345,21 @@ hr {
 					<input type="text" name="cancellationPeriod" class="form-control" required placeholder="7" value="7" />
 				</div>				
 			</div>
+			
+			<div class="row">
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<label>	<span style="color:red;">*</span> Shipping Cost</label>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<input type="text" name="shipping" class="form-control" required placeholder="100" value="100"/>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<label>	<span style="color:red;">*</span> Delivery(No. of Days)</label>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<input type="text" name="delivery" class="form-control" required placeholder="7" value="7" />
+				</div>				
+			</div>
 							
 						
 			<hr>	<!-- ----------------------------------------------------------------------------------- -->

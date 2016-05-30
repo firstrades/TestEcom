@@ -86,6 +86,9 @@ public class EditProductServlet extends HttpServlet {
 			productBean.setWarranty                  (request.getParameter("warranty").trim()                            );
 			productBean.setCancellationAfterBooked   (Integer.parseInt(request.getParameter("cancellationPeriod").trim()));
 			
+			productBean.setShippingCost                  (Double.parseDouble(request.getParameter("shipping")        .trim()));
+			productBean.setDeliveryTime                  (Integer.parseInt  (request.getParameter("delivery")        .trim()));
+			
 			
 			/**************** Key Features ***************/
 			
@@ -626,19 +629,20 @@ public class EditProductServlet extends HttpServlet {
 			/*******************************************************
 			 	*  Database - Edit Product Table  *
 			*******************************************************/	
-			boolean status1 = false; boolean status2 = false;
+			boolean status1 = false; boolean status2 = false; boolean status3 = false;
 			
 			productBean     = editProductDAO.editProduct(productBean);
 			
 			status1 = editProductDAO.editKeyFeaturesAndSizes(updateKeyFeatures, updateSize, productBean);
 			status2 = editProductDAO.newKeyFeaturesAndSizes (newKeyFeatures, newSize, productBean);
+			status3 = editProductDAO.editShippingDelivery   (productBean);
 			
 			
 			/***************** Next Page **********************/
 			
 			JSONObject jsonObject = new JSONObject();
 			
-			if (status1 == true && status2 == true) {
+			if (status1 == true && status2 == true && status3 == true) {
 				
 				try {
 					jsonObject.put("success", "Basic Features Updated");

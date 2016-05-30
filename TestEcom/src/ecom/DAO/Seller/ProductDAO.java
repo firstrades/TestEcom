@@ -15,6 +15,7 @@ import com.mysql.jdbc.PacketTooBigException;
 import ecom.model.KeyFeature;
 import ecom.model.Product;
 import ecom.model.Size;
+import ecom.model.TwoObjects;
 import ecom.model.User;
 import ecom.common.ConnectionFactory;
 import ecom.common.Conversions;
@@ -502,6 +503,8 @@ public class ProductDAO {
 				product.setWarranty                  (resultSet.getString("warranty"    ));
 				product.setCancellationAfterBooked   (resultSet.getInt   ("calcellation_after_booked"    ));
 				
+				
+				
 			}
 			
 			connection.commit();
@@ -804,7 +807,50 @@ public class ProductDAO {
 	
 	
 	
-	
+	public TwoObjects<Double, Integer> getShippingDelivery(long productId) {
+		
+		Connection connection = null; PreparedStatement preparedStatement = null; ResultSet resultSet = null;
+		String sql = null; 		
+		TwoObjects<Double, Integer> twoObjects = new TwoObjects<>();
+		
+		try {
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			sql = "SELECT * FROM shipping_delivery WHERE product_id = ?";
+				
+			preparedStatement = connection.prepareStatement(sql);			
+			preparedStatement.setLong   (1, productId);			
+		
+			resultSet = preparedStatement.executeQuery();	
+			
+			if (resultSet.next()) { 				
+				
+				twoObjects.setObj1(resultSet.getDouble("shippingCost"));
+				twoObjects.setObj2(resultSet.getInt("deliveryTime"));
+				
+			}
+			
+			connection.commit();
+			
+			System.out.println("SQL getProduct Executed");
+			
+			return twoObjects;			
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e1) {
+			try {
+				connection.rollback();       } catch (SQLException e) {	e.printStackTrace(); }
+			e1.printStackTrace();
+		} finally {
+			twoObjects = null;
+			try { preparedStatement.close(); } catch (SQLException e) { e.printStackTrace(); }
+			try { connection.close();        } catch (SQLException e) { e.printStackTrace(); }
+			System.gc();
+		}			
+		
+		return null;
+	}//getProduct
 	
 	
 	

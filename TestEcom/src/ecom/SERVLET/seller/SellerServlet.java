@@ -37,6 +37,7 @@ import ecom.model.KeyFeature;
 import ecom.model.OrderTable;
 import ecom.model.Product;
 import ecom.model.Size;
+import ecom.model.TwoObjects;
 import ecom.model.User;
 
 
@@ -251,8 +252,8 @@ public class SellerServlet extends HttpServlet {
 			product.setWarranty               (request.getParameter("warranty")                           .trim());
 			product.setCancellationAfterBooked(Integer.parseInt(request.getParameter("cancellationPeriod").trim()));
 			
-			product.setShippingCost(100.00);
-			product.setDeliveryTime(7);
+			product.setShippingCost           (Double.parseDouble(request.getParameter("shipping")        .trim()));
+			product.setDeliveryTime           (Integer.parseInt  (request.getParameter("delivery")        .trim()));
 			
 			/************ If-Size-Exists *****************/
 			
@@ -771,9 +772,13 @@ public class SellerServlet extends HttpServlet {
 			Product product              = productDAO.getProduct    (productId);
 			List<KeyFeature> keyFeatures = productDAO.getKeyFeatures(productId);
 			List<Size> sizes             = productDAO.getSizes      (productId);
+			TwoObjects<Double, Integer> twoObjects = productDAO.getShippingDelivery(productId);
 			
 			product.setKeyFeatures(keyFeatures);
 			product.setSizes(sizes);
+			
+			product.setShippingCost(twoObjects.getObj1());
+			product.setDeliveryTime(twoObjects.getObj2());
 			
 			/********* Set Request ***********/
 			request.setAttribute("product", product);
