@@ -113,7 +113,14 @@ public class ProductCategoryList extends HttpServlet {
 					+"<option value=\"GasStoves\">Gas Stoves</option>"	
 					+"";
 		}
-		
+		else if (value.equals("FoodAndGrocery")) {
+			
+			options = "<option value=\"Confectionery\">Confectionery</option>"
+					+"<option value=\"PowderProduct\">Powder Product</option>"		
+					+"<option value=\"Cakes\">Cakes</option>"	
+					
+					+"";
+		}
 		
 		return options;
 	}

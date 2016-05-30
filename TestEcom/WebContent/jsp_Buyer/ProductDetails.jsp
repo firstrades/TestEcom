@@ -11,25 +11,25 @@
 <html data-ng-app="ProductDetailsApplication">
 <head>
 	<title>Product Details</title>
+	
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />	
+	<link href="<%=FrequentUse.style %>" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />	
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="First Trades" />
-	<!-- start menu -->
-	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />	
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<meta name="keywords" content="First Trades Online Shoppin" />
 	
-	<link  href="<%=FrequentUse.style %>" rel='stylesheet' type='text/css' />	
-	<script src="<%=FrequentUse.jQuery %>" type="text/javascript"></script>	
-	<script src="<%=FrequentUse.angular %>" type="text/javascript"></script>	
-	<script src="js_Buyer/ProductDetails.js" type="text/javascript"></script>
-	
-	<!-- Custom Theme files -->
-	<!--//theme-style-->	
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>	
+	<script src="<%=FrequentUse.jQuery %>" type="text/javascript"></script>				
 	<script type="text/javascript" src="js/megamenu.js"></script>
-	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+	<script>
+		$(document).ready(function(){$(".megamenu").megamenu();});
+	</script>
 	<script src="js/menu_jquery.js"></script>
+	<script src="js/simpleCart.min.js"> </script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js_Buyer/ProductDetails.js" type="text/javascript"></script>
 	
 	<style>
 		.details{

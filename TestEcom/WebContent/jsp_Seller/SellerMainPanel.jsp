@@ -180,6 +180,15 @@
                                                              
                             </ul>                            
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Food&amp;Grocery<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            	<li><a href="ViewProductList?category=FoodAndGrocery&subCategory=Confectionery" target="iframe">Confectionery</a></li>
+                                <li><a href="ViewProductList?category=FoodAndGrocery&subCategory=PowderProduct" target="iframe">PowderProduct</a></li>
+                                <li><a href="ViewProductList?category=FoodAndGrocery&subCategory=Cakes" target="iframe">Cakes</a></li>                                     
+                                                                  
+                            </ul>                           
+                        </li>
                         
                         <li>
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>

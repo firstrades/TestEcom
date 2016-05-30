@@ -9,24 +9,23 @@
 <html>
 <head>
 	<title> Buyer's Search Page </title>
-	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />	
-	<script type="text/javascript" src="<%=FrequentUse.jQuery %>"></script>
-	<!-- Custom Theme files -->
+	
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />		
+	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />	
 	<link href="<%=FrequentUse.style %>" rel='stylesheet' type='text/css' />
 	
-	<!-- Custom Theme files -->
-	<!--//theme-style-->
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="First Trades Online Shoppin" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-	<!-- start menu -->
-	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+	<meta name="keywords" content="First Trades Online Shoppin" />	
+	
+	<script type="text/javascript" src="<%=FrequentUse.jQuery %>"></script>
 	<script type="text/javascript" src="js/megamenu.js"></script>
-	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+	<script>
+		$(document).ready(function(){$(".megamenu").megamenu();});
+	</script>
 	<script src="js/menu_jquery.js"></script>
 	<script src="js/simpleCart.min.js"> </script>
-	
+	<script src="js/bootstrap.min.js"></script>	
 	<script type="text/javascript" src="js_Buyer/BuyerProductSearchResult.js"></script>
 	
 	<style type="text/css">
@@ -270,25 +269,13 @@
 									</ul>	
 								</div>							
 							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>kids</h4>
-									<ul>
-										<li><a href="#">Pools&#38;Tees</a></li>
-										<li><a href="#">shirts</a></li>
-										<li><a href="#">shorts</a></li>
-										<li><a href="#">twinsets</a></li>
-										<li><a href="#">kurts</a></li>
-										<li><a href="#">jackets</a></li>
-									</ul>	
-								</div>							
-							</div>
+							
 
 							<div class="col_images">
 								<div class="h_nav">
 									<img src="images/herbal.jpg" alt="herbal">
-									</div>
-									</div>
+								</div>
+							</div>
 
 
 						</div>
@@ -348,42 +335,30 @@
 				</li>				
 			
 							
-				<li><a class="color4" href="#">FOOD&amp;GROCERY</a>
+				<% if (productBeanList.get(0).getCategory().equals("FoodAndGrocery")) { %>
+				<li class="active grid"><a class="color1" href="#">FOOD&amp;GROCERY</a>
+				<% } else { %> 
+				<li class="grid"><a class="color1" href="#">FOOD&amp;GROCERY</a>
+				<% } %>
 				<div class="megapanel">
 						<div class="row">
 							<div class="col1">
 								<div class="h_nav">
-									<h4>Clothing</h4>
+									<h4>Food</h4>
 									<ul>
-										<li><a href="#">new arrivals</a></li>
-										<li><a href="#">men</a></li>
-										<li><a href="#">women</a></li>
-										<li><a href="#">accessories</a></li>
-										<li><a href="#">kids</a></li>
-										<li><a href="#">brands</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Confectionery">Confectionery</a></li>
+										<li><a href="SearchBySubCategory?subCategory=PowderProduct">PowderProduct</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Cakes">Cakes</a></li>										
 									</ul>	
 								</div>							
-							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>kids</h4>
-									<ul>
-										<li><a href="#">Pools&#38;Tees</a></li>
-										<li><a href="#">shirts</a></li>
-										<li><a href="#">shorts</a></li>
-										<li><a href="#">twinsets</a></li>
-										<li><a href="#">kurts</a></li>
-										<li><a href="#">jackets</a></li>
-									</ul>	
-								</div>							
-							</div>
+							</div>					
 					
 						
-									<div class="col_images">
+							<div class="col_images">
 								<div class="h_nav">
 									<img src="images/food.jpg" alt="food">
-									</div>
-									</div>
+								</div>
+							</div>
 					
 						</div>
 						<div class="row">

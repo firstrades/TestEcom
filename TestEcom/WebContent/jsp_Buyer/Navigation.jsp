@@ -171,25 +171,13 @@
 									</ul>	
 								</div>							
 							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>kids</h4>
-									<ul>
-										<li><a href="#">Pools&#38;Tees</a></li>
-										<li><a href="#">shirts</a></li>
-										<li><a href="#">shorts</a></li>
-										<li><a href="#">twinsets</a></li>
-										<li><a href="#">kurts</a></li>
-										<li><a href="#">jackets</a></li>
-									</ul>	
-								</div>							
-							</div>
+							
 
 							<div class="col_images">
 								<div class="h_nav">
 									<img src="images/herbal.jpg" alt="herbal">
-									</div>
-									</div>
+								</div>
+							</div>
 
 
 						</div>
@@ -250,37 +238,20 @@
 						<div class="row">
 							<div class="col1">
 								<div class="h_nav">
-									<h4>Clothing</h4>
+									<h4>Food</h4>
 									<ul>
-										<li><a href="#">new arrivals</a></li>
-										<li><a href="#">men</a></li>
-										<li><a href="#">women</a></li>
-										<li><a href="#">accessories</a></li>
-										<li><a href="#">kids</a></li>
-										<li><a href="#">brands</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Confectionery">Confectionery</a></li>
+										<li><a href="SearchBySubCategory?subCategory=PowderProduct">PowderProduct</a></li>
+										<li><a href="SearchBySubCategory?subCategory=Cakes">Cakes</a></li>										
 									</ul>	
 								</div>							
 							</div>
-							<div class="col1">
-								<div class="h_nav">
-									<h4>kids</h4>
-									<ul>
-										<li><a href="#">Pools&#38;Tees</a></li>
-										<li><a href="#">shirts</a></li>
-										<li><a href="#">shorts</a></li>
-										<li><a href="#">twinsets</a></li>
-										<li><a href="#">kurts</a></li>
-										<li><a href="#">jackets</a></li>
-									</ul>	
-								</div>							
-							</div>
-					
-						
-									<div class="col_images">
+							
+							<div class="col_images">
 								<div class="h_nav">
 									<img src="images/food.jpg" alt="food">
-									</div>
-									</div>
+								</div>
+							</div>
 					
 						</div>
 						<div class="row">

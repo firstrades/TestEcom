@@ -7,6 +7,26 @@ font-family: 'Roboto', sans-serif;
 font-size: 100%;
 background: #ffffff;
 }
+.login-form-input {
+			width: 411px;
+		    margin-bottom: 13px;
+		    height: 45px;
+		    font-size: 15px;
+		    padding-left: 15px;
+		    color: #333;
+		    background: #fff;
+		    border: 1px solid #c3c3c3; 
+		}
+		.fk-input {
+		    font-size: 13px;
+		    padding: 5px 6px;
+		    border: 1px solid #ccc;
+		    resize: none;
+		    font-family: inherit;
+		}
+		.new-login-form {
+		    width: 400px;
+		} 
 body a{
 transition:0.5s all;
 -webkit-transition:0.5s all;
@@ -4574,3 +4594,6 @@ text-align: center;
 	text-align: left;
 }
 }	
+
+
+

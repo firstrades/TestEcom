@@ -24,6 +24,8 @@
 		</div>
 	</div>
 </div>
+
+
 <!-- header -->
 <div class="header_bg">
 	<div class="container">
@@ -128,5 +130,57 @@
     	</div>
     </div>
 </div>
+
+
+
+<!-- ------------------------------------------Administration----------------------------------------------- -->
+
+
+<div class="container">  
+	<!-- Modal -->
+	<div class="modal fade" id="myModal">
+    	<div class="modal-dialog">    
+      		<!-- Modal content-->
+      		<div class="modal-content">
+        		<div class="modal-header">
+          			<button type="button" class="close" data-dismiss="modal">&times;</button>
+          			<h4 class="modal-title">ADMINISTRATION &nbsp;LOGIN</h4>
+        		</div>
+        		<!-- -------------------------------------------------------------- -->
+        		<form action="Administration" method="post">
+	        		<div class="modal-body">
+	       				<div class="new-login-form">           
+	            			<div class="login-input-wrap">
+	                			<input type="text" name="userId" class="fk-input login-form-input user-email" autocomplete="on" placeholder="Enter email/mobile" value="admin">               
+	            			</div>         
+	            			<div class="tmargin10 login-input-wrap">
+	                			<input type="password" name="password" class="fk-input login-form-input user-pwd" autocomplete="off" placeholder="Enter password" value="12345">           
+	            			</div>
+	            			<div class="tmargin20 login-btn-wrap">
+	                			<input type="submit" class="btn btn-success" value="Login" style="padding: 6px 20px;text-transform: uppercase;background-color: #E2B757;
+	    								border-color: #B18E3F;"> &nbsp;&nbsp;&nbsp;
+	                			<a class="frgt-pswd fk-font-12 lpadding20" href="javascript:void(0)" style="font-size:10px;text-transform: uppercase;">forgot password?</a>
+	            			</div>
+	        			</div>
+	        			<div class="modal-footer">
+	          				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        			</div>
+	      			</div>   
+      			</form>  
+      			<!-- -------------------------------------------------------------- --> 
+    		</div>
+  		</div>  
+	</div>
+</div>
+
+
+<!-- ------------------------------------------End Administration----------------------------------------------- -->
+
     
 <!-- -------------------------------------End Header------------------------------------------ -->
+
+
+
+
+
+

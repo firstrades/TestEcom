@@ -11,26 +11,23 @@
 <html>
 <head>
 	<title> Firstrades </title>
-	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />	
-	<script type="text/javascript" src="<%=FrequentUse.jQuery %>"></script>	
-	<!-- Custom Theme files -->
-	<link href="<%=FrequentUse.style %>" rel='stylesheet' type='text/css' />
 	
-	<!-- Custom Theme files -->
-	<!--//theme-style-->
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />	
+	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<%=FrequentUse.style %>" rel='stylesheet' type='text/css' />	
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="First Trades Online Shoppin" />
+	<meta name="keywords" content="First Trades Online Shoppin" />	
 	
-	<!-- start menu -->
-	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="<%=FrequentUse.jQuery %>"></script>	
 	<script type="text/javascript" src="js/megamenu.js"></script>
 	<script>	
 		$(document).ready(function(){$(".megamenu").megamenu();});
 	</script>
 	<script src="js/menu_jquery.js"></script>
 	<script src="js/simpleCart.min.js"> </script>
-	  <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	  
 	 
 	  
@@ -41,33 +38,7 @@
 -->
 
 	  
-	<style type="text/css">
-		.login-form-input {
-			width: 411px;
-		    margin-bottom: 13px;
-		    height: 45px;
-		    font-size: 15px;
-		    padding-left: 15px;
-		    color: #333;
-		    background: #fff;
-		    border: 1px solid #c3c3c3; 
-		}
-		.fk-input {
-		    font-size: 13px;
-		    padding: 5px 6px;
-		    border: 1px solid #ccc;
-		    resize: none;
-		    font-family: inherit;
-		}
-		.new-login-form {
-		    width: 400px;
-		} 
-		
-		
-		
-		
-		   
-	</style>
+	
 	<style>
         
         /* jssor slider bullet navigator skin 03 css */
@@ -1498,48 +1469,7 @@
 
 <!-- ------------------------------------------End Body----------------------------------------------- -->
 
-<!-- ------------------------------------------Administration----------------------------------------------- -->
 
-
-<div class="container">  
-	<!-- Modal -->
-	<div class="modal fade" id="myModal">
-    	<div class="modal-dialog">    
-      		<!-- Modal content-->
-      		<div class="modal-content">
-        		<div class="modal-header">
-          			<button type="button" class="close" data-dismiss="modal">&times;</button>
-          			<h4 class="modal-title">ADMINISTRATION &nbsp;LOGIN</h4>
-        		</div>
-        		<!-- -------------------------------------------------------------- -->
-        		<form action="Administration" method="post">
-	        		<div class="modal-body">
-	       				<div class="new-login-form">           
-	            			<div class="login-input-wrap">
-	                			<input type="text" name="userId" class="fk-input login-form-input user-email" autocomplete="on" placeholder="Enter email/mobile" value="admin">               
-	            			</div>         
-	            			<div class="tmargin10 login-input-wrap">
-	                			<input type="password" name="password" class="fk-input login-form-input user-pwd" autocomplete="off" placeholder="Enter password" value="12345">           
-	            			</div>
-	            			<div class="tmargin20 login-btn-wrap">
-	                			<input type="submit" class="btn btn-success" value="Login" style="padding: 6px 20px;text-transform: uppercase;background-color: #E2B757;
-	    								border-color: #B18E3F;"> &nbsp;&nbsp;&nbsp;
-	                			<a class="frgt-pswd fk-font-12 lpadding20" href="javascript:void(0)" style="font-size:10px;text-transform: uppercase;">forgot password?</a>
-	            			</div>
-	        			</div>
-	        			<div class="modal-footer">
-	          				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        			</div>
-	      			</div>   
-      			</form>  
-      			<!-- -------------------------------------------------------------- --> 
-    		</div>
-  		</div>  
-	</div>
-</div>
-
-
-<!-- ------------------------------------------End Administration----------------------------------------------- -->
 
 
 
