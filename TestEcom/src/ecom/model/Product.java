@@ -32,6 +32,9 @@ public class Product implements Serializable {
 	protected Commission  commission;
 	protected String      productAdditionDate;
 	
+	protected double      shippingCost;
+	protected int         deliveryTime;
+	
 	
 	public Product() {
 		keyFeatures = new ArrayList<>();
@@ -188,6 +191,30 @@ public class Product implements Serializable {
 
 	public void setSizes(List<Size> sizes) {
 		this.sizes = sizes;
+	}
+
+
+
+	public double getShippingCost() {
+		return shippingCost;
+	}
+
+
+
+	public int getDeliveryTime() {
+		return deliveryTime;
+	}
+
+
+
+	public void setShippingCost(double shippingCost) {
+		this.shippingCost = shippingCost;
+	}
+
+
+
+	public void setDeliveryTime(int deliveryTime) {
+		this.deliveryTime = deliveryTime;
 	}
 
 	

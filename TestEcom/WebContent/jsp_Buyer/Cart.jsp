@@ -85,7 +85,7 @@ float: left;
 	@SuppressWarnings("all")
 	List<TwoObjects<Product, CartWishlist>> productBeanAndCW = (List<TwoObjects<Product, CartWishlist>>) request.getAttribute("productBeanAndCW");
 	@SuppressWarnings("all")
-	List<TwoObjects<BigDecimal, String>> apiDataList             = (List<TwoObjects<BigDecimal, String>>) request.getAttribute("apiDataList");
+	List<TwoObjects<BigDecimal, String>> apiDataList = (List<TwoObjects<BigDecimal, String>>) request.getAttribute("apiDataList");
 %>
 <div class="container">
 <div class="cart_details">

@@ -2,7 +2,6 @@ package ecom.SERVLET.buyer;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.soap.SOAPException;
-
-import org.xml.sax.SAXException;
 
 import ecom.DAO.Seller.ProductDAO;
-import ecom.Implementation.Courier.SOAP.EstimatedRateAndDeliveryBean;
+import ecom.Implementation.Project.ShippingDelivery;
 import ecom.Interface.Courier.EstimatedRateAndDelivery;
 import ecom.beans.TransientData;
 import ecom.model.KeyFeature;
@@ -65,6 +60,7 @@ public class CompleteProductDetails extends HttpServlet {
 			String productId1  = request.getParameter("productId");	
 			
 			/************* Get Session ***************/			
+			@SuppressWarnings("unused")
 			User user = (User) session.getAttribute("user");
 		
 			/**************** Process ******************/
@@ -87,8 +83,9 @@ public class CompleteProductDetails extends HttpServlet {
 			 */			
 			boolean error = false;
 			EstimatedRateAndDelivery estimatedRateAndDelivery = null;
-			try {
-				estimatedRateAndDelivery = EstimatedRateAndDeliveryBean.getNewInstance(productId, user, 1);
+			//try {
+				//estimatedRateAndDelivery = EstimatedRateAndDeliveryBean.getNewInstance(productId, user, 1);
+				estimatedRateAndDelivery = new ShippingDelivery(productId);
 				
 				BigDecimal rate = estimatedRateAndDelivery.getRate();    
 				String delivery = estimatedRateAndDelivery.getDelivery();
@@ -111,7 +108,7 @@ public class CompleteProductDetails extends HttpServlet {
 				request.setAttribute("delivery",      delivery);
 				
 				
-			} catch (SOAPException e) {
+			/*} catch (SOAPException e) {
 				System.out.println("SOAPException");
 				e.printStackTrace();
 				error = true;				
@@ -127,7 +124,7 @@ public class CompleteProductDetails extends HttpServlet {
 				System.out.println("ParseException");
 				e.printStackTrace();
 				error = true;	
-			}
+			}*/
 			
 			
 			/******** Clear Up **********/

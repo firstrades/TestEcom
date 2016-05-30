@@ -55,7 +55,7 @@ public class ApiDataMultiThreadBean {
 			}
 		}
 		
-		
+		//Print
 		for (TwoObjects<BigDecimal, String> twoObjects : apiData) {
 			
 			System.out.println(twoObjects.getObj1());

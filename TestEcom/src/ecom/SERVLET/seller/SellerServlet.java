@@ -251,6 +251,9 @@ public class SellerServlet extends HttpServlet {
 			product.setWarranty               (request.getParameter("warranty")                           .trim());
 			product.setCancellationAfterBooked(Integer.parseInt(request.getParameter("cancellationPeriod").trim()));
 			
+			product.setShippingCost(100.00);
+			product.setDeliveryTime(7);
+			
 			/************ If-Size-Exists *****************/
 			
 			int totalSizesStock = 0;
@@ -294,14 +297,16 @@ public class SellerServlet extends HttpServlet {
 				
 				productId = ProductDAO.addProduct(user, inputStream1, inputStream2, inputStream3, product); 
 				
-				if (productId != -1) {
-					
+				if (productId != -1) {					
 					keyCount = productDAO.addKeyFeatures(productId, product);					
 				}
 				
-				if (productId != -1) {
-					
+				if (productId != -1) {					
 					sizeCount = productDAO.addSizes(productId, product);
+				}
+				
+				if (productId != -1) {
+					productDAO.addShippingDelivery(productId, product);
 				}
 				
 			} catch (PacketTooBigException e) {

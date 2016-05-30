@@ -27,6 +27,7 @@ import ecom.DAO.Buyer.BuyerSearchDAO;
 import ecom.DAO.User.UserDAO;
 import ecom.Implementation.Courier.SOAP.EstimatedRateAndDeliveryBean;
 import ecom.Implementation.Courier.SOAP.SearchLocationByPostal;
+import ecom.Implementation.Project.MultiShippingDelivery;
 import ecom.Interface.Courier.EstimatedRateAndDelivery;
 import ecom.Interface.Courier.SearchLocationByPostalInterface;
 import ecom.beans.BuyerServletHelper;
@@ -288,10 +289,12 @@ public class BuyerServlet extends HttpServlet {
 					List<TwoObjects<BigDecimal, String>> apiDataList = null;
 					
 					//if (productBeanAndQtyList1 != null) {
-						ApiDataMultiThreadBean getApiDataMultiThread  = new ApiDataMultiThreadBean(productBeanAndCW, user, 
-								request, response);
-						apiDataList = getApiDataMultiThread.getRateAndDeliveryList();
+						//ApiDataMultiThreadBean getApiDataMultiThread  = new ApiDataMultiThreadBean(productBeanAndCW, user, request, response);
+						//apiDataList = getApiDataMultiThread.getRateAndDeliveryList();
 					//}
+						
+						MultiShippingDelivery multiShippingDelivery = new MultiShippingDelivery(productBeanAndCW);
+						apiDataList = multiShippingDelivery.getRateAndDeliveryList();
 					
 				/********** Set Session *******************/
 					//if (productBeanAndQtyList1 != null) {						

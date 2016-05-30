@@ -394,8 +394,11 @@ z-index: 101;
 		      									</tr>
 		        								<tr > 
 		        									<td class="fk-label vtop" align="right"> <div class="tpadding20 tmargin5"><label for="address1">Address Line 1 </label></div> </td>
+		        									<td> <textarea name="address1" class="fk-input" required="required" id="address1"/></textarea> </td>
+		        								</tr>
+		        								<tr>
 		        									<td class="fk-label vtop" align="right"> <div class="tpadding20 tmargin5"><label for="address2">Address Line 2 </label></div> </td>
-		         									<td> <textarea name="address1" class="fk-input" required="required" id="address1"/></textarea> </td> 
+		         									<td> <textarea name="address2" class="fk-input" required="required" id="address1"/></textarea> </td> 
 		          								</tr> 		         								
 		           								<tr> 
 		           									<td class="fk-label" align="right"><label for="city1">City </label></td>

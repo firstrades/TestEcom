@@ -211,6 +211,43 @@ public class ProductDAO {
 	} //addSizes
 	
 	
+	public void addShippingDelivery(long productId, Product product) {		
+		
+		Connection connection = null; PreparedStatement preparedStatement = null;
+		
+		String sql = "INSERT INTO shipping_delivery (product_id, shippingCost, deliveryTime) VALUES(?, ?, ?)";	
+	
+		try {
+			
+			connection = ConnectionFactory.getNewConnection();
+			connection.setAutoCommit(false);
+			
+			preparedStatement = connection.prepareStatement(sql);				
+								
+			preparedStatement.setLong  (1, productId);
+			preparedStatement.setDouble(2, product.getShippingCost());  
+			preparedStatement.setInt   (3, product.getDeliveryTime());  			
+			
+			preparedStatement.executeUpdate();  
+			
+			connection.commit();					
+			System.out.println("SQL - addKeyFeatures executed");			
+		
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {
+			try { connection.rollback();     } catch (SQLException e1) { e1.printStackTrace(); }
+			e.printStackTrace();			
+			
+		} finally {			
+			try { preparedStatement.close(); } catch (SQLException e)  { e.printStackTrace();  }
+			try { connection.close();        } catch (SQLException e)  { e.printStackTrace();  }
+			System.gc();
+		}  
+		
+		
+	} //addKeyFeatures
+	
+	
 	
 	public int deleteProduct(long productId) {
 		
