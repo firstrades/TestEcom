@@ -183,12 +183,17 @@ $(function() {
 		    processData: false,
 		    success: function (data) {	    	
 		    	
-		    	$("#fullName")   .html(data.fName + " " + data.lName  ); 
-		    	$("#fullAddress").html(data.address                   );  
-		    	$("#fullAddress1").html(data.address1                 );
+		    	//Place in Edit Adress
+		    	$("#fullName")   .html(data.fName + " " + data.lName); 
+		    	$("#fullAddress").html(data.address);  
+		    	$("#fullAddress1").html(data.address1);
 		    	$("#pinCity")    .html(data.pincode + ", " + data.city);  
-		    	$("#fullState")  .html(data.state                     );  
-		    	$("#fullContact").html(data.contact                   );
+		    	$("#fullState")  .html(data.state);  
+		    	$("#fullContact").html(data.contact);
+		    	//Place in Summary Address
+		    	$('#name1').html(data.fName + " " + data.lName);
+		    	$('#contact1').html(data.contact);
+		    	$('#address1').html(data.address+' '+data.address1+' '+data.pincode + ", " + data.city+', '+data.state);
 		    	
 		    	$('#enterAddress')   .css('display', 'none' );
 		    	$('#deliveryAddress').css('display', 'block');

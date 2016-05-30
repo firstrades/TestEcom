@@ -893,7 +893,7 @@ public class BuyerSearchDAO {
 					order.getDeliveryAddress().setlName  (callableStatement.getString(3));
 					order.getDeliveryAddress().setContact(callableStatement.getString(4));					
 					order.getDeliveryAddress().setAddress(callableStatement.getString(5));
-					order.getDeliveryAddress().setAddress(callableStatement.getString(6));
+					order.getDeliveryAddress().setAddress1(callableStatement.getString(6));
 					order.getDeliveryAddress().setCity   (callableStatement.getString(7));
 					order.getDeliveryAddress().setState  (callableStatement.getString(8));					
 					order.getDeliveryAddress().setPin    (callableStatement.getString(9));
@@ -903,7 +903,7 @@ public class BuyerSearchDAO {
 					connection.commit();
 					callableStatement.close();
 					
-					System.out.println("SQL - Select editDeliveryAddress() successfull.");
+					System.out.println("SQL - Select newDeliveryAddress() successfull.");
 					
 					return order;
 					
@@ -920,7 +920,7 @@ public class BuyerSearchDAO {
 			
 			return null;
 		
-	} // NewDeliveryAddress
+	} // newDeliveryAddress
 	
 	public Product getProductBean(long productId) {
 		

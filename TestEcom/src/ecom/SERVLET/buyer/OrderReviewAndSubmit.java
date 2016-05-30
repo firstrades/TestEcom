@@ -195,8 +195,8 @@ public class OrderReviewAndSubmit extends HttpServlet {
 				jsonObject.put("fName",   order.getDeliveryAddress().getfName()  );
 				jsonObject.put("lName",   order.getDeliveryAddress().getlName()  );
 				jsonObject.put("pincode", order.getDeliveryAddress().getPin()    );
-				jsonObject.put("address", order.getDeliveryAddress().getAddress());
-				jsonObject.put("address1", order.getDeliveryAddress().getAddress1());
+				jsonObject.put("address", order.getDeliveryAddress().getAddress()); System.out.println(order.getDeliveryAddress().getAddress());
+				jsonObject.put("address1", order.getDeliveryAddress().getAddress1()); System.out.println(order.getDeliveryAddress().getAddress1());
 				jsonObject.put("city",    order.getDeliveryAddress().getCity()   );
 				jsonObject.put("state",   order.getDeliveryAddress().getState()  );
 				jsonObject.put("contact", order.getDeliveryAddress().getContact());
